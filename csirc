@@ -1,0 +1,66 @@
+; Chicken Scheme Interpreter resource file
+; Chicken 4.6.0 +
+
+(begin
+	;; these modules need to be chicken-installed each time a new
+	;; CHICKEN system is built (more especially when a new chicken.so
+	;; lib version is released)
+
+	;chicken-doc requires a bit more setup...
+	; # cd `csi -np '(chicken-home)'`
+	; # curl http://3e8.org/pub/chicken-doc/chicken-doc-repo.tgz | sudo tar zx
+	(use chicken-doc)
+
+	;turn on GNU readline
+	(use readline)
+	(current-input-port (make-readline-port))
+
+	;use linenoise instead of readline
+	;(use linenoise)
+	;(current-input-port (make-linenoise-port))
+
+	; provide the ,x* csi command to fully expand macros
+	(use expand-full)
+
+	; provide ,a csi command - search for identifiers with RE
+	(use apropos)
+
+	;; define the ,el toplevel command that will edit files in my $EDITOR,
+	;; and load them into the interpreter after leaving $EDITOR
+	(let* ((edit-and-load-symbol 'el)
+				 (default-editor 
+					 (or (get-environment-variable "EDITOR")
+							 (get-environment-variable "VISUAL")
+							 (if (get-environment-variable "EMACS")
+								 "emacsclient"
+								 "vi")))
+
+				 (help-text
+					 (string-append
+						 ","
+						 (symbol->string edit-and-load-symbol)
+						 " FILENAME      Edit FILENAME in external editor and load results"))
+
+				 (edit-and-load
+					 (lambda ()
+						 (let ((files-str (read-line)))
+							 (if (= 0 (string-length files-str))
+								 (print (string-append "Usage: " help-text))
+								 (let ((r (system
+														(string-append 
+															(or (editor-command) default-editor)
+															" " files-str))))
+									 (if (not (zero? r))
+										 (printf "Editor returned with non-zero exit status ~a" r)
+										 ;check to see that the file(s) were written
+										 (for-each
+											 load 
+											 (filter file-exists? (string-split files-str))))))))))
+
+		(toplevel-command
+			edit-and-load-symbol
+			edit-and-load
+			help-text))
+	)
+
+; vim:ft=scheme ts=2:
