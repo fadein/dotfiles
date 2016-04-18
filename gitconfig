@@ -12,6 +12,8 @@
 	st		= status
 	stat	= status
 	statsu	= status
+	cmt     = commit
+	lig     = log
 
 [color]
 	ui				= true
