@@ -12,8 +12,11 @@
 	st		= status
 	stat	= status
 	statsu	= status
-	cmt     = commit
-	lig     = log
+	cmt		= commit
+	lig		= log
+	lgstat	= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset%n' --abbrev-commit --date=relative --numstat
+	cherry-pix = cherry-pick -x
+	vimdiff	= difftool --tool=vimdiff --no-prompt
 
 [color]
 	ui				= true
