@@ -48,14 +48,21 @@ linkToHome() {
 	fi
 }
 
+removeLink() {
+	DEST_NAME=$HOME/$1
+
+	if ! [ -h $DEST_NAME ]; then
+		echo "'$DEST_NAME' is not a symlink, skipping..."
+	else
+		echodo rm $DEST_NAME
+	fi
+}
+
 # make sure that $HOME is defined
 if [ 0"$HOME" = "0" ]; then
 	echo "HOME is empty or unset!"
 	exit 1
 fi
-
-# Resolve the location of this script
-HERE=$(dirname $(readlink -f $0))
 
 if [ 0"$DRYRUN" != "0" ]; then
 	echo ====================
@@ -64,7 +71,17 @@ if [ 0"$DRYRUN" != "0" ]; then
 	echo
 fi
 
-# Link these files and directories into $HOME
-linkToHome $HERE/csirc         .csirc
-linkToHome $HERE/inputrc       .inputrc
-linkToHome $HERE/gitconfig     .gitconfig
+if [ 0"$1" = 0"-r" ]; then
+	# Clean up old symlinks
+	removeLink .csirc
+	removeLink .inputrc
+	removeLink .gitconfig
+else
+	# Resolve the location of this script
+	HERE=$(dirname $(readlink -f $0))
+
+	# Link these files and directories into $HOME
+	linkToHome $HERE/csirc         .csirc
+	linkToHome $HERE/inputrc       .inputrc
+	linkToHome $HERE/gitconfig     .gitconfig
+fi
