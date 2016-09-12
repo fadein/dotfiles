@@ -7,8 +7,7 @@
 	;; lib version is released)
 
 	;chicken-doc requires a bit more setup...
-	; # cd `csi -np '(chicken-home)'`
-	; # curl http://3e8.org/pub/chicken-doc/chicken-doc-repo.tgz | sudo tar zx
+	; # ( cd `csi -np '(chicken-home)'`; curl http://3e8.org/pub/chicken-doc/chicken-doc-repo.tgz | sudo tar zx )
 	(use chicken-doc)
 
 	;turn on GNU readline
