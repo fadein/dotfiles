@@ -56,6 +56,7 @@
 	whitespace		= "tabwidth=4"
 	editor			= /usr/bin/vim
 
+
 [merge]
 	log = true
 
@@ -76,3 +77,6 @@
 	untracked = yellow
 [http]
 	sslverify = false
+
+[log]
+	decorate = true
