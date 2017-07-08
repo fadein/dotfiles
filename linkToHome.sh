@@ -71,17 +71,19 @@ if [ 0"$DRYRUN" != "0" ]; then
 	echo
 fi
 
+PAYLOAD_FILES="csirc gitconfig inputrc Xdefaults xprofile"
+
 if [ 0"$1" = 0"-r" ]; then
 	# Clean up old symlinks
-	removeLink .csirc
-	removeLink .inputrc
-	removeLink .gitconfig
+	for F in $(echo $PAYLOAD_FILES); do
+		removeLink .$F
+	done
 else
 	# Resolve the location of this script
 	HERE=$(dirname $(readlink -f $0))
 
 	# Link these files and directories into $HOME
-	linkToHome $HERE/csirc         .csirc
-	linkToHome $HERE/inputrc       .inputrc
-	linkToHome $HERE/gitconfig     .gitconfig
+	for F in $(echo $PAYLOAD_FILES); do
+		linkToHome $HERE/$F .$F
+	done
 fi

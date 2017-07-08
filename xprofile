@@ -1,0 +1,9 @@
+#!/bin/sh
+
+xrdb -quiet -load < ~/.Xdefaults
+
+setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
+
+# compton &
+
+# ~/.wallpapers/cycle/next-wallpaper.sh &
