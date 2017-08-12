@@ -2,7 +2,7 @@
 ! autocmd BufWritePost <buffer> :silent !xrdb -quiet -load < %
 ! autocmd BufWritePost <buffer> :silent !xrdb -remove < %
 
-!! Xcursor.theme: See the files under ~/.cursors/
+!! Xcursor.theme: See the files under ~/.icons/
 
 !! Default font setting
 urxvt*font:              xft:hack:pixelsize=14:antialias=true
