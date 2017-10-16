@@ -4,6 +4,10 @@ xrdb -quiet -load < ~/.Xdefaults
 
 setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
 
-# compton &
-
-# ~/.wallpapers/cycle/next-wallpaper.sh &
+case $1 in
+	dwm)
+		compton &
+		dwm_statusbar &
+		~/.wallpapers/cycle/next-wallpaper.sh &
+		;;
+esac
