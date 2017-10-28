@@ -6,6 +6,7 @@
 	ci		= commit
 	co		= checkout
 	lg		= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative
+	log		= log --date=iso-local
 	lga		= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative --all
 	ls		= ls-files
 	sb		= show-branch
@@ -13,6 +14,7 @@
 	stat	= status
 	statsu	= status
 	cmt		= commit
+	comimt	= commit
 	lig		= log
 	lgstat	= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset%n' --abbrev-commit --date=relative --numstat
 	cherry-pix = cherry-pick -x
@@ -55,6 +57,7 @@
 	excludesfile	= /home/erikf/.gitexcludes
 	whitespace		= "tabwidth=4"
 	editor			= /usr/bin/vim
+	askPass =
 
 
 [merge]
