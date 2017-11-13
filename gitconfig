@@ -52,7 +52,7 @@
 
 [core]
 	pager			= /usr/bin/less -R
-	excludesfile	= /home/erikf/.gitexcludes
+	excludesfile	= /home/fadein/.gitexcludes
 	whitespace		= "tabwidth=4"
 	editor			= /usr/bin/vim
 
@@ -80,3 +80,6 @@
 
 [log]
 	decorate = true
+[user]
+	email = erik.falor@usu.edu
+	name = Erik at School
