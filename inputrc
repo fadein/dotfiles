@@ -1,3 +1,6 @@
+# done at newLISP's suggestion
+set blink-matching-paren On
+
 # the following line is actually
 # equivalent to "\C-?": delete-char
 "\e[3~": delete-char
