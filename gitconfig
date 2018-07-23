@@ -19,6 +19,7 @@
 	lgstat	= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset%n' --abbrev-commit --date=relative --numstat
 	cherry-pix = cherry-pick -x
 	vimdiff	= difftool --tool=vimdiff --no-prompt
+    pullr   = pull --recurse-submodules=on-demand
 
 [color]
 	ui				= true
