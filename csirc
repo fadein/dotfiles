@@ -1,6 +1,7 @@
 ; Chicken Scheme Interpreter resource file
 ; Chicken 4.6.0 +
 
+(define +orig-input-port+ (current-input-port))
 (begin
 	;; these modules need to be chicken-installed each time a new
 	;; CHICKEN system is built (more especially when a new chicken.so
@@ -10,6 +11,7 @@
 	; # ( cd `csi -np '(chicken-home)'`; curl http://3e8.org/pub/chicken-doc/chicken-doc-repo.tgz | sudo tar zx )
 	(use chicken-doc)
 
+  ;(use srfi-19 date-literals)
 	;turn on GNU readline
 	(use readline)
 	(current-input-port (make-readline-port))

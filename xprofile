@@ -7,7 +7,7 @@ setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
 case $1 in
 	dwm)
 		compton &
-		dwm_statusbar &
+		dwm-statusbar &
 		~/.wallpapers/cycle/next-wallpaper.sh &
 		;;
 esac
