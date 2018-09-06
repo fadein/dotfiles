@@ -9,5 +9,6 @@ case $1 in
 		compton &
 		dwm-statusbar &
 		~/.wallpapers/cycle/next-wallpaper.sh &
+		xrandr --output DP2 --right-of DP1 &
 		;;
 esac
