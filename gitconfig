@@ -3,24 +3,25 @@
 	br		= branch
 	cache	= diff --cached
 	cached	= diff --cached
+	cherry-pix = cherry-pick -x
 	ci		= commit
+	cmt		= commit
 	co		= checkout
+	comimt	= commit
 	lg		= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative
-	log		= log --date=iso-local
 	lga		= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative --all
+	lgstat	= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset%n' --abbrev-commit --date=relative --numstat
+	lig		= log
+	log		= log --date=iso-local
 	ls		= ls-files
+	puhs    = push
+	pullr   = pull --recurse-submodules=on-demand
 	sb		= show-branch
 	st		= status
 	stat	= status
 	statsu	= status
 	stauts	= status
-	cmt		= commit
-	comimt	= commit
-	lig		= log
-	lgstat	= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset%n' --abbrev-commit --date=relative --numstat
-	cherry-pix = cherry-pick -x
 	vimdiff	= difftool --tool=vimdiff --no-prompt
-    pullr   = pull --recurse-submodules=on-demand
 
 [color]
 	ui				= true
@@ -61,6 +62,8 @@
 	editor			= /usr/bin/vim
 	askPass =
 
+[pager]
+	branch = false
 
 [merge]
 	log = true
@@ -85,3 +88,4 @@
 
 [log]
 	decorate = true
+

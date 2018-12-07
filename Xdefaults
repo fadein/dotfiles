@@ -61,6 +61,7 @@ urxvt*scrollstyle:       plain
 urxvt*scrollColor:       #595959
 ! true=when lots of lines come in, batch the scrolls; otherwise, force a refresh once per line
 urxvt*jumpScroll:        false
+
 URxvt.clipboard.autocopy: true
 urxvt.perl-ext-common:   default,selection-to-clipboard
 
