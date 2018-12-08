@@ -1,0 +1,11 @@
+# case-insensitive matching
+--ignore-case
+
+# ignore core dumps following my naming convention
+--ignore-file=match:/core\.\d+$/
+--ignore-file=match:/.*-\d+.core$/
+
+
+## Dump the default ackrc file by running
+# ack --create-ackrc
+
