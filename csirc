@@ -1,5 +1,5 @@
 ; Chicken Scheme Interpreter resource file
-; Chicken 4.6.0 +
+; Chicken 5.0.0 +
 
 (define +orig-input-port+ (current-input-port))
 (begin
@@ -8,23 +8,34 @@
 	;; lib version is released)
 
 	;chicken-doc requires a bit more setup...
-	; # ( cd `csi -np '(chicken-home)'`; curl http://3e8.org/pub/chicken-doc/chicken-doc-repo.tgz | sudo tar zx )
-	(use chicken-doc)
+	; # ( cd `csi -R chicken.platform -np '(chicken-home)'` && curl http://3e8.org/pub/chicken-doc/chicken-doc-repo.tgz | sudo tar zx )
+	(import chicken-doc)
 
-  ;(use srfi-19 date-literals)
+  ;(import srfi-19 date-literals)
+
 	;turn on GNU readline
-	(use readline)
+	(import breadline)
 	(current-input-port (make-readline-port))
 
 	;use linenoise instead of readline
-	;(use linenoise)
+	;(import linenoise)
 	;(current-input-port (make-linenoise-port))
 
 	; provide the ,x* csi command to fully expand macros
-	(use expand-full)
+	(import expand-full)
 
 	; provide ,a csi command - search for identifiers with RE
-	(use apropos)
+	(import apropos)
+
+  (import (chicken process-context)
+          (chicken csi)
+          (chicken process)
+          (chicken io)
+          (chicken file)
+          (chicken format)
+          (chicken string)
+          srfi-13
+          srfi-1)
 
 	;; define the ,el toplevel command that will edit files in my $EDITOR,
 	;; and load them into the interpreter after leaving $EDITOR
