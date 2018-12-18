@@ -1,78 +1,91 @@
 ; Chicken Scheme Interpreter resource file
 ; Chicken 5.0.0 +
 
+(import
+  (chicken csi)
+  (chicken file)
+  (chicken format)
+  (chicken io)
+  (chicken process)
+  (chicken process-context)
+  (chicken string)
+  srfi-1
+  srfi-13
+  )
+
 (define +orig-input-port+ (current-input-port))
 (begin
-	;; these modules need to be chicken-installed each time a new
-	;; CHICKEN system is built (more especially when a new chicken.so
-	;; lib version is released)
+  ;; these modules need to be chicken-installed each time a new
+  ;; CHICKEN system is built (more especially when a new chicken.so
+  ;; lib version is released)
 
-	;chicken-doc requires a bit more setup...
-	; # ( cd `csi -R chicken.platform -np '(chicken-home)'` && curl http://3e8.org/pub/chicken-doc/chicken-doc-repo.tgz | sudo tar zx )
-	(import chicken-doc)
+  ;chicken-doc requires a bit more setup...
+  ; # ( cd `csi -R chicken.platform -np '(chicken-home)'` && curl http://3e8.org/pub/chicken-doc/chicken-doc-repo.tgz | sudo tar zx )
+  (import chicken-doc)
 
   ;(import srfi-19 date-literals)
 
-	;turn on GNU readline
-	(import breadline)
-	(current-input-port (make-readline-port))
+  ;turn on GNU readline
+  (import (prefix breadline "rl-"))
+  (import (prefix breadline-scheme-completion "rl-"))
+  (rl-history-file (format "~a/.csi_history" (get-environment-variable "HOME")))
+  (rl-stifle-history! 10000)
+  (rl-completer-word-break-characters-set! "\"\'`;|(")
+  (rl-completer-set! rl-scheme-completer)
+  (rl-basic-quote-characters-set! "\"|")
+  (rl-variable-bind! "blink-matching-paren" "on")
+  (rl-paren-blink-timeout-set! 200000)
+  (current-input-port (rl-make-readline-port))
 
-	;use linenoise instead of readline
-	;(import linenoise)
-	;(current-input-port (make-linenoise-port))
+  ;use linenoise instead of readline
+  ;(import linenoise)
+  ;(current-input-port (make-linenoise-port))
 
-	; provide the ,x* csi command to fully expand macros
-	(import expand-full)
+  ; provide the ,x* csi command to fully expand macros
+  (import expand-full)
 
-	; provide ,a csi command - search for identifiers with RE
-	(import apropos)
+  ; provide ,a csi command - search for identifiers with RE
+  (import apropos)
 
-  (import (chicken process-context)
-          (chicken csi)
-          (chicken process)
-          (chicken io)
-          (chicken file)
-          (chicken format)
-          (chicken string)
-          srfi-13
-          srfi-1)
 
-	;; define the ,el toplevel command that will edit files in my $EDITOR,
-	;; and load them into the interpreter after leaving $EDITOR
-	(let* ((edit-and-load-symbol 'el)
-				 (default-editor 
-					 (or (get-environment-variable "EDITOR")
-							 (get-environment-variable "VISUAL")
-							 (if (get-environment-variable "EMACS")
-								 "emacsclient"
-								 "vi")))
+  ;; define the ,el toplevel command that will edit files in my $EDITOR,
+  ;; and load them into the interpreter after leaving $EDITOR
+  (let* ((edit-and-load-symbol 'el)
+         (default-editor
+           (or (get-environment-variable "EDITOR")
+               (get-environment-variable "VISUAL")
+               (if (get-environment-variable "EMACS")
+                   "emacsclient"
+                   "vi")))
 
-				 (help-text
-					 (string-append
-						 ","
-						 (symbol->string edit-and-load-symbol)
-						 " FILENAME      Edit FILENAME in external editor and load results"))
+         (help-text
+           (string-append
+             ","
+             (symbol->string edit-and-load-symbol)
+             " FILENAME      Edit FILENAME in external editor and load results"))
 
-				 (edit-and-load
-					 (lambda ()
-						 (let ((files-str (read-line)))
-							 (if (= 0 (string-length files-str))
-								 (print (string-append "Usage: " help-text))
-								 (let ((r (system
-														(string-append 
-															(or (editor-command) default-editor)
-															" " files-str))))
-									 (if (not (zero? r))
-										 (printf "Editor returned with non-zero exit status ~a" r)
-										 ;check to see that the file(s) were written
-										 (for-each
-											 load 
-											 (filter file-exists? (string-split files-str))))))))))
+         (edit-and-load
+           (lambda ()
+             (let ((files-str (read-line)))
+               (if (= 0 (string-length files-str))
+                   (printf "Usage: ~a~n" help-text)
+                   (let ((r (system
+                              (string-append
+                                (or (editor-command) default-editor)
+                                " " files-str))))
+                     (if (not (zero? r))
+                         (printf "Editor returned with non-zero exit status ~a" r)
+                         ; verify that the file(s) were written
+                         (let ((edited-files
+                                 (filter file-exists?
+                                         (map string-trim-both
+                                              (string-split files-str)))))
+                           (for-each load edited-files)))))))))
 
-		(toplevel-command
-			edit-and-load-symbol
-			edit-and-load
-			help-text))
-	)
+    (toplevel-command
+      edit-and-load-symbol
+      edit-and-load
+      help-text))
+  )
 
-; vim:ft=scheme ts=2:
+; vim: filetype=scheme tabstop=2 expandtab:
