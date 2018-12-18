@@ -25,7 +25,7 @@
 
   ; chicken-doc requires a bit more setup
   ; Run this command (parens are for a subshell):
-  ; ( cd `csi -R chicken.platform -np '(chicken-home)'` && curl http://3e8.org/pub/chicken-doc/chicken-doc-repo.tgz | sudo tar zx )
+  ; ( cd `csi -R chicken.platform -np '(chicken-home)'` && curl http://3e8.org/pub/chicken-doc/chicken-doc-repo-5.tar.bz2 | sudo tar jx )
   (import chicken-doc)
 
 
