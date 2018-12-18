@@ -13,19 +13,23 @@
   srfi-13
   )
 
+;; Backup copy of the original input port
 (define +orig-input-port+ (current-input-port))
+
+
 (begin
   ;; these modules need to be chicken-installed each time a new
   ;; CHICKEN system is built (more especially when a new chicken.so
   ;; lib version is released)
 
-  ;chicken-doc requires a bit more setup...
-  ; # ( cd `csi -R chicken.platform -np '(chicken-home)'` && curl http://3e8.org/pub/chicken-doc/chicken-doc-repo.tgz | sudo tar zx )
+
+  ; chicken-doc requires a bit more setup
+  ; Run this command (parens are for a subshell):
+  ; ( cd `csi -R chicken.platform -np '(chicken-home)'` && curl http://3e8.org/pub/chicken-doc/chicken-doc-repo.tgz | sudo tar zx )
   (import chicken-doc)
 
-  ;(import srfi-19 date-literals)
 
-  ;turn on GNU readline
+  ; Enable GNU readline
   (import (prefix breadline "rl-"))
   (import (prefix breadline-scheme-completion "rl-"))
   (rl-history-file (format "~a/.csi_history" (get-environment-variable "HOME")))
@@ -37,44 +41,43 @@
   (rl-paren-blink-timeout-set! 200000)
   (current-input-port (rl-make-readline-port))
 
+
   ;use linenoise instead of readline
   ;(import linenoise)
   ;(current-input-port (make-linenoise-port))
 
+
   ; provide the ,x* csi command to fully expand macros
   (import expand-full)
 
-  ; provide ,a csi command - search for identifiers with RE
+
+  ; provide ,a csi command - search for identifiers with Regex
   (import apropos)
 
 
   ;; define the ,el toplevel command that will edit files in my $EDITOR,
   ;; and load them into the interpreter after leaving $EDITOR
   (let* ((edit-and-load-symbol 'el)
-         (default-editor
-           (or (get-environment-variable "EDITOR")
+         (editor
+           (or (editor-command)
+               (get-environment-variable "EDITOR")
                (get-environment-variable "VISUAL")
                (if (get-environment-variable "EMACS")
                    "emacsclient"
                    "vi")))
 
          (help-text
-           (string-append
-             ","
-             (symbol->string edit-and-load-symbol)
-             " FILENAME      Edit FILENAME in external editor and load results"))
+           (format ",~a FILENAME      Edit FILENAME in external editor (~a) and load results"
+             (symbol->string edit-and-load-symbol) editor))
 
          (edit-and-load
            (lambda ()
              (let ((files-str (read-line)))
                (if (= 0 (string-length files-str))
                    (printf "Usage: ~a~n" help-text)
-                   (let ((r (system
-                              (string-append
-                                (or (editor-command) default-editor)
-                                " " files-str))))
-                     (if (not (zero? r))
-                         (printf "Editor returned with non-zero exit status ~a" r)
+                   (let ((retval (system (format "~a ~a" editor files-str))))
+                     (if (not (zero? retval))
+                         (printf "~a returned with non-zero exit status: ~a~n" editor retval)
                          ; verify that the file(s) were written
                          (let ((edited-files
                                  (filter file-exists?
