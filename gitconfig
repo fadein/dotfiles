@@ -1,36 +1,38 @@
+# vim: set expandtab tabstop=4:
+
 [alias]
-	amend	= commit --amend
-	br		= branch
-	cache	= diff --cached
-	cached	= diff --cached
-	cherry-pix = cherry-pick -x
-	ci		= commit
-	cmt		= commit
-	co		= checkout
-	comimt	= commit
-	lg		= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative
-	lga		= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative --all
-	lgstat	= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset%n' --abbrev-commit --date=relative --numstat
-	lig		= log
-	log		= log --date=iso-local
-	ls		= ls-files
-	puhs    = push
-	pullr   = pull --recurse-submodules=on-demand
-	sb		= show-branch
-	st		= status
-	stat	= status
-	statsu	= status
-	stauts	= status
-	vimdiff	= difftool --tool=vimdiff --no-prompt
+    amend       = commit --amend
+    br          = branch
+    cache       = diff --cached
+    cached      = diff --cached
+    cherry-pix  = cherry-pick -x
+    ci          = commit
+    cmt         = commit
+    co          = checkout
+    comimt      = commit
+    lg          = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative
+    lga         = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative --all
+    lgstat      = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset%n' --abbrev-commit --date=relative --numstat
+    lig         = log
+    log         = log --date=iso-local
+    ls          = ls-files
+    puhs        = push
+    pullr       = pull --recurse-submodules=on-demand
+    sb          = show-branch
+    st          = status
+    stat        = status
+    statsu      = status
+    stauts      = status
+    vimdiff     = difftool --tool=vimdiff --no-prompt
 
 [color]
-	ui				= true
-	diff            = auto
-	grep			= true
-	branch			= true
-	interactive		= true
-	pager			= true
-	status			= true
+    ui          = true
+    diff        = auto
+    grep        = true
+    branch      = true
+    interactive = true
+    pager       = true
+    status      = true
 
 [color.diff]
     #plain (context text)
@@ -67,7 +69,7 @@
     log          = less -FR -rM
 
 [merge]
-	log = true
+    log = true
 
 [tig]
     show-date = relative
@@ -81,12 +83,12 @@
     #generic = ^F scroll-page-down  #doesn't work
 
 [push]
-	default = matching
+    default = matching
 [color "status"]
-	untracked = yellow
+    untracked = yellow
 [http]
-	sslverify = false
+    sslverify = false
 
 [log]
-	decorate = true
+    decorate = true
 
