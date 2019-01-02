@@ -56,14 +56,15 @@
 
 
 [core]
-	pager			= /usr/bin/less -R
-	excludesfile	= /home/fadein/.gitexcludes
-	whitespace		= "tabwidth=4"
-	editor			= /usr/bin/vim
-	askPass =
+    pager        = less -FRX -rM
+    excludesfile = /home/fadein/.gitexcludes
+    whitespace   = "tabwidth=4"
+    editor       = /usr/bin/vim
+    askPass      =
 
 [pager]
-	branch = false
+    branch       = false
+    log          = less -FR -rM
 
 [merge]
 	log = true
