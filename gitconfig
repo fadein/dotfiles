@@ -1,5 +1,17 @@
 # vim: set expandtab tabstop=4:
 
+
+# Put [user] configuration into a file called ~/.gituser
+# It should look like this:
+#
+# [user]
+#     name = "User Name"
+#     email = email.address@example.com
+
+[include]
+    path     = ~/.gituser
+
+
 [alias]
     amend       = commit --amend
     br          = branch
@@ -91,4 +103,3 @@
 
 [log]
     decorate = true
-
