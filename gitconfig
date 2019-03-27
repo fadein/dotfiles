@@ -31,8 +31,12 @@
     pullr        = pull --recurse-submodules=on-demand
     sb           = show-branch
     st           = status
+    satus        = status
+    sauts        = status
     stat         = status
+    stats        = status
     statsu       = status
+    statu        = status
     stauts       = status
     vimdiff      = difftool --tool=vimdiff --no-prompt
 
