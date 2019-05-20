@@ -27,12 +27,13 @@
     lig          = log
     log          = log --date=iso-local
     ls           = ls-files
+    psuh         = push
     puhs         = push
     pullr        = pull --recurse-submodules=on-demand
-    sb           = show-branch
-    st           = status
     satus        = status
     sauts        = status
+    sb           = show-branch
+    st           = status
     stat         = status
     stats        = status
     statsu       = status
@@ -104,3 +105,6 @@
 
 [log]
     decorate     = true
+
+[diff]
+	tool = vimdiff
