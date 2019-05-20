@@ -23,7 +23,7 @@ urxvt.keysym.C-8:        command:\033]710;xft:hack:pixelsize=32:antialias=true\0
 urxvt.keysym.C-9:        command:\033]710;xft:hack:pixelsize=48:antialias=true\007
 
 urxvt*urgentOnBell:      true
-urxvt*visualBell:        false
+urxvt*visualBell:        true
 
 ! prevent pressing PrtSc from wasting any more printer paper
 urxvt*print-pipe:        
@@ -72,15 +72,20 @@ urxvt.url-launcher:      /usr/local/bin/chrome
 urxvt.colorUL:           cornflowerblue
 
 ! Nethack optimized XTerm settings
-!xterm*faceSize: 21
-xterm*faceSize: 14
-xterm*faceName: DejaVuSansMono
+xterm*faceSize: 21
+xterm*renderFont: true
 xterm*Color3: yellow2
 xterm*Color4: dodgerblue
 xterm*background: grey25
-xterm*cursorBlink: false
 xterm*cursorColor: red
 xterm*allowFontOps: true
+
+
+! Vimdiff optimized XTerm settings
+xterm*cursorBlink: true
+xterm*cursorUnderLine: false
+xterm*faceSize: 12
+xterm*faceName: Hack
 
 !Regular XTerm settings
 !! xterm*faceSize: 10
