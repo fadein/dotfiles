@@ -1,17 +1,15 @@
 ; Chicken Scheme Interpreter resource file
 ; Chicken 5.0.0 +
 
-(import
-  (chicken csi)
-  (chicken file)
-  (chicken format)
-  (chicken io)
-  (chicken process)
-  (chicken process-context)
-  (chicken string)
-  srfi-1
-  srfi-13
-  )
+(import (chicken csi))
+(import (chicken file))
+(import (chicken format))
+(import (chicken io))
+(import (chicken process))
+(import (chicken process-context))
+(import (chicken string))
+(import srfi-1)
+(import srfi-13)
 
 ;; Backup copy of the original input port
 (define +orig-input-port+ (current-input-port))
@@ -22,14 +20,17 @@
   ;; CHICKEN system is built (more especially when a new chicken.so
   ;; lib version is released)
 
+  ; Import chicken-doc or explain how to manually set it up
+  (handle-exceptions
+    _
+    (print
+      "The 'chicken-doc' egg requires a bit of manual setup\n"
+      "Run this command (the parens are for a subshell):\n"
+      "( cd `csi -R chicken.platform -np '(chicken-home)'` && curl http://3e8.org/pub/chicken-doc/chicken-doc-repo-5.tar.bz2 | sudo tar jx )")
+    (import chicken-doc))
 
-  ; chicken-doc requires a bit more setup
-  ; Run this command (parens are for a subshell):
-  ; ( cd `csi -R chicken.platform -np '(chicken-home)'` && curl http://3e8.org/pub/chicken-doc/chicken-doc-repo-5.tar.bz2 | sudo tar jx )
-  (import chicken-doc)
 
-
-  ; Enable GNU readline
+  ; "breadline" readline interface
   (import (prefix breadline "rl-"))
   (import (prefix breadline-scheme-completion "rl-"))
   (rl-history-file (format "~a/.csi_history" (get-environment-variable "HOME")))
@@ -41,8 +42,7 @@
   (rl-paren-blink-timeout-set! 200000)
   (current-input-port (rl-make-readline-port))
 
-
-  ;use linenoise instead of readline
+  ; use linenoise instead of readline
   ;(import linenoise)
   ;(current-input-port (make-linenoise-port))
 
