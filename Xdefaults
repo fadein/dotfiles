@@ -65,9 +65,8 @@ urxvt*jumpScroll:        false
 URxvt.clipboard.autocopy: true
 urxvt.perl-ext-common:   default,selection-to-clipboard
 
-!urxvt.url-launcher:     /usr/bin/vimb
-!urxvt.url-launcher:      /usr/bin/firefox
-urxvt.url-launcher:      /usr/local/bin/chrome
+!urxvt.url-launcher:     /usr/bin/firefox
+urxvt.url-launcher:      /usr/bin/brave-browser-stable
 !urxvt.matcher.button:    1
 urxvt.colorUL:           cornflowerblue
 
@@ -131,8 +130,8 @@ NetHack*rip*foreground: black
 
 ! --- special colors ---
 
-*background: #000000
-*foreground: #d9e6f2
+*foreground: #000000
+*background: #d9e6f2
 
 ! --- standard colors ---
 
