@@ -1,6 +1,6 @@
 #!/bin/sh
 
-xrdb -quiet -load < ~/.Xdefaults
+xrdb -quiet -load < ~/.Xdefaults &
 
 setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
 
