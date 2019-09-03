@@ -2,6 +2,12 @@
 
 xrdb -quiet -load < ~/.Xdefaults &
 
+# After copying new fonts into this directory, run `mkfontdir` and `mkfontscale` there
+if [ -d $HOME/.fonts ]; then
+    xset fp+ $HOME/.fonts
+    xset fp rehash
+fi
+
 setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
 
 case $1 in
