@@ -1,4 +1,4 @@
-# vim: set expandtab tabstop=4:
+# vim: set expandtab tabstop=4 ft=gitconfig:
 
 
 # Put [user] configuration into a file called ~/.gituser
@@ -22,6 +22,8 @@
     co           = checkout
     comimt       = commit
     commt        = commit
+    commti       = commit
+    dif          = diff
     lg           = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative
     lga          = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative --all
     lgstat       = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset%n' --abbrev-commit --date=relative --numstat
@@ -108,4 +110,4 @@
     decorate     = true
 
 [diff]
-	tool = vimdiff
+    tool = vimdiff
