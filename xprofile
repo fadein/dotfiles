@@ -12,8 +12,12 @@ setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
 
 case $1 in
 	dwm)
-		compton &
-		dwm-statusbar &
+		if ! pgrep -u $USER compton; then
+            compton&
+        fi
+		if ! pgrep -u $USER dwm-statusbar; then
+            dwm-statusbar&
+        fi
 		~/.wallpapers/cycle/next-wallpaper.sh &
 		xrandr --output DP2 --right-of DP1 &
 		;;
