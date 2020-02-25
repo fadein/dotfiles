@@ -21,6 +21,7 @@
     cmt          = commit
     co           = checkout
     comimt       = commit
+    commt        = commit
     commti       = commit
     dif          = diff
     lg           = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative
