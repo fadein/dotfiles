@@ -32,6 +32,7 @@
     ls           = ls-files
     psuh         = push
     puhs         = push
+    pul          = pull
     pullr        = pull --recurse-submodules=on-demand
     satus        = status
     sauts        = status
