@@ -13,6 +13,7 @@
 
 [alias]
     amend        = commit --amend
+    amendne      = commit --amend --no-edit
     br           = branch
     cache        = diff --cached
     cached       = diff --cached
