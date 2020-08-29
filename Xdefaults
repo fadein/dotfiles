@@ -1,6 +1,7 @@
 ! autocmd BufWritePost <buffer> :silent !xrdb -quiet -override < %
 ! autocmd BufWritePost <buffer> :silent !xrdb -quiet -load < %
 ! autocmd BufWritePost <buffer> :silent !xrdb -remove < %
+! autocmd BufWritePost
 
 
 !! Xcursor.theme: See the files under ~/.icons/
@@ -27,6 +28,10 @@ urxvt*visualBell:        true
 
 ! prevent pressing PrtSc from wasting any more printer paper
 urxvt*print-pipe:        
+
+! Disable keycap picture insert mode
+urxvt*iso14755: false
+urxvt*iso14755_52: false
 
 ! no, this was not the winner..
 !urxvt.keysym.Shift-Delete: string:\033[3~
