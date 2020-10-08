@@ -110,7 +110,7 @@
 	rebase       = false
 
 [http]
-    sslverify    = false
+    sslverify    = true  # Set to false if SSL certs aren't being happy
 
 [log]
     decorate     = true
