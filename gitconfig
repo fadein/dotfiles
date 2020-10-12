@@ -32,6 +32,7 @@
     log          = log --date=iso-local
     ls           = ls-files
     name         = rev-parse --short HEAD
+    graded       = log --pretty=format:'Graded commit %h' -n 1
     psuh         = push
     puhs         = push
     pul          = pull
