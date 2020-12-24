@@ -1,6 +1,8 @@
 #!/bin/sh
 
-xrdb -quiet -load < ~/.Xdefaults &
+if [ -f ~/.Xdefaults ]; then
+    xrdb -quiet -load < ~/.Xdefaults &
+fi
 
 # After copying new fonts into this directory, run `mkfontdir` and `mkfontscale` there
 if [ -d $HOME/.fonts ]; then
@@ -11,14 +13,18 @@ fi
 setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
 
 case $1 in
-	dwm)
-		if ! pgrep -u $USER compton; then
+    dwm)
+        if ! pgrep -u $USER compton; then
             compton&
         fi
-		if ! pgrep -u $USER dwm-statusbar; then
+        if ! pgrep -u $USER dwm-statusbar; then
             dwm-statusbar&
         fi
-		~/.wallpapers/cycle/next-wallpaper.sh &
-		xrandr --output DP2 --right-of DP1 &
-		;;
+
+        if [ -x ~/.wallpapers/cycle/next-wallpaper.sh ]; then
+            ~/.wallpapers/cycle/next-wallpaper.sh &
+        fi
+
+        # xrandr --output DP2 --right-of DP1 &
+        ;;
 esac
