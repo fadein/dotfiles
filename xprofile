@@ -13,11 +13,22 @@ fi
 setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
 
 case $1 in
-    dwm)
-        if ! pgrep -u $USER compton; then
-            compton&
-        fi
-        if ! pgrep -u $USER dwm-statusbar; then
+	dwm)
+		# set the variable USE_COMPTON to non-null to use compton
+		case ${USE_COMPTON=no} in
+			no)
+				if ! pgrep -u $USER picom; then
+					picom &
+				fi
+				;;
+			*)
+				if ! pgrep -u $USER compton; then
+					compton -b
+				fi
+				;;
+		esac
+
+		if ! pgrep -u $USER dwm-statusbar; then
             dwm-statusbar&
         fi
 
@@ -25,6 +36,6 @@ case $1 in
             ~/.wallpapers/cycle/next-wallpaper.sh &
         fi
 
-        # xrandr --output DP2 --right-of DP1 &
-        ;;
+		# xrandr --output DP2 --right-of DP1 &
+		;;
 esac
