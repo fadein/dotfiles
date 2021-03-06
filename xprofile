@@ -12,6 +12,9 @@ fi
 
 setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
 
+# "Screensaver? We don't need no stinkin' screensaver!"
+xset s off -dpms
+
 case $1 in
 	dwm)
 		# set the variable USE_COMPTON to non-null to use compton
