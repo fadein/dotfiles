@@ -25,13 +25,14 @@
     commt        = commit
     commti       = commit
     dif          = diff
+    graded       = log --pretty=format:'Graded commit %h' -n 1
     lg           = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative
     lga          = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative --all
     lgstat       = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset%n' --abbrev-commit --date=relative --numstat
     lig          = log --date=iso-local --abbrev-commit
+    log          = log --date=iso-local --abbrev-commit
     ls           = ls-files
     name         = rev-parse --short HEAD
-    graded       = log --pretty=format:'Graded commit %h' -n 1
     psuh         = push
     puhs         = push
     pul          = pull
