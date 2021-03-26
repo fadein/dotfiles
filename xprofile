@@ -10,6 +10,9 @@ if [ -d $HOME/.fonts ]; then
     xset fp rehash
 fi
 
+# We don't need no stinkin' screensavers
+xset s off -dpms
+
 setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
 
 # "Screensaver? We don't need no stinkin' screensaver!"
@@ -32,7 +35,7 @@ case $1 in
 		esac
 
 		if ! pgrep -u $USER dwm-statusbar; then
-            dwm-statusbar&
+            dwm-statusbar &
         fi
 
         if [ -x ~/.wallpapers/cycle/next-wallpaper.sh ]; then
