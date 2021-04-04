@@ -21,11 +21,6 @@ set blink-matching-paren On
 "\eOH": beginning-of-line
 "\eOF": end-of-line
 
-# make Bash behave like Zsh
-"\ed": shell-kill-word
-"\ef": shell-forward-word
-"\eb": shell-backward-word
-
 #make shift+delete work in readline
 #"\e[3$": delete-char
 
@@ -62,6 +57,13 @@ set completion-ignore-case On
 set mark-symlinked-directories On
 
 Control-Meta-k: kill-whole-line
+
+# make Bash behave like Zsh
+$if Bash
+"\ed": shell-kill-word
+"\ef": shell-forward-word
+"\eb": shell-backward-word
+$endif
 
 # Allow 8-bit input/output
 #set meta-flag on
