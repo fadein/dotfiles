@@ -44,6 +44,9 @@ urxvt*visualBell:        true
 ! prevent pressing PrtSc from wasting any more printer paper
 urxvt*print-pipe:        
 
+urxvt*pointerBlank:      true
+urxvt*pointerBlankDelay: 5
+
 ! Disable keycap picture insert mode
 urxvt*iso14755: false
 urxvt*iso14755_52: false
