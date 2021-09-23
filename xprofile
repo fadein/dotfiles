@@ -13,12 +13,20 @@ fi
 setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
 
 case $HOSTNAME in
-    voyager2*|mariner*)
+    voyager2*)
         xset s on +dpms
+        export BROWSER=firefox
         ;;
+
+    mariner*)
+        xset s on +dpms
+        export BROWSER=vivaldi
+        ;;
+
     *)
         # "Screensaver? We don't need no stinkin' screensaver!"
         xset s off -dpms
+        export BROWSER=firefox
         ;;
 esac
 
