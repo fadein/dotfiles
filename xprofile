@@ -23,6 +23,15 @@ case $HOSTNAME in
         export BROWSER=vivaldi
         ;;
 
+    endeavour*|columbia*)
+        # "Screensaver? We don't need no stinkin' screensaver!"
+        xset s off -dpms
+
+        # Make Zoom scale on HiDPI displays
+        QT_AUTO_SCREEN_SCALE_FACTOR=1
+        export QT_AUTO_SCREEN_SCALE_FACTOR
+        ;;
+
     *)
         # "Screensaver? We don't need no stinkin' screensaver!"
         xset s off -dpms
@@ -54,6 +63,8 @@ case $1 in
             ~/.wallpapers/cycle/next-wallpaper.sh &
         fi
 
-		# xrandr --output DP2 --right-of DP1 &
+        # Make Java apps work in DWM
+        _JAVA_AWT_WM_NONREPARENTING=1
+        export _JAVA_AWT_WM_NONREPARENTING
 		;;
 esac
