@@ -15,40 +15,31 @@ xset s off -dpms
 
 setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
 
-case $HOSTNAME in
-    voyager2|mariner)
-        xset s on +dpms
+# "Screensaver? We don't need no stinkin' screensaver!"
+xset s off
+xset -dpms
+
+USE_COMPTON=yes
+# set the variable USE_COMPTON to non-null to use compton
+case ${USE_COMPTON=no} in
+    no)
+        if ! pgrep -u $USER picom; then
+            picom &
+        fi
         ;;
     *)
-        # "Screensaver? We don't need no stinkin' screensaver!"
-        xset s off -dpms
+        if ! pgrep -u $USER compton; then
+            compton -b
+        fi
         ;;
 esac
 
-case $1 in
-	dwm)
-		# set the variable USE_COMPTON to non-null to use compton
-		case ${USE_COMPTON=no} in
-			no)
-				if ! pgrep -u $USER picom; then
-					picom &
-				fi
-				;;
-			*)
-				if ! pgrep -u $USER compton; then
-					compton -b
-				fi
-				;;
-		esac
+if ! pgrep -u $USER dwm-statusbar; then
+    dwm-statusbar&
+fi
 
-		if ! pgrep -u $USER dwm-statusbar; then
-            dwm-statusbar &
-        fi
+if [ -x ~/.wallpapers/cycle/next-wallpaper.sh ]; then
+    ~/.wallpapers/cycle/next-wallpaper.sh &
+fi
 
-        if [ -x ~/.wallpapers/cycle/next-wallpaper.sh ]; then
-            ~/.wallpapers/cycle/next-wallpaper.sh &
-        fi
-
-		# xrandr --output DP2 --right-of DP1 &
-		;;
-esac
+xrandr --output HDMI-1 --left-of eDP-1 &

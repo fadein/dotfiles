@@ -91,4 +91,6 @@
       help-text))
   )
 
+(load "/home/fadein/devel/scheme/statistics/statistics.scm") (import statistics)
+
 ; vim: filetype=scheme tabstop=2 expandtab:
