@@ -84,7 +84,7 @@
     untracked    = yellow
 
 [core]
-    pager        = less -FRX -rM
+    pager        = less -MRX
     excludesfile = /home/fadein/.gitexcludes
     whitespace   = "tabwidth=4"
     editor       = /usr/bin/vim
@@ -93,6 +93,7 @@
 [pager]
     branch       = false
     log          = less -FR -rM
+    color-blame  = less -RS
 
 [merge]
     log          = true
