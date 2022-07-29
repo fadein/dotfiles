@@ -40,7 +40,7 @@
 ! ------------------------------------------------------------------------------
 ! --- Setings for <= 1080p systems ---------------------------------------------
 
-urxvt.font:              xft:hack:pixelsize=12:antialias=true
+urxvt.font:              xft:hack:pixelsize=14:antialias=true
 urxvt.keysym.C-0:        command:\033]710;xft:hack:pixelsize=1:antialias=true\007
 urxvt.keysym.C-1:        command:\033]710;xft:hack:pixelsize=8:antialias=true\007
 urxvt.keysym.C-2:        command:\033]710;xft:hack:pixelsize=10:antialias=true\007
