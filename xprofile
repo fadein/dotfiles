@@ -16,6 +16,7 @@ case $HOSTNAME in
 	mariner*)
         xset s on +dpms
         export BROWSER=firefox
+        [[ -x ~/.config/conky/Pleione/start.sh ]] && ~/.config/conky/Pleione/start.sh &
 
 		# use the screen's full resolution
 		xrandr --output DP-1 --mode 5120x1440 --rate 60.00
@@ -34,14 +35,13 @@ case $HOSTNAME in
 		# The output list DP-1 instead of "none" makes this monitor the "primary";
 		# some apps' dropdown menus appear only in the primary monitor
 		xrandr --setmonitor middle 1706/397x1440/335+1707+0 DP-1
-
 		xrandr --setmonitor right  1707/397x1440/335+3413+0 none
-
 		;;
 
 	voyager2*)
         xset s on +dpms
         export BROWSER=firefox
+        [[ -x ~/.config/conky/Pleione/start.sh ]] && ~/.config/conky/Pleione/start.sh &
         ;;
 
     endeavour*|columbia*)
