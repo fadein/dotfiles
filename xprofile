@@ -14,7 +14,7 @@ setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
 
 case $HOSTNAME in
 	mariner*)
-        xset s on +dpms
+        xset s 1800 1800 dpms 1800 1800 3600
         export BROWSER=firefox
 
 		# use the screen's full resolution
