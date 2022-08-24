@@ -116,7 +116,7 @@
     sslverify    = true  # Set to false if SSL certs aren't being happy
 
 [log]
-    decorate     = true
+    # decorate     = true  # this is the default nowadays
     abbrevCommit = true
     date         = iso-local
 
