@@ -48,6 +48,9 @@
     statu        = status
     stauts       = status
     vimdiff      = difftool --tool=vimdiff --no-prompt
+	worddiff = diff --word-diff
+	wordiff = diff --word-diff
+	lgo = log
 
 [color]
     ui           = true
