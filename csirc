@@ -43,9 +43,9 @@
   (current-input-port (rl-make-readline-port))
 
   ; use linenoise instead of readline
-  (define orig-input-port (current-input-port))
-  (import linenoise)
-  (current-input-port (make-linenoise-port))
+  ; (define orig-input-port (current-input-port))
+  ; (import linenoise)
+  ; (current-input-port (make-linenoise-port))
 
 
   ; provide the ,x* csi command to fully expand macros
@@ -91,5 +91,7 @@
       edit-and-load
       help-text))
   )
+
+(load "/home/fadein/devel/scheme/statistics/statistics.scm") (import statistics)
 
 ; vim: filetype=scheme tabstop=2 expandtab:

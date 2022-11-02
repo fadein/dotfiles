@@ -128,3 +128,5 @@
 
 [init]
 	defaultBranch = master
+[safe]
+	directory = /usr/sbo/repo
