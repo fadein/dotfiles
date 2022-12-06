@@ -96,7 +96,7 @@
 [pager]
     branch       = false
     log          = less -FR -M
-    color-blame  = less -RS
+	color-blame = less -FR
 
 [merge]
     log          = true
@@ -130,3 +130,5 @@
 	defaultBranch = master
 [safe]
 	directory = /usr/sbo/repo
+[advice]
+	detachedHead = false
