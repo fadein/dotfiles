@@ -4,7 +4,7 @@
 # actually make any changes, but only show what would be done
 
 
-PAYLOAD_FILES="ackrc csirc dircolors gitconfig inputrc Xdefaults xprofile config/picom.conf"
+PAYLOAD_FILES="ackrc csirc dircolors gitconfig inputrc Xdefaults xinitrc xprofile config/picom.conf"
 
 set -e
 
