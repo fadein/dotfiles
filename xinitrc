@@ -27,8 +27,8 @@ fi
 
 if [ -x $HOME/.dwm/bin/dwm ]; then
 	DWM=$HOME/.dwm/bin/dwm
-elif [ -x /usr/local/bin/dwm-static ]; then
-	DWM=/usr/local/bin/dwm-static
+elif [ -x /usr/local/bin/dwm.bin ]; then
+	DWM=/usr/local/bin/dwm.bin
 else
 	echo "Could not find an executable for dwm"
 	exit 1
