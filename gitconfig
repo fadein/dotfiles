@@ -26,9 +26,9 @@
     commti       = commit
     dif          = diff
     graded       = log --pretty=format:'Graded commit %h' -n 1
-    regraded       = log --pretty=format:'Re-graded commit %h' -n 1
     lg           = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative
     lga          = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative --all
+    lgo          = log
     lgstat       = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset%n' --abbrev-commit --date=relative --numstat
     lig          = log --date=iso-local --abbrev-commit
     log          = log --date=iso-local --abbrev-commit
@@ -38,6 +38,7 @@
     puhs         = push
     pul          = pull
     pullr        = pull --recurse-submodules=on-demand
+    regraded     = log --pretty=format:'Re-graded commit %h' -n 1
     satus        = status
     sauts        = status
     sb           = show-branch
@@ -48,9 +49,9 @@
     statu        = status
     stauts       = status
     vimdiff      = difftool --tool=vimdiff --no-prompt
-	worddiff = diff --word-diff
-	wordiff = diff --word-diff
-	lgo = log
+    wdiff        = diff --word-diff
+    worddiff     = diff --word-diff
+    wordiff      = diff --word-diff
 
 [color]
     ui           = true
@@ -96,7 +97,7 @@
 [pager]
     branch       = false
     log          = less -FR -M
-	color-blame = less -FR
+	color-blame  = less -FR
 
 [merge]
     log          = true
@@ -119,7 +120,6 @@
     sslverify    = true  # Set to false if SSL certs aren't being happy
 
 [log]
-    # decorate     = true  # this is the default nowadays
     abbrevCommit = true
     date         = iso-local
 
