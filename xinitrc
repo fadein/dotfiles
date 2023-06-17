@@ -36,9 +36,5 @@ fi
 
 
 # Start the window manager:
-if [ -z "$DESKTOP_SESSION" -a -x /usr/bin/ck-launch-session ]; then
-  exec ck-launch-session $DWM
-else
-  source $HOME/.xprofile dwm
-  exec $DWM 2> $HOME/.xerrors
-fi
+source $HOME/.xprofile dwm
+exec $DWM 2> $HOME/.xerrors
