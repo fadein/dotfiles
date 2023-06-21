@@ -26,6 +26,7 @@
     commti       = commit
     dif          = diff
     graded       = log --pretty=format:'Graded commit %h' -n 1
+    regraded       = log --pretty=format:'Re-graded commit %h' -n 1
     lg           = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative
     lga          = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative --all
     lgstat       = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset%n' --abbrev-commit --date=relative --numstat
@@ -47,6 +48,9 @@
     statu        = status
     stauts       = status
     vimdiff      = difftool --tool=vimdiff --no-prompt
+	worddiff = diff --word-diff
+	wordiff = diff --word-diff
+	lgo = log
 
 [color]
     ui           = true
@@ -83,7 +87,7 @@
     untracked    = yellow
 
 [core]
-    pager        = less -FRX -rM
+    pager        = less -MRX
     excludesfile = /home/fadein/.gitexcludes
     whitespace   = "tabwidth=4"
     editor       = /usr/bin/vim
@@ -91,7 +95,8 @@
 
 [pager]
     branch       = false
-    log          = less -FR -rM
+    log          = less -FR -M
+	color-blame = less -FR
 
 [merge]
     log          = true
@@ -114,7 +119,7 @@
     sslverify    = true  # Set to false if SSL certs aren't being happy
 
 [log]
-    decorate     = true
+    # decorate     = true  # this is the default nowadays
     abbrevCommit = true
     date         = iso-local
 
@@ -123,3 +128,7 @@
 
 [init]
 	defaultBranch = master
+[safe]
+	directory = /usr/sbo/repo
+[advice]
+	detachedHead = false

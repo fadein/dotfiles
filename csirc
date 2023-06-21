@@ -43,8 +43,9 @@
   (current-input-port (rl-make-readline-port))
 
   ; use linenoise instead of readline
-  ;(import linenoise)
-  ;(current-input-port (make-linenoise-port))
+  ; (define orig-input-port (current-input-port))
+  ; (import linenoise)
+  ; (current-input-port (make-linenoise-port))
 
 
   ; provide the ,x* csi command to fully expand macros

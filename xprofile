@@ -10,36 +10,94 @@ if [ -d $HOME/.fonts ]; then
     xset fp rehash
 fi
 
-# We don't need no stinkin' screensavers
-xset s off -dpms
-
 setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
 
-# "Screensaver? We don't need no stinkin' screensaver!"
-xset s off
-xset -dpms
+case $HOSTNAME in
+	mariner*)
+        xset s 1800 1800 dpms 1800 1800 3600 +dpms
+        export BROWSER=firefox
 
-USE_COMPTON=yes
-# set the variable USE_COMPTON to non-null to use compton
-case ${USE_COMPTON=no} in
-    no)
-        if ! pgrep -u $USER picom; then
-            picom &
-        fi
+		# use the screen's full resolution
+		xrandr --output DP-1 --mode 5120x1440 --rate 60.00
+
+		# split the screen into three virtual monitors
+		#
+		# `--setmonitor name geometry outputs`
+		#
+		# geometry is a manual specification in the form "w/mmwxh/mmh+x+y"
+		# where w, h, x, y are in pixels and mmw, mmh are the physical
+		# dimensions of the monitor.
+		#
+	    # The output list is either the keyword "none" or a comma-separated list of outputs.
+		xrandr --setmonitor left   1707/397x1440/335+0+0 none
+
+		# The output list DP-1 instead of "none" makes this monitor the "primary";
+		# some apps' dropdown menus appear only in the primary monitor
+		xrandr --setmonitor middle 1706/397x1440/335+1707+0 DP-1
+		xrandr --setmonitor right  1707/397x1440/335+3413+0 none
+
+        [[ -x ~/.config/conky/Pleione/start.sh ]] && ~/.config/conky/Pleione/start.sh &
+		;;
+
+	voyager2*)
+        xset s on +dpms
+        export BROWSER=firefox
+        [[ -x ~/.config/conky/Pleione/start.sh ]] && ~/.config/conky/Pleione/start.sh &
         ;;
+
+    endeavour*|columbia*)
+        # "Screensaver? We don't need no stinkin' screensaver!"
+        xset s off -dpms
+        export BROWSER=firefox
+
+        # Make Zoom scale on HiDPI displays
+        QT_AUTO_SCREEN_SCALE_FACTOR=2
+        export QT_AUTO_SCREEN_SCALE_FACTOR
+
+        synclient TouchpadOff=1 ClickPad=0
+        [[ -x ~/.config/conky/Pleione/start.sh ]] && ~/.config/conky/Pleione/start.sh &
+        ;;
+
+    apollo*)
+        # "Screensaver? We don't need no stinkin' screensaver!"
+        xset s off -dpms
+        export BROWSER=firefox
+        xrandr --output HDMI-1 --left-of eDP-1 &
+        ;;
+
     *)
-        if ! pgrep -u $USER compton; then
-            compton -b
-        fi
+        # "Screensaver? We don't need no stinkin' screensaver!"
+        xset s off -dpms
+        export BROWSER=firefox
         ;;
 esac
 
-if ! pgrep -u $USER dwm-statusbar; then
-    dwm-statusbar&
-fi
+case $1 in
+	dwm)
+		# set the variable USE_COMPTON to non-null to use compton
+		case ${USE_COMPTON=no} in
+			no)
+				if ! pgrep -u $USER picom; then
+					picom &
+				fi
+				;;
+			*)
+				if ! pgrep -u $USER compton; then
+					compton -b
+				fi
+				;;
+		esac
 
-if [ -x ~/.wallpapers/cycle/next-wallpaper.sh ]; then
-    ~/.wallpapers/cycle/next-wallpaper.sh &
-fi
+		if ! pgrep -u $USER dwm-statusbar; then
+            dwm-statusbar &
+        fi
 
-xrandr --output HDMI-1 --left-of eDP-1 &
+        if [ -x ~/.wallpapers/cycle/next-wallpaper.sh ]; then
+            ~/.wallpapers/cycle/next-wallpaper.sh &
+        fi
+
+        # Make Java apps work in DWM
+        _JAVA_AWT_WM_NONREPARENTING=1
+        export _JAVA_AWT_WM_NONREPARENTING
+		;;
+esac

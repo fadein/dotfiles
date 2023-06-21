@@ -3,6 +3,9 @@
 # When the environment variable DRYRUN is non-empty, do not
 # actually make any changes, but only show what would be done
 
+
+PAYLOAD_FILES="ackrc csirc dircolors gitconfig inputrc Xdefaults xinitrc xprofile config/user-dirs.locale config/picom.conf config/user-dirs.dirs"
+
 set -e
 
 echodo() {
@@ -71,7 +74,6 @@ if [ 0"$DRYRUN" != "0" ]; then
 	echo
 fi
 
-PAYLOAD_FILES="ackrc csirc dircolors gitconfig inputrc Xdefaults xprofile"
 
 if [ 0"$1" = 0"-r" ]; then
 	# Clean up old symlinks
