@@ -62,7 +62,13 @@ case $HOSTNAME in
         # "Screensaver? We don't need no stinkin' screensaver!"
         xset s off -dpms
         export BROWSER=firefox
+
+        # When this script is run on Ubu, $1=$HOME/.xprofile, causing the `case` below to fail
+        # This resets $1=dwm (as long as Ubu uses GDM...)
+        set $GDMSESSION
+
         xrandr --output HDMI-1 --left-of eDP-1 &
+        USE_COMPTON=yes
         ;;
 
     *)
@@ -73,7 +79,7 @@ case $HOSTNAME in
 esac
 
 case $1 in
-	dwm)
+	dwm|*xprofile)
 		# set the variable USE_COMPTON to non-null to use compton
 		case ${USE_COMPTON=no} in
 			no)
