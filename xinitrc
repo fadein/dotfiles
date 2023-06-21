@@ -27,8 +27,8 @@ fi
 
 if [ -x $HOME/.dwm/bin/dwm ]; then
 	DWM=$HOME/.dwm/bin/dwm
-elif [ -x /usr/local/bin/dwm-static ]; then
-	DWM=/usr/local/bin/dwm-static
+elif [ -x /usr/local/bin/dwm.bin ]; then
+	DWM=/usr/local/bin/dwm.bin
 else
 	echo "Could not find an executable for dwm"
 	exit 1
@@ -36,9 +36,5 @@ fi
 
 
 # Start the window manager:
-if [ -z "$DESKTOP_SESSION" -a -x /usr/bin/ck-launch-session ]; then
-  exec ck-launch-session $DWM
-else
-  source $HOME/.xprofile dwm
-  exec $DWM 2> $HOME/.xerrors
-fi
+source $HOME/.xprofile dwm
+exec $DWM 2> $HOME/.xerrors
