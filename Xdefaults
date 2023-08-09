@@ -108,6 +108,7 @@ urxvt.saveLines:           10240
 urxvt.thickness:           12
 urxvt.scrollstyle:         plain
 urxvt.scrollColor:         #595959
+urxvt.scrollBar_right:     true
 
 ! true=when lots of lines come in, batch the scrolls; otherwise, force a refresh once per line
 urxvt.jumpScroll:          false
@@ -127,9 +128,9 @@ xterm*faceSize: 12
 xterm*faceName: Hack
 
 ! Nethack optimized XTerm settings
-xterm.faceSize:            20
-xterm.renderFont:          true
-xterm.faceName:            DejaVuSansMono
+xterm.faceSize:            64
+!xterm.renderFont:          true
+xterm.faceName:            12x24
 xterm.Color1:              red2
 xterm.Color3:              yellow2
 xterm.Color4:              dodgerblue
@@ -142,7 +143,6 @@ xterm.allowFontOps:        true
 !xterm.faceSize:           12
 xterm.cursorBlink:         true
 xterm.cursorUnderLine:     false
-xterm.faceName:            Hack
 
 !Regular XTerm settings
 xterm.altIsNotMeta:         true
