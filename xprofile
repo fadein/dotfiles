@@ -11,7 +11,6 @@ if [[ -d $HOME/.fonts ]]; then
 fi
 
 setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
-export BROWSER=google-chrome-stable
 
 
 case $HOSTNAME in
