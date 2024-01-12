@@ -1,5 +1,5 @@
-## case-insensitive matching
---ignore-case
+## smart case matching
+--smart-case
 
 ## ignore core dumps following my naming convention
 --ignore-file=match:/core\.\d+$/
