@@ -5,10 +5,12 @@
 (import (chicken file))
 (import (chicken format))
 (import (chicken io))
+(import (chicken memory))
 (import (chicken process))
 (import (chicken process-context))
 (import (chicken string))
 (import srfi-1)
+(import srfi-2)
 (import srfi-13)
 
 ;; Backup copy of the original input port
@@ -93,5 +95,16 @@
   )
 
 (load "/home/fadein/devel/scheme/statistics/statistics.scm") (import statistics)
+
+; Mimic Python's id() function
+(define (id obj)
+  (and-let* ((ptr (object->pointer obj))
+             (addr (pointer->address ptr)))
+            addr))
+
+(define (id obj)
+  (and-let* ((ptr (object->pointer obj)))
+             (pointer->address ptr)))
+
 
 ; vim: filetype=scheme tabstop=2 expandtab:
