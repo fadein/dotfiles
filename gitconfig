@@ -97,7 +97,7 @@
 [pager]
     branch       = false
     log          = less -FR -M
-	color-blame  = less -FR
+	color-blame = less
 
 [merge]
     log          = true
