@@ -11,6 +11,9 @@
 [include]
     path         = ~/.gituser
 
+[advice]
+    detachedHead = false
+
 [alias]
     amend        = commit --amend
     amendne      = commit --amend --no-edit
@@ -94,13 +97,38 @@
     editor       = /usr/bin/vim
     askPass      =
 
-[pager]
-    branch       = false
-    log          = less -FR -M
-	color-blame = less
+[diff]
+    tool         = vimdiff
+
+[http]
+    sslverify    = true  # Set to false if SSL certs aren't being happy
+
+[init]
+    defaultBranch = master
+
+[log]
+    abbrevCommit = true
+    date         = iso-local
 
 [merge]
     log          = true
+
+[pager]
+    branch       = false
+    log          = less -FR -M
+    color-blame  = less
+
+[pull]
+    rebase       = false
+
+[push]
+    default      = matching
+
+[rerere]
+    enabled = true
+
+[safe]
+    directory = /usr/sbo/repo
 
 [tig]
     line-graphics = false
@@ -110,25 +138,3 @@
     generic      = i view-close
     #generic      = ^F scroll-page-down  #doesn't work
 
-[push]
-    default      = matching
-
-[pull]
-	rebase       = false
-
-[http]
-    sslverify    = true  # Set to false if SSL certs aren't being happy
-
-[log]
-    abbrevCommit = true
-    date         = iso-local
-
-[diff]
-    tool         = vimdiff
-
-[init]
-	defaultBranch = master
-[safe]
-	directory = /usr/sbo/repo
-[advice]
-	detachedHead = false
