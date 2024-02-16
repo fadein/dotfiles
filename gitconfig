@@ -35,6 +35,7 @@
     lgstat       = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset%n' --abbrev-commit --date=relative --numstat
     lig          = log --date=iso-local --abbrev-commit
     log          = log --date=iso-local --abbrev-commit
+    log1         = log --pretty=oneline
     ls           = ls-files
     name         = rev-parse --short HEAD
     psuh         = push
