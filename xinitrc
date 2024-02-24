@@ -1,6 +1,6 @@
 #!/bin/bash
 # Erik's xinitrc for DWM
-# Mon Jan 22 2024
+# Sat Feb 24 2024
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -42,4 +42,9 @@ fi
 
 # Start the window manager:
 source $HOME/.xprofile dwm
-exec $DWM 2> $HOME/.xerrors
+
+# Fixes broken Spotify, Discord
+exec dbus-launch --sh-syntax --exit-with-session $DWM 2> $HOME/.xerrors
+
+# original exec line:
+# exec $DWM 2> $HOME/.xerrors

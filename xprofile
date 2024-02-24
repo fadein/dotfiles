@@ -41,6 +41,13 @@ case $HOSTNAME in
 
 	voyager2*)
         xset s on +dpms
+        # Fri Oct 27 19:27:24 MDT 2023
+        # I updated my system and Lua broke; Conky now barfs up this error message:
+        #    conky: llua_do_call: function conky_draw_text execution failed: attempt to call a nil value
+        #
+        # Wed Nov  8 19:32:35 MST 2023
+        # FIXED!  I commented out this line in Pleione.conf
+        #   lua_draw_hook_post = 'draw_text',
         [[ -x ~/.config/conky/Pleione/start.sh ]] && ~/.config/conky/Pleione/start.sh &
         ;;
 
