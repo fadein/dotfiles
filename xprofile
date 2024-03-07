@@ -61,6 +61,7 @@ case $HOSTNAME in
         xrandr --output HDMI-1 --same-as eDP-1
         xrandr --output eDP-1 --off
 
+        export BROWSER=firefox
         [[ -x ~/.config/conky/Pleione/start.sh ]] && ~/.config/conky/Pleione/start.sh &
         ;;
 
@@ -73,6 +74,7 @@ case $HOSTNAME in
 
         backlighter = 6
         synclient TouchpadOff=1 ClickPad=0
+        export BROWSER=firefox
         [[ -x ~/.config/conky/Pleione/start.sh ]] && ~/.config/conky/Pleione/start.sh &
         ;;
 
