@@ -48,6 +48,10 @@ case $HOSTNAME in
         # Wed Nov  8 19:32:35 MST 2023
         # FIXED!  I commented out this line in Pleione.conf
         #   lua_draw_hook_post = 'draw_text',
+
+        xrandr --output HDMI-1 --same-as eDP-1
+        xrandr --output eDP-1 --off
+
         [[ -x ~/.config/conky/Pleione/start.sh ]] && ~/.config/conky/Pleione/start.sh &
         ;;
 
@@ -97,7 +101,7 @@ case $1 in
             dwm-statusbar &
         fi
 
-        if [ -x ~/.wallpapers/cycle/next-wallpaper.sh ]; then
+        if [[ -x ~/.wallpapers/cycle/next-wallpaper.sh ]]; then
             ~/.wallpapers/cycle/next-wallpaper.sh &
         fi
 
