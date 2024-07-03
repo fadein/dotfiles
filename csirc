@@ -106,5 +106,9 @@
   (and-let* ((ptr (object->pointer obj)))
              (pointer->address ptr)))
 
+; print the ratio of two numbers as a percent (to two decimals)
+(define (% n d #!optional (precision 2))
+  (import fmt)
+  (fmt #t (num (* 100.0 n (/ d)) 10 precision) #\% nl))
 
 ; vim: filetype=scheme tabstop=2 expandtab:
