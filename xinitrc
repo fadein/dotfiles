@@ -41,7 +41,7 @@ fi
 
 
 # Start the window manager:
-source $HOME/.xprofile dwm
+[[ -x $HOME/.xprofile ]] && source $HOME/.xprofile dwm
 
 # Fixes broken Spotify, Discord
 exec dbus-launch --sh-syntax --exit-with-session $DWM 2> $HOME/.xerrors
