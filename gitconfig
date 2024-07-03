@@ -27,6 +27,7 @@
 	commt        = commit
 	commti       = commit
 	dif          = diff
+	diffw        = diff --word-diff
 	graded       = log --pretty=format:'Graded commit %h' -n 1
 	lg           = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative
 	lga          = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative --all
