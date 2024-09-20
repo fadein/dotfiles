@@ -36,6 +36,9 @@ case $HOSTNAME in
 		xrandr --setmonitor middle 1706/397x1440/335+1707+0 DP-1
 		xrandr --setmonitor right  1707/397x1440/335+3413+0 none
 
+        dunst &
+
+        export BROWSER=firefox
         [[ -x ~/.config/conky/Pleione/start.sh ]] && ~/.config/conky/Pleione/start.sh &
 		;;
 
