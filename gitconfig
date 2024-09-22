@@ -100,7 +100,6 @@
 	pager        = less -MRX
 	excludesfile = /home/fadein/.gitexcludes
 	whitespace   = "tabwidth=4"
-	editor       = /usr/bin/vim
 	askPass      =
 
 [diff]
