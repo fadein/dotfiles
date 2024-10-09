@@ -61,6 +61,8 @@
 	statno       = status --untracked-files=no
 	statusn      = status --untracked-files=no
 	statn        = status --untracked-files=no
+	tcommit = commit
+	ommit = commit
 
 [color]
 	ui           = true
