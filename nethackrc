@@ -1,0 +1,463 @@
+#######################################################################
+## Fadein's preferences
+
+OPTIONS=fruit:can of Mt. Dew
+#OPTIONS=align:neutral
+#OPTIONS=gender:male
+#OPTIONS=race:human
+#OPTIONS=role:barbarian
+
+## pets
+OPTIONS=catname:LOL
+OPTIONS=dogname:Biscuit
+OPTIONS=horsename:Shadowfax
+OPTIONS=pettype:dog
+
+## interface
+OPTIONS=nolootabc
+OPTIONS=norest_on_space
+OPTIONS=packorder:)[%(/?!+="*`0_
+OPTIONS=prayconfirm
+OPTIONS=pushweapon
+OPTIONS=runmode:teleport
+OPTIONS=safe_pet
+OPTIONS=sortloot:loot
+OPTIONS=sortpack
+OPTIONS=noshowrace
+
+
+# An object's inventory letter sticks to it when it's dropped
+OPTIONS=fixinv
+
+# If more info is available for an object looked at with `/`, ask if you want to see it.
+OPTIONS=help
+
+#######################################################################
+## Customize `whatis` output
+
+# "whatis_coord" Show coordinates in the output of the / command
+#The possible settings are:
+#    c - compass ('east' or '3s' or '2n,4w')
+#    f - full compass ('east' or '3south' or '2north,4west')
+#    m - map <x,y> (map column x=0 is not used)
+#    s - screen [row,column] (row is offset to match tty usage)
+#    n - none (no coordinates shown). Default.
+#
+# The whatis_coord option is also used with the sub-commands m, M, o, and O when
+# using /, where the 'none' setting is overridden with 'map'. 
+OPTIONS=whatis_coord=c
+
+# "whatis_filter" When using the m, o, d, x or a keys to select a location on
+# the map, allows filtering the possible targets.  It can be set by typing "
+# while targeting.
+#
+# The area-filter tries to be slightly predictive; if you're standing on a
+# doorway, it will consider the area on the side of the door you were last
+# moving toward. 
+#
+#   n - no filtering (default)
+#   v - in view only
+#   a - in same area only (e.g. same room or same corridor)
+OPTIONS=whatis_filter=a
+
+# "whatis_moveskip" When selecting a location on the map, and using shifted
+# movement keys or meta-digit keys to fast-move, instead of moving 8 units at a
+# time, move by skipping the same glyphs. It can be toggled by typing * while
+# targeting. Boolean, default off. 
+OPTIONS=!whatis_moveskip
+
+
+#######################################################################
+## Options borrowed from Disperse@hardfought.org 
+
+# User Interface settings: Curses with default symbol set
+OPTIONS=color,suppress_alert:3.4.3,!cmdassist
+OPTIONS=perm_invent
+OPTIONS=roguesymset:default
+OPTIONS=symset:default
+OPTIONS=windowborders:2
+OPTIONS=windowtype:curses
+
+# Highlight pets and item piles
+OPTIONS=hilite_pet,hilite_pile
+
+# vi-keys
+OPTIONS=number_pad:0
+
+# Show experience points and turns elapsed on the status bar
+OPTIONS=showexp,time
+
+# Distinguish visually between lit and unlit corridors, show out-of-sight areas of lit rooms
+OPTIONS=lit_corridor,dark_room
+
+# Use bold black instead of blue for black glyphs
+OPTIONS=use_darkgray
+
+# Message history (ctrl+p) displays most recent message first, buffer holds 60 messages
+OPTIONS=msg_window:reversed,msghistory:60
+
+# Show object symbols in menu headings in menus where the object symbols act as menu accelerators
+OPTIONS=menu_objsyms
+
+# Display "uncursed" status in inventory lists
+OPTIONS=!implicit_uncursed
+
+# Automatically display all endgame info (inventory, monsters killed, conducts, etc.)
+OPTIONS=disclose:+i +a +v +g +c +o
+
+# Enabling this makes ghosts more easily visible
+#SYMBOLS=S_ghost:X
+
+# Changes boulder symbol to 0 (default=`)
+OPTIONS=boulder:0
+
+# Require "yes" rather than "y" for many prompts
+OPTIONS=paranoid_confirmation:all
+
+# Automatically describe items under the ; cursor
+OPTIONS=autodescribe
+
+# Enable autopickup, set pickup item types
+OPTIONS=autopickup,pickup_types:$
+
+# automatically pick up thrown items
+OPTIONS=pickup_thrown
+
+# Automatically dig by moving into walls while wielding a digging tool
+OPTIONS=autodig
+
+# Automatically quiver suitable projectile on (f)ire command
+OPTIONS=autoquiver
+
+# Enable automatically opening doors
+OPTIONS=autoopen
+
+# Prompt for confirmation before picking up items that will push encumbrance past Unencumbered
+# Can also be set to B (burdened), S (Stressed), N (Strained), O (Overtaxed), L (Overloaded)
+OPTIONS=pickup_burden:stressed
+
+# sparkle animation which occurs when monsters resist certain effects
+OPTIONS=sparkle
+
+# Enable status highlights
+OPTIONS=statushilites:10
+
+# Display hp bar
+OPTIONS=hitpointbar
+
+
+#######################################################################
+## Status highlight settings
+
+OPTIONS=hilite_status: hitpoints/<=100%/bright-green/<=99%/green
+OPTIONS=hilite_status: hitpoints/<=80%/yellow/<=60%/brown/<=40%/orange/<=20%/bright-red&inverse
+OPTIONS=hilite_status: power/<=100%/bright-cyan/<=80%/cyan
+OPTIONS=hilite_status: power/<=60%/bright-blue/<=40%/blue/<=20%/magenta
+OPTIONS=hilite_status: hitpoints-max/always/green/up/bright-green/down/orange
+OPTIONS=hilite_status: power-max/always/cyan/up/bright-cyan/down/bright-blue
+OPTIONS=hilite_status: hunger/Hungry/brown/Weak/red/Fainting/orange&blink
+OPTIONS=hilite_status: carrying-capacity/Burdened/brown/Stressed/red/Strained/orange/Overtaxed/bright-red/Overloaded/gray&inverse
+OPTIONS=hilite_status: condition/stone/red&inverse/termill/red&inverse
+OPTIONS=hilite_status: condition/strngl/red&inverse
+OPTIONS=hilite_status: condition/foodpois/red&inverse/slime/red&inverse
+OPTIONS=hilite_status: condition/blind/yellow/deaf/yellow
+OPTIONS=hilite_status: condition/stun/yellow
+OPTIONS=hilite_status: condition/conf/yellow/hallu/bright-magenta
+
+
+#######################################################################
+## Enable menu color options
+
+OPTIONS=menucolors
+
+# Enhance
+MENUCOLOR="^ *[a-z] - +[a-z -]+ +\[(Unskilled|Basic|Skilled|Expert|Master|Grand Master)\]$"=white
+
+# Random items with known BUC status
+MENUCOLOR="blessed"=green
+MENUCOLOR="blessed clear potion"=cyan
+MENUCOLOR="blessed clear potions"=cyan
+MENUCOLOR="blessed potion called water"=cyan
+MENUCOLOR="blessed potions called water"=cyan
+MENUCOLOR="holy"=cyan
+MENUCOLOR=" cursed"=red
+MENUCOLOR="cursed clear potion"=magenta
+MENUCOLOR="cursed clear potions"=magenta
+MENUCOLOR="cursed potion called water"=magenta
+MENUCOLOR="cursed potions called water"=magenta
+MENUCOLOR="unholy"=magenta
+MENUCOLOR="uncursed"=white
+#MENUCOLOR="\+0"=white
+
+# Kludge for implicit_uncursed option
+MENUCOLOR="implicit_uncursed"=gray
+
+# Tools and unused items with known enchantments and charges
+MENUCOLOR="\([0-9]:.*\)"=yellow
+MENUCOLOR="\([0-9]:0\)"=brown
+MENUCOLOR="\(-1:0\)"=brown&underline
+#MENUCOLOR="\+[1-9]"=yellow
+MENUCOLOR="-[1-9]"=magenta
+MENUCOLOR="worthless"=brown
+MENUCOLOR="named empty"=brown
+
+# Magic markers
+MENUCOLOR="blessed .*marker"=lightgreen
+MENUCOLOR="blessed .*marker.*1:"=green
+MENUCOLOR=" cursed .*marker"=orange
+MENUCOLOR=" cursed .*marker.*1:"=red
+
+# Items in use
+MENUCOLOR="\(weapon in .*\)"=white&underline
+MENUCOLOR="\(wielded.*\)"=white&underline
+MENUCOLOR="\(alternate weapon\)"=white&underline
+MENUCOLOR="\(in quiver\)"=white&underline
+MENUCOLOR="\(at the ready\)"=white&underline
+MENUCOLOR="\(being worn\)"=white&underline
+MENUCOLOR="\(embedded in your skin\)"=white&underline
+MENUCOLOR="\(on left .*\)"=white&underline
+MENUCOLOR="\(on right .*\)"=white&underline
+MENUCOLOR="\(in use\)"=white&underline
+MENUCOLOR="tethered"=white&underline
+
+# Blessed items in use
+MENUCOLOR="blessed .* \(weapon in .*\)"=lightgreen&underline
+MENUCOLOR="blessed .* \(wielded.*\)"=lightgreen&underline
+MENUCOLOR="blessed .* \(alternate weapon\)"=lightgreen&underline
+MENUCOLOR="blessed .* \(in quiver\)"=lightgreen&underline
+MENUCOLOR="blessed .* \(at the ready\)"=lightgreen&underline
+MENUCOLOR="blessed .* \(being worn\)"=lightgreen&underline
+MENUCOLOR="blessed .* \(embedded in your skin\)"=lightgreen&underline
+MENUCOLOR="blessed .* \(on left .*\)"=lightgreen&underline
+MENUCOLOR="blessed .* \(on right .*\)"=lightgreen&underline
+MENUCOLOR="blessed .* \(in use\)"=lightgreen&underline
+MENUCOLOR="blessed .* tethered"=lightgreen&underline
+
+# Cursed items in use
+MENUCOLOR=" cursed .* \(weapon in .*\)"=orange&underline
+MENUCOLOR=" cursed .* \(wielded.*\)"=orange&underline
+MENUCOLOR=" cursed .* \(alternate weapon\)"=orange&underline
+MENUCOLOR=" cursed .* \(in quiver\)"=orange&underline
+MENUCOLOR=" cursed .* \(at the ready\)"=orange&underline
+MENUCOLOR=" cursed .* \(being worn\)"=orange&underline
+MENUCOLOR=" cursed .* \(embedded in your skin\)"=orange&underline
+MENUCOLOR=" cursed .* \(on left .*\)"=orange&underline
+MENUCOLOR=" cursed .* \(on right .*\)"=orange&underline
+MENUCOLOR=" cursed .* \(in use\)"=orange&underline
+MENUCOLOR=" cursed .* tethered"=orange&underline
+
+# Mark potentially dangerous things (and a kludge for BoH looting prompts)
+MENUCOLOR=" holding"=lightmagenta
+MENUCOLOR="Put .* holding"=gray
+MENUCOLOR="Take .* holding"=gray
+MENUCOLOR="holding .* empty"=gray
+MENUCOLOR="Do what with your .* holding"=gray
+MENUCOLOR="Do what with the bag .* holding"=gray
+MENUCOLOR="Look inside the .* holding"=gray
+MENUCOLOR="stash one item into the .* holding"=gray
+MENUCOLOR="tricks"=lightmagenta
+MENUCOLOR="cancel"=lightmagenta
+MENUCOLOR="vanish"=lightmagenta
+
+# Spell failure rates
+MENUCOLOR=" 0% "=lightcyan
+MENUCOLOR=" [1-9]% "=lightgreen
+MENUCOLOR=" 1[0-9]% "=green
+MENUCOLOR=" 2[0-4]% "=green
+MENUCOLOR=" 2[5-9]% "=brown
+MENUCOLOR=" [34][0-9]% "=brown
+MENUCOLOR=" [56][0-9]% "=red
+MENUCOLOR=" 7[0-4]% "=red
+MENUCOLOR=" 7[5-9]% "=orange
+MENUCOLOR=" [89][0-9]% "=orange
+MENUCOLOR=" 100% "=orange&underline
+MENUCOLOR="[a-zA-Z] - [a-zA-Z ]+ [0-9]\*   [a-z]+ +[0-9]+%"=magenta
+
+#lamps
+MENUCOLOR="magic lamp"=blue&bold
+MENUCOLOR=" \(lit\)"=white&underline
+MENUCOLOR="magic lamp \(lit\)"=lightblue&underline
+MENUCOLOR="lamp called magic \(lit\)"=lightblue&underline
+
+# Food
+MENUCOLOR="corpse"=brown
+MENUCOLOR="(meatball|meat ring|meat stick|egg|tripe ration|huge chunk of meat)"=brown
+
+# Vegan items
+MENUCOLOR="(food |cram |K-|C-)ration|gunyoki"=lightgreen
+MENUCOLOR="lembas wafer|melon|carrot|tins? .* spinach"=lightgreen
+MENUCOLOR=" oranges?( named.*)?$"=lightgreen
+MENUCOLOR=" pears?( named.*)?$"=lightgreen
+MENUCOLOR=" (apple|banana|kelp|eucalyptus|garlic|wolfsbane)"=lightgreen
+MENUCOLOR=" (slime mold|loadboulder)"=lightgreen
+MENUCOLOR="(tins? of )?(gelatinous cube|acid blob|quivering blob)( corpse)?"=lightgreen
+MENUCOLOR="(tins? of )?(blue|spotted|ochre) jelly( corpse)?"=lightgreen
+MENUCOLOR="(tins? of )?lichen|shrieker|violet fungus|(brown|yellow|green|red) mold( corpse)?"=lightgreen
+
+# Vegetarian items
+MENUCOLOR="egg|pancake|fortune cookie|candy bar|royal jelly|cream pie"=green
+MENUCOLOR="(tin of )?brown pudding|gray ooze( corpse)?"=green
+
+# Silver items
+MENUCOLOR="silver"=lightcyan&bold
+
+# Items of interest
+MENUCOLOR="blessed unicorn horn"=blue&bold
+MENUCOLOR="blessed .* unicorn horn"=blue&bold
+MENUCOLOR="blessed stone called luck.*"=blue&bold
+MENUCOLOR="blessed luckstone"=blue&bold
+MENUCOLOR="lizard corpse"=green&bold
+MENUCOLOR="wand .* wishing"=blue&bold
+MENUCOLOR="blessed scroll .* scare monster"=blue&bold
+MENUCOLOR="uncursed scroll .* scare monster"=blue
+MENUCOLOR=" cursed scroll .* scare monster"=orange
+
+# Invocation items
+MENUCOLOR=" (Bell of Opening\|silver bell\|Candelabrum of Invocation\|candelabrum\|Book of the Dead\|papyrus spellbook)"=magenta
+
+# Money
+MENUCOLOR=" gold piece"=yellow
+
+
+
+#######################################################################
+## Autopickup exceptions
+
+# empty wands
+AUTOPICKUP_EXCEPTION=">.*:0).*"
+AUTOPICKUP_EXCEPTION=">.* named empty"
+
+# Don't grab ?oSM
+AUTOPICKUP_EXCEPTION=">scroll of scare monster"
+AUTOPICKUP_EXCEPTION=">scroll called scare monster"
+
+# Ammunition (double-hashed are included with more general description)
+#AUTOPICKUP_EXCEPTION="<.*arrow"
+## AUTOPICKUP_EXCEPTION="<.*elven arrow"
+## AUTOPICKUP_EXCEPTION="<.*orcish arrow"
+## AUTOPICKUP_EXCEPTION="<.*silver arrow"
+## AUTOPICKUP_EXCEPTION="<.*runed arrow"
+## AUTOPICKUP_EXCEPTION="<.*crude arrow"
+#AUTOPICKUP_EXCEPTION="<.*ya"
+## AUTOPICKUP_EXCEPTION="<.*bamboo arrow"
+#AUTOPICKUP_EXCEPTION="<.*crossbow bolt"
+#AUTOPICKUP_EXCEPTION="<.*dart"
+#AUTOPICKUP_EXCEPTION="<.*shuriken"
+#AUTOPICKUP_EXCEPTION="<.*throwing star"
+#AUTOPICKUP_EXCEPTION="<.*dagger"
+## AUTOPICKUP_EXCEPTION="<.*elven dagger"
+## AUTOPICKUP_EXCEPTION="<.*orcish dagger"
+## AUTOPICKUP_EXCEPTION="<.*runed dagger"
+## AUTOPICKUP_EXCEPTION="<.*crude dagger"
+## AUTOPICKUP_EXCEPTION="<.*silver dagger"
+#AUTOPICKUP_EXCEPTION="<.*knife"
+
+# pick up items whose individual name ends with ammo or autopickup
+AUTOPICKUP_EXCEPTION="<.* named ammo"
+AUTOPICKUP_EXCEPTION="<.* named autopickup"
+
+# never pick up globs
+AUTOPICKUP_EXCEPTION=">.*glob.*"
+
+# corpses - lichen only
+AUTOPICKUP_EXCEPTION=">a corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">b corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">c corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">d corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">e corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">f corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">g corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">h corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">i corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">j corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">k corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">l corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">m corpse[^<]*$"
+AUTOPICKUP_EXCEPTION="<lichen corpse"
+AUTOPICKUP_EXCEPTION=">[^e]n corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">[^h]en corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">o corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">p corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">q corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">r corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">s corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">t corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">u corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">v corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">w corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">x corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">y corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">z corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">' corpse[^<]*$"
+AUTOPICKUP_EXCEPTION="> chunk of meat[^<]*$"
+AUTOPICKUP_EXCEPTION="> chunks of meat[^<]*$"
+
+# gems
+AUTOPICKUP_EXCEPTION="> stone[^<]*$"
+AUTOPICKUP_EXCEPTION="> gray stone[^<]*$"
+AUTOPICKUP_EXCEPTION="> loadstone[^<]*$"
+AUTOPICKUP_EXCEPTION="> rock[^<]*$"
+AUTOPICKUP_EXCEPTION="> flint[^<]*$"
+AUTOPICKUP_EXCEPTION="> glass[^<]*$"
+#AUTOPICKUP_EXCEPTION="< luckstone"
+#AUTOPICKUP_EXCEPTION="< stone called luck"
+
+
+#######################################################################
+## Messages
+
+# Stop on important messages
+MSGTYPE=stop "You descend the stairs."
+MSGTYPE=stop "You climb up the stairs."
+MSGTYPE=stop "The couatl swings itself around you!"
+MSGTYPE=stop "The electric eel swings itself around you!"
+MSGTYPE=stop "The giant eel swings itself around you!"
+MSGTYPE=stop "The kraken swings itself around you!"
+MSGTYPE=stop "The python grabs you!"
+MSGTYPE=stop "The .* (grabs|swings itself around) you!"
+MSGTYPE=stop "You don't feel very well."
+MSGTYPE=stop "You are turning a little green."
+MSGTYPE=stop "Your limbs are getting oozy."
+MSGTYPE=stop "Your skin begins to peel away."
+MSGTYPE=stop "You are turning into a green slime."
+MSGTYPE=stop "You are slowing down."
+MSGTYPE=stop "Your limbs are stiffening."
+MSGTYPE=stop "It constricts your throat!"
+MSGTYPE=stop "You find it hard to breathe."
+MSGTYPE=stop "You're gasping for air."
+MSGTYPE=stop "Your blood is having trouble reaching your brain."
+MSGTYPE=stop "You can no longer breathe."
+MSGTYPE=stop "You're turning blue."
+MSGTYPE=stop "Your consciousness is fading."
+MSGTYPE=stop "You feel deathly sick."
+MSGTYPE=stop "You feel much worse."
+MSGTYPE=stop "You feel even worse."
+MSGTYPE=stop "You feel (much|even) worse."
+MSGTYPE=stop "You are turning a little .*"
+MSGTYPE=stop "You feel feverish*"
+MSGTYPE=stop "You see here a cockatrice corpse."
+MSGTYPE=stop "You see here a chickatrice corpse."
+MSGTYPE=stop "You are beginning to feel weak."
+MSGTYPE=stop "You fail to cast the spell correctly."
+MSGTYPE=stop "Your wielded * rots away."
+MSGTYPE=stop "You find a*"
+MSGTYPE=stop "You feel more confident in your*skills."
+MSGTYPE=stop "You feel a strange vibration*"
+MSGTYPE=stop "You have a .* feeling for a moment, then it passes."
+MSGTYPE=stop "You sense a faint wave of psychic energy"
+MSGTYPE=stop "You are beginning to feel weak."
+MSGTYPE=stop "The scroll turns to dust as you pick it up."
+MSGTYPE=stop "You see here a c(hi|o)ckatrice corpse."
+MSGTYPE=stop "You wrest .*"
+MSGTYPE=stop ".*Vorpal Blade.*"
+MSGTYPE=stop ".*You move right into.*"
+MSGTYPE=stop ".*You feel worried.*"
+MSGTYPE=stop "You feel more confident.*"
+MSGTYPE=stop "You remember this level.*"
+MSGTYPE=stop "You don't have anything.*"
+MSGTYPE=stop "Sorry, I don't know how to use that."
+MSGTYPE=stop ".*silly thing.*"
+
+# Hide unimportant messages
+MSGTYPE=hide "You swap places with .*"
+MSGTYPE=hide "With great effort you move the boulder."
