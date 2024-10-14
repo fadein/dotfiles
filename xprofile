@@ -65,6 +65,7 @@ case $HOSTNAME in
         QT_AUTO_SCREEN_SCALE_FACTOR=2
         export QT_AUTO_SCREEN_SCALE_FACTOR
 
+        backlighter = 6
         synclient TouchpadOff=1 ClickPad=0
         [[ -x ~/.config/conky/Pleione/start.sh ]] && ~/.config/conky/Pleione/start.sh &
         ;;
