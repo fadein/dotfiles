@@ -70,6 +70,14 @@ OPTIONS=!whatis_moveskip
 #######################################################################
 ## Options borrowed from Disperse@hardfought.org 
 
+# Disable bones levels and in-game mail
+#OPTIONS=!bones
+#OPTIONS=!mail
+
+# Conduct options which must be set prior to starting a game
+#OPTIONS=blind
+#OPTIONS=nudist
+
 # User Interface settings: Curses with default symbol set
 OPTIONS=color,suppress_alert:3.4.3,!cmdassist
 OPTIONS=perm_invent
