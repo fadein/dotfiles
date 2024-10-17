@@ -111,7 +111,7 @@
 
 [core]
 	# pager = less -MRX
-	pager = delta
+	# pager = delta
 	excludesfile = /home/fadein/.gitexcludes
 	whitespace = "tabwidth=4"
 	askPass =
