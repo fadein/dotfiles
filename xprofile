@@ -14,6 +14,12 @@ setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
 
 
 case $HOSTNAME in
+    atlantis*)
+        xset s off -dpms
+        backlighter = 6
+        synclient TouchpadOff=1 ClickPad=0
+        ;;
+
 	mariner*)
         xset s 1800 1800 dpms 1800 1800 3600 +dpms
 
