@@ -23,8 +23,8 @@ case $HOSTNAME in
 	mariner*)
         xset s 1800 1800 dpms 1800 1800 3600 +dpms
 
-		# use the screen's full resolution
-		xrandr --output DP-1 --mode 5120x1440 --rate 60.00
+		# use the screen's full resolution and increase the brightness
+		xrandr --output DP-1 --mode 5120x1440 --rate 60.00 --brightness 1.35
 
 		# split the screen into three virtual monitors
 		#
