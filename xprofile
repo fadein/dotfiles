@@ -44,7 +44,7 @@ case $HOSTNAME in
 
         dunst &
 
-        export BROWSER=firefox
+        export BROWSER=zen
         [[ -x ~/.config/conky/Pleione/start.sh ]] && ~/.config/conky/Pleione/start.sh &
 		;;
 
