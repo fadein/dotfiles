@@ -23,6 +23,8 @@ linkToHome() {
 		if [ -h   $DEST_NAME ]; then
 			if [ "$(readlink $DEST_NAME)" != "$SOURCE_NAME" ]; then
 				echo "$DEST_NAME is already a symlink which doesn't point here"
+			else
+				echo "OK: $DEST_NAME -> $SOURCE_NAME"
 			fi
 
 		elif [ -d $DEST_NAME ]; then
@@ -73,7 +75,6 @@ if [ 0"$DRYRUN" != "0" ]; then
 	echo ====================
 	echo
 fi
-
 
 if [ 0"$1" = 0"-r" ]; then
 	# Clean up old symlinks
