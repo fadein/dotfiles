@@ -79,6 +79,7 @@ case $HOSTNAME in
 
     apollo*)
         xset s off -dpms
+        # On other hosts I set the kb layout through X11 config files
         setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
 
         # When this script is run on Ubu, $1=$HOME/.xprofile, causing the `case` below to fail
