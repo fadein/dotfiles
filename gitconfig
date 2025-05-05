@@ -109,16 +109,26 @@
 	untracked = yellow
 
 [core]
-	pager = less -MRX
+    pager = delta
 	excludesfile = /home/fadein/.gitexcludes
 	whitespace = "tabwidth=4"
 	askPass =
 
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+	#dark = true      # or light = true, or omit for auto-detection
 [diff]
 	tool = vimdiff
 
 [fetch]
 	recurseSubmodules = on-demand
+
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
 
 [http]
 	sslverify = true  # Set to false if SSL certs aren't being happy
@@ -126,12 +136,16 @@
 [init]
 	defaultBranch = master
 
+[interactive]
+    diffFilter = delta --color-only
+
 [log]
 	abbrevCommit = true
 	date = iso-local
 
 [merge]
 	log = true
+    conflictstyle = zdiff3
 
 [pager]
 	branch = false
