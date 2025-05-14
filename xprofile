@@ -14,6 +14,7 @@ fi
 
 case $HOSTNAME in
     atlantis*)
+        export BROWSER=/opt/zen/zen
         backlighter = 6
         # Set in /etc/X11/xorg.conf.d
         #   xset s off -dpms
