@@ -105,15 +105,38 @@
 	whitespace = "tabwidth=4"
 	askPass =
 
+[delta]
+	navigate = true  # use n and N to move between diff sections
+	dark = true      # or light = true, or omit for auto-detection
+
 [diff]
 	tool = vimdiff
 
+[fetch]
+	recurseSubmodules = on-demand
+
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+
 [http]
 	sslverify = true  # Set to false if SSL certs aren't being happy
+
+[init]
+	defaultBranch = master
+
+[interactive]
+	diffFilter = delta --color-only
+
 [log]
 	abbrevCommit = true
 	date = iso-local
 
+[merge]
+	conflictstyle = zdiff3
+	log = true
 
 [pager]
 	branch = false
@@ -132,29 +155,3 @@
 
 [safe]
 	directory = /usr/sbo/repo
-
-[tig]
-	line-graphics = false
-	split-view-height = 80% 
-
-[tig "bind"]
-	generic = i view-close
-[filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-[init]
-	defaultBranch = master
-
-[interactive]
-	diffFilter = delta --color-only
-
-[delta]
-    navigate = true  # use n and N to move between diff sections
-    dark = true      # or light = true, or omit for auto-detection
-
-[merge]
-    conflictstyle = zdiff3
-	log = true
-
