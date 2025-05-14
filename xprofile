@@ -15,8 +15,7 @@ fi
 case $HOSTNAME in
     atlantis*)
         export BROWSER=/opt/zen/zen
-        backlighter = 6
-        # Set in /etc/X11/xorg.conf.d
+        # These items are set in /etc/X11/xorg.conf.d
         #   xset s off -dpms
         #   synclient TouchpadOff=1 ClickPad=0 FingerHigh=50 FingerLow=40 PalmDetect=1 PalmMinZ=75
         ;;
