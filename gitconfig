@@ -107,6 +107,9 @@
 [diff]
 	tool = vimdiff
 
+[fetch]
+	recurseSubmodules = on-demand
+
 [http]
 	sslverify = true  # Set to false if SSL certs aren't being happy
 
@@ -137,15 +140,3 @@
 
 [safe]
 	directory = /usr/sbo/repo
-
-[tig]
-	line-graphics = false
-	split-view-height = 80% 
-
-[tig "bind"]
-	generic = i view-close
-[filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
