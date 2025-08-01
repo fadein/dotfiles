@@ -68,7 +68,7 @@ urxvt256c.colorUL:             white
 ! --- Settings for 4k systems --------------------------------------------------
 
 ! DPI info from http://dpi.lv
-Xft.dpi: 220
+Xft.dpi: 170
 !Xft.dpi: 90
 
 ! Xcursor.theme: See the files under ~/.icons/
