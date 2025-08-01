@@ -38,31 +38,32 @@
 	log1 = log --pretty=oneline
 	ls = ls-files
 	name = rev-parse --short HEAD
+	ommit = commit
 	psuh = push
 	puhs = push
 	pul = pull
 	pullr = pull --recurse-submodules=on-demand
 	regraded = log --pretty=format:'Re-graded commit %h' -n 1
+	sattus = status
 	satus = status
 	sauts = status
 	sb = show-branch
 	st = status
 	stat = status
+	statn = status --untracked-files=no
+	statno = status --untracked-files=no
+	statnoun = status --untracked-files=no
+	statnun = status --untracked-files=no
 	stats = status
 	statsu = status
 	statu = status
+	statusn = status --untracked-files=no
 	stauts = status
+	tcommit = commit
 	vimdiff = difftool --tool=vimdiff --no-prompt
 	wdiff = diff --word-diff
 	worddiff = diff --word-diff
 	wordiff = diff --word-diff
-	statnoun = status --untracked-files=no
-	statnun = status --untracked-files=no
-	statno = status --untracked-files=no
-	statusn = status --untracked-files=no
-	statn = status --untracked-files=no
-	tcommit = commit
-	ommit = commit
 
 [color]
 	ui = true
