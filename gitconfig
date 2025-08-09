@@ -6,9 +6,17 @@
 # [user]
 #     name = "User Name"
 #     email = email.address@example.com
+#
+# Put [safe] directories in a file called ~/.gitsafe
+# It should look like this:
+#
+# [safe]
+# 	directory = /usr/sbo/repo
+# 	directory = /GIT/tai/math.git
 
 [include]
 	path = ~/.gituser
+	path = ~/.gitsafe
 
 [advice]
 	detachedHead = false
@@ -138,6 +146,3 @@
 
 [rerere]
 	enabled = true
-
-[safe]
-	directory = /usr/sbo/repo
