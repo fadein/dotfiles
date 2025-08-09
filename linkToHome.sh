@@ -4,7 +4,7 @@
 # actually make any changes, but only show what would be done
 
 
-PAYLOAD_FILES="ackrc csirc dircolors gitconfig inputrc nethackrc Xdefaults xinitrc xprofile config/user-dirs.locale config/picom.conf config/user-dirs.dirs config/gtk-3.0/settings.ini"
+PAYLOAD_FILES="ackrc alacritty.toml csirc dircolors gitconfig inputrc nethackrc Xdefaults xinitrc xprofile config/user-dirs.locale config/picom.conf config/user-dirs.dirs config/gtk-3.0/settings.ini"
 
 set -e
 
