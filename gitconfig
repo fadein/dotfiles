@@ -68,6 +68,7 @@
 	statusn = status --untracked-files=no
 	stauts = status
 	tcommit = commit
+	upsh = push
 	vimdiff = difftool --tool=vimdiff --no-prompt
 	wdiff = diff --word-diff
 	worddiff = diff --word-diff
