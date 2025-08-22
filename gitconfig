@@ -57,6 +57,7 @@
 	sauts = status
 	sb = show-branch
 	st = status
+	staged = diff --staged
 	stat = status
 	statn = status --untracked-files=no
 	statno = status --untracked-files=no
@@ -119,6 +120,12 @@
 [fetch]
 	recurseSubmodules = on-demand
 
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+
 [http]
 	sslverify = true  # Set to false if SSL certs aren't being happy
 
@@ -130,6 +137,7 @@
 	date = iso-local
 
 [merge]
+	conflictstyle = zdiff3
 	log = true
 
 [pager]
@@ -146,3 +154,10 @@
 
 [rerere]
 	enabled = true
+
+[tig]
+	line-graphics = false
+	split-view-height = 80%
+
+[tig "bind"]
+	generic = i view-close
