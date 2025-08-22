@@ -49,6 +49,10 @@ urxvt256c.url-launcher:        /usr/bin/firefox
 urxvt256c.colorUL:             white
 
 
+!! mouse support in Vim - this is not needed, just :set mouse=a
+!urxvt256c*scrollTtyOutput: false
+!urxvt256c*scrollWithBuffer: false
+
 
 ! ------------------------------------------------------------------------------
 ! --- Setings for <= 1080p systems ---------------------------------------------
@@ -130,7 +134,7 @@ urxvt.scrollBar_right:     true
 urxvt.jumpScroll:          false
 URxvt.clipboard.autocopy:  true
 urxvt.perl-ext-common:     default,selection-to-clipboard
-urxvt.url-launcher:        /usr/bin/firefox
+urxvt.url-launcher:        /opt/zen/zen
 !urxvt.matcher.button:     1
 urxvt.colorUL:             white
 
@@ -140,7 +144,7 @@ urxvt.colorUL:             white
 ! Vimdiff optimized XTerm settings
 xterm*cursorBlink: true
 xterm*cursorUnderLine: false
-xterm*faceSize: 12
+xterm*faceSize: 20
 xterm*faceName: Hack
 
 ! Nethack optimized XTerm settings
@@ -161,16 +165,16 @@ xterm*cursorBlink:         true
 xterm*cursorUnderLine:     false
 
 !Regular XTerm settings
-xterm.altIsNotMeta:         true
-xterm.charClass:            33:48,37:48,45-47:48,38:48,61:48,63:48,58:48,64:48
-xterm.foreground:          white
-xterm.keepSelection:       true
-xterm.metaSendsEscape:     true
-xterm.on4Clicks:           group
-xterm.saveLines:           10240
-xterm.scrollBar:           true
-xterm.toolBar:             false
-xterm.bellIsUrgent:        true
+xterm*altIsNotMeta:         true
+xterm*charClass:            33:48,37:48,45-47:48,38:48,61:48,63:48,58:48,64:48
+xterm*foreground:          white
+xterm*keepSelection:       true
+xterm*metaSendsEscape:     true
+xterm*on4Clicks:           group
+xterm*saveLines:           10240
+xterm*scrollBar:           true
+xterm*toolBar:             false
+xterm*bellIsUrgent:        true
 
 
 ! --- NetHack Settings ---------------------------------------------------------

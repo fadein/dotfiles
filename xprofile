@@ -10,12 +10,10 @@ if [[ -d $HOME/.fonts ]]; then
     xset fp rehash
 fi
 
-setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
 
 
 case $HOSTNAME in
     atlantis*)
-        xset s off -dpms
         backlighter = 6
         synclient TouchpadOff=1 ClickPad=0
 
@@ -86,6 +84,8 @@ case $HOSTNAME in
 
     apollo*)
         xset s off -dpms
+        # On other hosts I set the kb layout through X11 config files
+        setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
 
         # When this script is run on Ubu, $1=$HOME/.xprofile, causing the `case` below to fail
         # This resets $1=dwm (as long as Ubu uses GDM...)
@@ -104,12 +104,12 @@ case $1 in
 		# set the variable USE_COMPTON to non-null to use compton
 		case ${USE_COMPTON=no} in
 			no)
-				if ! pgrep -u $USER picom; then
-					picom &
+				if which picom >/dev/null 2>&1 && ! pgrep -u $USER picom >/dev/null 2>&1; then
+					picom --daemon
 				fi
 				;;
 			*)
-				if ! pgrep -u $USER compton; then
+				if which compton >/dev/null 2>&1 && ! pgrep -u $USER compton >/dev/null 2>&1; then
 					compton -b
 				fi
 				;;

@@ -40,11 +40,13 @@ else
 fi
 
 
+printf '\n============================\n%s\n============================\n' "$(date)" >> $HOME/.xerrors
+
 # Start the window manager:
 [[ -x $HOME/.xprofile ]] && source $HOME/.xprofile dwm
 
-# Fixes broken Spotify, Discord
-exec dbus-launch --sh-syntax --exit-with-session $DWM 2> $HOME/.xerrors
+# dbus-launch(1) lets web links open in the browser from Spotify and Discord 
+exec dbus-launch --sh-syntax --exit-with-session $DWM 2>> $HOME/.xerrors
 
 # original exec line:
 # exec $DWM 2> $HOME/.xerrors
