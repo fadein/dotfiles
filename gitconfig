@@ -110,7 +110,8 @@
 	untracked = yellow
 
 [core]
-	pager = less -MRX
+	# pager = less -MRX
+	pager = delta
 	excludesfile = /home/fadein/.gitexcludes
 	whitespace = "tabwidth=4"
 	askPass =
@@ -162,3 +163,10 @@
 
 [tig "bind"]
 	generic = i view-close
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true  # use n and N to move between diff sections
+	dark = true      # or light = true, or omit for auto-detection
