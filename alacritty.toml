@@ -14,6 +14,10 @@ italic = { family = "departuremono nerd font", style = "Italic" }
 # bold = { family = "0xproto nerd font", style = "Bold" }
 # italic = { family = "0xproto nerd font", style = "Italic" }
 
+[bell]
+duration = 250
+animation = "EaseOutSine"
+color = "#34855b"
 
 [mouse]
 hide_when_typing = true
