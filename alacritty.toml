@@ -18,6 +18,7 @@ italic = { family = "hurmitnerdfont", style = "Italic" }
 duration = 250
 animation = "EaseOutSine"
 color = "#aa11cc"
+color = "#34855b"
 
 [mouse]
 hide_when_typing = true
