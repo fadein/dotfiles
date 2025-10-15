@@ -1,7 +1,7 @@
 #######################################################################
-## Fadein's preferences
+## Fadein's NetHack Preferences
 
-OPTIONS=fruit:can of Mt. Dew
+## Uncomment these to skip the character creation menu at the beginning of a new game
 #OPTIONS=align:neutral
 #OPTIONS=gender:male
 #OPTIONS=race:human
@@ -13,10 +13,13 @@ OPTIONS=dogname:Biscuit
 OPTIONS=horsename:Shadowfax
 OPTIONS=pettype:dog
 
+## customizable fruit appearance (defaults to "Slime Mold" when left unset)
+OPTIONS=fruit:can of Diet Coke
+
 ## interface
 OPTIONS=nolootabc
 OPTIONS=norest_on_space
-OPTIONS=packorder:)[%(/?!+="*`0_
+OPTIONS=packorder:`0_)[%(/!?+="*$
 OPTIONS=prayconfirm
 OPTIONS=pushweapon
 OPTIONS=runmode:teleport
@@ -32,6 +35,24 @@ OPTIONS=fixinv
 # If more info is available for an object looked at with `/`, ask if you want to see it.
 OPTIONS=help
 
+
+#######################################################################
+# Clock
+
+# Type of time to show on status bar
+#  d) disabled
+#  p) play time
+#  w) wallclock time
+OPTIONS=realtime:d
+
+# Format used by realtime display
+#  s) seconds (s)
+#  c) condensed (h:mm)
+#  f) fixed units (hh:mm:ss)
+#  u) units (xxh:xxm)
+OPTIONS=realtime_format:u
+
+
 #######################################################################
 ## Customize `whatis` output
 
@@ -44,7 +65,7 @@ OPTIONS=help
 #    n - none (no coordinates shown). Default.
 #
 # The whatis_coord option is also used with the sub-commands m, M, o, and O when
-# using /, where the 'none' setting is overridden with 'map'. 
+# using /, where the 'none' setting is overridden with 'map'.
 OPTIONS=whatis_coord=c
 
 # "whatis_filter" When using the m, o, d, x or a keys to select a location on
@@ -53,7 +74,7 @@ OPTIONS=whatis_coord=c
 #
 # The area-filter tries to be slightly predictive; if you're standing on a
 # doorway, it will consider the area on the side of the door you were last
-# moving toward. 
+# moving toward.
 #
 #   n - no filtering (default)
 #   v - in view only
@@ -63,20 +84,18 @@ OPTIONS=whatis_filter=a
 # "whatis_moveskip" When selecting a location on the map, and using shifted
 # movement keys or meta-digit keys to fast-move, instead of moving 8 units at a
 # time, move by skipping the same glyphs. It can be toggled by typing * while
-# targeting. Boolean, default off. 
+# targeting. Boolean, default off.
 OPTIONS=!whatis_moveskip
 
 
 #######################################################################
-## Options borrowed from Disperse@hardfought.org 
-
-# Disable bones levels and in-game mail
-#OPTIONS=!bones
-#OPTIONS=!mail
-
 # Conduct options which must be set prior to starting a game
 #OPTIONS=blind
 #OPTIONS=nudist
+
+
+#######################################################################
+## Options borrowed from Disperse@hardfought.org
 
 # User Interface settings: Curses with default symbol set
 OPTIONS=color,suppress_alert:3.4.3,!cmdassist
@@ -469,3 +488,5 @@ MSGTYPE=stop ".*silly thing.*"
 # Hide unimportant messages
 MSGTYPE=hide "You swap places with .*"
 MSGTYPE=hide "With great effort you move the boulder."
+
+# vim: set filetype=nethack:
