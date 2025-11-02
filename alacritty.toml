@@ -15,6 +15,9 @@ italic = { family = "departuremono nerd font", style = "Italic" }
 # italic = { family = "0xproto nerd font", style = "Italic" }
 
 
+[mouse]
+hide_when_typing = true
+
 ## Old-School Copy Paste {{{
 
 [[keyboard.bindings]]
