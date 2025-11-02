@@ -19,6 +19,9 @@ duration = 250
 animation = "EaseOutSine"
 color = "#aa11cc"
 
+[mouse]
+hide_when_typing = true
+
 ## Old-School Copy Paste {{{
 
 [[keyboard.bindings]]
