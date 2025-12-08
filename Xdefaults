@@ -7,17 +7,17 @@
 ! ------------------------------------------------------------------------------
 ! --- urxvt256c settings      --------------------------------------------------
 
-urxvt256c.font:          xft:departuremono nerd font:pixelsize=28:antialias=true,xft:Symbola,xft:Hack
-urxvt256c.keysym.C-0:    command:\033]710;xft:departuremono nerd font:pixelsize=16:antialias=true,xft:Symbola\007
-urxvt256c.keysym.C-1:    command:\033]710;xft:departuremono nerd font:pixelsize=20:antialias=true,xft:Symbola\007
+urxvt256c.font:                           xft:departuremono nerd font:pixelsize=26:antialias=true,xft:Symbola,xft:Hack
+urxvt256c.keysym.C-0:    command:\033]710;xft:departuremono nerd font:pixelsize=18:antialias=true,xft:Symbola\007
+urxvt256c.keysym.C-1:    command:\033]710;xft:departuremono nerd font:pixelsize=22:antialias=true,xft:Symbola\007
 urxvt256c.keysym.C-2:    command:\033]710;xft:departuremono nerd font:pixelsize=24:antialias=true,xft:Symbola\007
-urxvt256c.keysym.C-3:    command:\033]710;xft:departuremono nerd font:pixelsize=28:antialias=true,xft:Symbola\007
-urxvt256c.keysym.C-4:    command:\033]710;xft:departuremono nerd font:pixelsize=32:antialias=true,xft:Symbola\007
+urxvt256c.keysym.C-3:    command:\033]710;xft:departuremono nerd font:pixelsize=27:antialias=true,xft:Symbola\007
+urxvt256c.keysym.C-4:    command:\033]710;xft:departuremono nerd font:pixelsize=30:antialias=true,xft:Symbola\007
 urxvt256c.keysym.C-5:    command:\033]710;xft:departuremono nerd font:pixelsize=36:antialias=true,xft:Symbola\007
-urxvt256c.keysym.C-6:    command:\033]710;xft:departuremono nerd font:pixelsize=44:antialias=true,xft:Symbola\007
-urxvt256c.keysym.C-7:    command:\033]710;xft:departuremono nerd font:pixelsize=60:antialias=true,xft:Symbola\007
-urxvt256c.keysym.C-8:    command:\033]710;xft:departuremono nerd font:pixelsize=76:antialias=true,xft:Symbola\007
-urxvt256c.keysym.C-9:    command:\033]710;xft:departuremono nerd font:pixelsize=92:antialias=true,xft:Symbola\007
+urxvt256c.keysym.C-6:    command:\033]710;xft:departuremono nerd font:pixelsize=42:antialias=true,xft:Symbola\007
+urxvt256c.keysym.C-7:    command:\033]710;xft:departuremono nerd font:pixelsize=48:antialias=true,xft:Symbola\007
+urxvt256c.keysym.C-8:    command:\033]710;xft:departuremono nerd font:pixelsize=64:antialias=true,xft:Symbola\007
+urxvt256c.keysym.C-9:    command:\033]710;xft:departuremono nerd font:pixelsize=80:antialias=true,xft:Symbola\007
 
 urxvt256c.keysym.C-M-0:   command:\033]710;xft:departuremono nerd font:pixelsize=2:antialias=true,xft:Symbola\007
 urxvt256c.keysym.C-M-1:   command:\033]710;xft:departuremono nerd font:pixelsize=4:antialias=true,xft:Symbola\007

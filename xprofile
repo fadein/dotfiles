@@ -25,7 +25,7 @@ case $HOSTNAME in
         #                   key press before enabling the touchpad.
         #   -K  Ignore modifier keys and Modifier+Key combos
         #   -d  Start as a daemon
-        syndaemon -i 1.0 -K -d
+        syndaemon -i 0.35 -K -d
         ;;
 
 	mariner*)
