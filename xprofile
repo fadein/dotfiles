@@ -26,33 +26,33 @@ case $HOSTNAME in
         syndaemon -i 1.0 -K -d
         ;;
 
-	mariner*)
+    mariner*)
         xset s 1800 1800 dpms 1800 1800 3600 +dpms
 
-		# use the screen's full resolution and increase the brightness
-		xrandr --output DP-1 --mode 5120x1440 --rate 60.00
+        # use the screen's full resolution and increase the brightness
+        xrandr --output DP-1 --mode 5120x1440 --rate 60.00
 
-		# split the screen into three virtual monitors
-		#
-		# `--setmonitor name geometry outputs`
-		#
-		# geometry is a manual specification in the form "w/mmwxh/mmh+x+y"
-		# where w, h, x, y are in pixels and mmw, mmh are the physical
-		# dimensions of the monitor.
-		#
-	    # The output list is either the keyword "none" or a comma-separated list of outputs.
-		xrandr --setmonitor left   1707/397x1440/335+0+0 none
+        # split the screen into three virtual monitors
+        #
+        # `--setmonitor name geometry outputs`
+        #
+        # geometry is a manual specification in the form "w/mmwxh/mmh+x+y"
+        # where w, h, x, y are in pixels and mmw, mmh are the physical
+        # dimensions of the monitor.
+        #
+        # Use DP-1 as the primary output
+        xrandr --setmonitor left   1707/397x1440/335+0+0 DP-1
 
-		# The output list DP-1 instead of "none" makes this monitor the "primary";
-		# some apps' dropdown menus appear only in the primary monitor
-		xrandr --setmonitor middle 1706/397x1440/335+1707+0 DP-1
-		xrandr --setmonitor right  1707/397x1440/335+3413+0 none
+        # The output list DP-1 instead of "none" makes each monitor a "primary";
+        # some apps' dropdown menus appear only on a primary monitor
+        xrandr --setmonitor middle 1706/397x1440/335+1707+0 DP-1
+        xrandr --setmonitor right  1707/397x1440/335+3413+0 DP-1
 
         export BROWSER=zen
         [[ -x ~/.config/conky/Pleione/start.sh ]] && ~/.config/conky/Pleione/start.sh &
-		;;
+        ;;
 
-	voyager2*)
+    voyager2*)
         xset s on +dpms
         # Fri Oct 27 19:27:24 MDT 2023
         # I updated my system and Lua broke; Conky now barfs up this error message:
@@ -100,22 +100,22 @@ case $HOSTNAME in
 esac
 
 case $1 in
-	dwm|*xprofile)
-		# set the variable USE_COMPTON to non-null to use compton
-		case ${USE_COMPTON=no} in
-			no)
-				if which picom >/dev/null 2>&1 && ! pgrep -u $USER picom >/dev/null 2>&1; then
-					picom --daemon
-				fi
-				;;
-			*)
-				if which compton >/dev/null 2>&1 && ! pgrep -u $USER compton >/dev/null 2>&1; then
-					compton -b
-				fi
-				;;
-		esac
+    dwm|*xprofile)
+        # set the variable USE_COMPTON to non-null to use compton
+        case ${USE_COMPTON=no} in
+            no)
+                if which picom >/dev/null 2>&1 && ! pgrep -u $USER picom >/dev/null 2>&1; then
+                    picom --daemon
+                fi
+                ;;
+            *)
+                if which compton >/dev/null 2>&1 && ! pgrep -u $USER compton >/dev/null 2>&1; then
+                    compton -b
+                fi
+                ;;
+        esac
 
-		if ! pgrep -u $USER dwm-statusbar; then
+        if ! pgrep -u $USER dwm-statusbar; then
             dwm-statusbar &
         fi
 
@@ -126,5 +126,5 @@ case $1 in
         # Make Java apps work in DWM
         _JAVA_AWT_WM_NONREPARENTING=1
         export _JAVA_AWT_WM_NONREPARENTING
-		;;
+        ;;
 esac
