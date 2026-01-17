@@ -5,24 +5,31 @@
 
 set -e
 
+
+# Print a command, then run it (unless $DRYRUN is non-empty)
 echodo() {
 	echo $@
-	[ 0"$DRYRUN" = "0" ] && $@ || true
+	[ 0"$DRYRUN" = "0" ] && "$@" || true
 }
 
+# Given a source directory and a file's name,
+# link the file from the source directory into $HOME.
+#
+# If a source file exists under the subdirectory named for $HOSTNAME,
+# link that file to $HOME instead
 linkToHome() {
 	if [ $# -lt 2 ]; then
-		echo Usage: $0 SOURCE_NAME DEST_NAME
+		echo Usage: $0 SRC_DIR SRC_NAME
 	else
-		SOURCE_DIR=$1
-		SOURCE_NAME=$2
-		DEST_NAME=$HOME/.$SOURCE_NAME
+		SRC_DIR=$1
+		SRC_NAME=$2
+		DEST_NAME=$HOME/.$SRC_NAME
 
 		if   [ -h $DEST_NAME ]; then
-			if [ "$(readlink $DEST_NAME)" != "$SOURCE_NAME" ]; then
+			if [ "$(readlink $DEST_NAME)" != "$SRC_NAME" ]; then
 				echo "$DEST_NAME is already a symlink which doesn't point here"
 			else
-				echo "OK: $DEST_NAME -> $SOURCE_NAME"
+				echo "OK: $DEST_NAME -> $SRC_NAME"
 			fi
 
 		elif [ -d $DEST_NAME ]; then
@@ -46,7 +53,7 @@ linkToHome() {
 		elif [ -e $DEST_NAME ]; then
 			echo  $DEST_NAME already exists
 		else
-			echodo ln -s $SOURCE_DIR/$SOURCE_NAME $DEST_NAME
+			echodo ln -s $SRC_DIR/$SRC_NAME $DEST_NAME
 		fi
 	fi
 }
@@ -74,17 +81,19 @@ if [ 0"$DRYRUN" != "0" ]; then
 	echo
 fi
 
+# Resolve the location of this script
+HERE=$(dirname $(readlink -f "$0"))
+FIND_CMD=" find $HERE \( -name '.?*' -o -name linkToHome.sh -o -name 'host-*' \) -prune -o -type f -printf '%P '"
+
 if [ 0"$1" = 0"-r" ]; then
 	# Clean up old symlinks
-	for F in $( find . \( -name '.?*' -o -name linkToHome.sh \) -prune -o -type f -printf "%P " ); do
+	for F in $(eval $FIND_CMD); do
 		removeLink .$F
 	done
 else
-	# Resolve the location of this script
-	HERE=$(dirname $(readlink -f $0))
 
 	# Link these files and directories into $HOME
-	for F in $( find . \( -name '.?*' -o -name linkToHome.sh \) -prune -o -type f -printf "%P " ); do
+	for F in $(eval $FIND_CMD); do
 		linkToHome $HERE $F
 	done
 fi
