@@ -3,9 +3,6 @@
 # When the environment variable DRYRUN is non-empty, do not
 # actually make any changes, but only show what would be done
 
-
-PAYLOAD_FILES="ackrc alacritty.toml csirc dircolors gitconfig inputrc nethackrc Xdefaults xinitrc xprofile config/user-dirs.locale config/picom.conf config/user-dirs.dirs config/gtk-3.0/settings.ini"
-
 set -e
 
 echodo() {
@@ -17,10 +14,11 @@ linkToHome() {
 	if [ $# -lt 2 ]; then
 		echo Usage: $0 SOURCE_NAME DEST_NAME
 	else
-		SOURCE_NAME=$1
-		DEST_NAME=$HOME/$2
+		SOURCE_DIR=$1
+		SOURCE_NAME=$2
+		DEST_NAME=$HOME/.$SOURCE_NAME
 
-		if [ -h   $DEST_NAME ]; then
+		if   [ -h $DEST_NAME ]; then
 			if [ "$(readlink $DEST_NAME)" != "$SOURCE_NAME" ]; then
 				echo "$DEST_NAME is already a symlink which doesn't point here"
 			else
@@ -48,7 +46,7 @@ linkToHome() {
 		elif [ -e $DEST_NAME ]; then
 			echo  $DEST_NAME already exists
 		else
-			echodo ln -s $SOURCE_NAME $DEST_NAME
+			echodo ln -s $SOURCE_DIR/$SOURCE_NAME $DEST_NAME
 		fi
 	fi
 }
@@ -78,7 +76,7 @@ fi
 
 if [ 0"$1" = 0"-r" ]; then
 	# Clean up old symlinks
-	for F in $(echo $PAYLOAD_FILES); do
+	for F in $( find . \( -name '.?*' -o -name linkToHome.sh \) -prune -o -type f -printf "%P " ); do
 		removeLink .$F
 	done
 else
@@ -86,7 +84,7 @@ else
 	HERE=$(dirname $(readlink -f $0))
 
 	# Link these files and directories into $HOME
-	for F in $(echo $PAYLOAD_FILES); do
-		linkToHome $HERE/$F .$F
+	for F in $( find . \( -name '.?*' -o -name linkToHome.sh \) -prune -o -type f -printf "%P " ); do
+		linkToHome $HERE $F
 	done
 fi
