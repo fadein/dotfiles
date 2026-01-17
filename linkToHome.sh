@@ -88,3 +88,5 @@ else
 		linkToHome $HERE $F
 	done
 fi
+
+# vim: set noexpandtab:
