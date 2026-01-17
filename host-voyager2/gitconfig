@@ -57,7 +57,6 @@
 	sauts = status
 	sb = show-branch
 	st = status
-	staged = diff --staged
 	stat = status
 	statn = status --untracked-files=no
 	statno = status --untracked-files=no
@@ -110,12 +109,15 @@
 	untracked = yellow
 
 [core]
-	# pager = less -MRX
-	pager = delta
+    pager = delta
 	excludesfile = /home/fadein/.gitexcludes
 	whitespace = "tabwidth=4"
 	askPass =
 
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+	#dark = true      # or light = true, or omit for auto-detection
 [diff]
 	tool = vimdiff
 
@@ -134,13 +136,16 @@
 [init]
 	defaultBranch = master
 
+[interactive]
+    diffFilter = delta --color-only
+
 [log]
 	abbrevCommit = true
 	date = iso-local
 
 [merge]
-	conflictstyle = zdiff3
 	log = true
+    conflictstyle = zdiff3
 
 [pager]
 	branch = false
@@ -156,17 +161,3 @@
 
 [rerere]
 	enabled = true
-
-[tig]
-	line-graphics = false
-	split-view-height = 80%
-
-[tig "bind"]
-	generic = i view-close
-
-[interactive]
-	diffFilter = delta --color-only
-
-[delta]
-	navigate = true  # use n and N to move between diff sections
-	dark = true      # or light = true, or omit for auto-detection

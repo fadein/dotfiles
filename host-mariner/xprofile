@@ -1,0 +1,68 @@
+#!/bin/sh
+
+if [[ -f ~/.Xdefaults ]]; then
+    xrdb -quiet -load < ~/.Xdefaults &
+fi
+
+# After copying new fonts into this directory, run `mkfontdir` and `mkfontscale` there
+if [[ -d $HOME/.fonts ]]; then
+    xset +fp $HOME/.fonts
+    xset fp rehash
+fi
+
+setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
+
+xset s 1800 1800 dpms 1800 1800 3600 +dpms
+
+# use the screen's full resolution and increase the brightness
+xrandr --output DP-1 --mode 5120x1440 --rate 60.00
+
+# split the screen into three virtual monitors
+#
+# `--setmonitor name geometry outputs`
+#
+# geometry is a manual specification in the form "w/mmwxh/mmh+x+y"
+# where w, h, x, y are in pixels and mmw, mmh are the physical
+# dimensions of the monitor.
+#
+# The output list is either the keyword "none" or a comma-separated list of outputs.
+xrandr --setmonitor left   1707/397x1440/335+0+0 none
+
+# The output list DP-1 instead of "none" makes this monitor the "primary";
+# some apps' dropdown menus appear only in the primary monitor
+xrandr --setmonitor middle 1706/397x1440/335+1707+0 DP-1
+xrandr --setmonitor right  1707/397x1440/335+3413+0 none
+
+export BROWSER=zen
+[[ -x ~/.config/conky/Pleione/start.sh ]] && ~/.config/conky/Pleione/start.sh &
+
+
+case $1 in
+	dwm|*xprofile)
+		# set the variable USE_COMPTON to non-null to use compton
+		case ${USE_COMPTON=no} in
+			no)
+				if ! pgrep -u $USER picom; then
+					picom &
+				fi
+				;;
+			*)
+				if ! pgrep -u $USER compton; then
+					compton -b
+				fi
+				;;
+		esac
+
+		if ! pgrep -u $USER dwm-statusbar; then
+            dwm-statusbar &
+        fi
+
+        if [[ -x ~/.wallpapers/cycle/next-wallpaper.sh ]]; then
+            ~/.wallpapers/cycle/next-wallpaper.sh &
+        fi
+
+        # Make Java apps work in DWM
+        _JAVA_AWT_WM_NONREPARENTING=1
+        export _JAVA_AWT_WM_NONREPARENTING
+		;;
+esac

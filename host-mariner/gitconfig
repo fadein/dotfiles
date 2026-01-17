@@ -6,17 +6,9 @@
 # [user]
 #     name = "User Name"
 #     email = email.address@example.com
-#
-# Put [safe] directories in a file called ~/.gitsafe
-# It should look like this:
-#
-# [safe]
-# 	directory = /usr/sbo/repo
-# 	directory = /GIT/tai/math.git
 
 [include]
 	path = ~/.gituser
-	path = ~/.gitsafe
 
 [advice]
 	detachedHead = false
@@ -57,7 +49,6 @@
 	sauts = status
 	sb = show-branch
 	st = status
-	staged = diff --staged
 	stat = status
 	statn = status --untracked-files=no
 	statno = status --untracked-files=no
@@ -69,7 +60,6 @@
 	statusn = status --untracked-files=no
 	stauts = status
 	tcommit = commit
-	upsh = push
 	vimdiff = difftool --tool=vimdiff --no-prompt
 	wdiff = diff --word-diff
 	worddiff = diff --word-diff
@@ -110,8 +100,7 @@
 	untracked = yellow
 
 [core]
-	# pager = less -MRX
-	pager = delta
+	pager = less -MRX
 	excludesfile = /home/fadein/.gitexcludes
 	whitespace = "tabwidth=4"
 	askPass =
@@ -121,12 +110,6 @@
 
 [fetch]
 	recurseSubmodules = on-demand
-
-[filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
 
 [http]
 	sslverify = true  # Set to false if SSL certs aren't being happy
@@ -139,7 +122,6 @@
 	date = iso-local
 
 [merge]
-	conflictstyle = zdiff3
 	log = true
 
 [pager]
@@ -157,16 +139,5 @@
 [rerere]
 	enabled = true
 
-[tig]
-	line-graphics = false
-	split-view-height = 80%
-
-[tig "bind"]
-	generic = i view-close
-
-[interactive]
-	diffFilter = delta --color-only
-
-[delta]
-	navigate = true  # use n and N to move between diff sections
-	dark = true      # or light = true, or omit for auto-detection
+[safe]
+	directory = /usr/sbo/repo

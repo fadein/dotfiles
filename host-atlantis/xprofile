@@ -1,0 +1,57 @@
+#!/bin/sh
+
+if [[ -f ~/.Xdefaults ]]; then
+    xrdb -quiet -load < ~/.Xdefaults &
+fi
+
+# After copying new fonts into this directory, run `mkfontdir` and `mkfontscale` there
+if [[ -d $HOME/.fonts ]]; then
+    xset +fp $HOME/.fonts
+    xset fp rehash
+fi
+
+
+backlighter = 6
+
+# Set in /etc/X11/xorg.conf.d
+#   xset s off -dpms
+#   synclient TouchpadOff=1 ClickPad=0 FingerHigh=... FingerLow=... PalmDetect=... PalmMinZ=...
+#
+# syndaemon - a program that monitors keyboard activity and
+# disables the touchpad when the keyboard is being used.
+#   -i  <idle-time> How many seconds to wait after the last
+#                   key press before enabling the touchpad.
+#   -K  Ignore modifier keys and Modifier+Key combos
+#   -d  Start as a daemon
+syndaemon -i 0.35 -K -d
+
+
+case $1 in
+	dwm|*xprofile)
+		# set the variable USE_COMPTON to non-null to use compton
+		case ${USE_COMPTON=no} in
+			no)
+				if which picom >/dev/null 2>&1 && ! pgrep -u $USER picom >/dev/null 2>&1; then
+					picom --daemon
+				fi
+				;;
+			*)
+				if which compton >/dev/null 2>&1 && ! pgrep -u $USER compton >/dev/null 2>&1; then
+					compton -b
+				fi
+				;;
+		esac
+
+		if ! pgrep -u $USER dwm-statusbar; then
+            dwm-statusbar &
+        fi
+
+        if [[ -x ~/.wallpapers/cycle/next-wallpaper.sh ]]; then
+            ~/.wallpapers/cycle/next-wallpaper.sh &
+        fi
+
+        # Make Java apps work in DWM
+        _JAVA_AWT_WM_NONREPARENTING=1
+        export _JAVA_AWT_WM_NONREPARENTING
+		;;
+esac
