@@ -96,7 +96,10 @@ linkToHome() {
 removeLink() {
 	DEST_NAME=$HOME/$1
 
-	if [ ! -e $DEST_NAME ]; then
+	if [ -h $DEST_NAME -a ! -e $DEST_NAME ]; then
+		echo "$CYN‡ $DEST_NAME is a broken link; cleaning up$RST"
+		echodo rm "$DEST_NAME"
+	elif [ ! -e $DEST_NAME ]; then
 		echo "$RED✗ $DEST_NAME does not exist$RST"
 	elif [ ! -h $DEST_NAME ]; then
 		echo "$YLW∅ $DEST_NAME is not a symlink$RST"
