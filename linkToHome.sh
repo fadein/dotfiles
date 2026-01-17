@@ -25,6 +25,10 @@ linkToHome() {
 		SRC_NAME=$2
 		DEST_NAME=$HOME/.$SRC_NAME
 
+		if [ -f $SRC_DIR/host-$HOSTNAME/$SRC_NAME ]; then
+			SRC_DIR=$SRC_DIR/host-$HOSTNAME
+		fi
+
 		if   [ -h $DEST_NAME ]; then
 			if [ "$(readlink $DEST_NAME)" != "$SRC_NAME" ]; then
 				echo "$DEST_NAME is already a symlink which doesn't point here"
