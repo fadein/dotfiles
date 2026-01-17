@@ -62,15 +62,26 @@ linkToHome() {
 	fi
 }
 
+# Remove a symlink that points into this repository
 removeLink() {
-	DEST_NAME=$HOME/$1
+	HERE=$1
+	DEST_NAME=$HOME/$2
 
 	if ! [ -h $DEST_NAME ]; then
 		echo "'$DEST_NAME' is not a symlink, skipping..."
 	else
-		echodo rm $DEST_NAME
+		local DEST_DIR=$(dirname $(readlink $DEST_NAME))
+		while [ "$DEST_DIR" != "$HERE" -a "$DEST_DIR" != "/" ]; do
+			DEST_DIR=$(dirname $DEST_DIR)
+		done
+		if [ "$DEST_DIR" != "/" ]; then
+			echodo rm "$DEST_NAME"
+		else
+			echo "'$DEST_NAME' does not link into this repository, skipping..."
+		fi
 	fi
 }
+
 
 # make sure that $HOME is defined
 if [ 0"$HOME" = "0" ]; then
@@ -92,7 +103,7 @@ FIND_CMD=" find $HERE \( -name '.?*' -o -name linkToHome.sh -o -name 'host-*' \)
 if [ 0"$1" = 0"-r" ]; then
 	# Clean up old symlinks
 	for F in $(eval $FIND_CMD); do
-		removeLink .$F
+		removeLink $HERE .$F
 	done
 else
 
