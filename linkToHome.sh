@@ -21,7 +21,7 @@ fi
 
 # Print a command, then run it (unless $DRYRUN is non-empty)
 echodo() {
-	echo $GRN$@$RST
+	echo ${GRN}✓ $@$RST
 	[ 0"$DRYRUN" = "0" ] && "$@" || true
 }
 
@@ -44,31 +44,31 @@ linkToHome() {
 
 		if   [ -h $DEST_NAME ]; then
 			if [ "$(readlink $DEST_NAME)" != "$SRC_DIR/$SRC_NAME" ]; then
-				echo "$YLW$DEST_NAME is already a symlink which doesn't point here$RST"
+				echo "${YLW}≠ $DEST_NAME is already a symlink which doesn't point here$RST"
 			else
-				echo "${CYN}OK: $DEST_NAME -> $SRC_DIR/$SRC_NAME$RST"
+				echo "${CYN}✓ $DEST_NAME → $SRC_DIR/$SRC_NAME$RST"
 			fi
 
 		elif [ -d $DEST_NAME ]; then
-			echo  "$YLW$DEST_NAME already exists and is a directory$RST"
+			echo  "$YLW✗ $DEST_NAME already exists as a directory$RST"
 
 		elif [ -b $DEST_NAME ]; then
-			echo  "$YLW$DEST_NAME already exists as a block special$RST"
+			echo  "$YLW✗ $DEST_NAME already exists as a block special$RST"
 
 		elif [ -c $DEST_NAME ]; then
-			echo  "$YLW$DEST_NAME already exists as a character special$RST"
+			echo  "$YLW✗ $DEST_NAME already exists as a character special$RST"
 
 		elif [ -p $DEST_NAME ]; then
-			echo  "$YLW$DEST_NAME already exists as a named pipe$RST"
+			echo  "$YLW✗ $DEST_NAME already exists as a named pipe$RST"
 
 		elif [ -S $DEST_NAME ]; then
-			echo  "$YLW$DEST_NAME already exists as a socket$RST"
+			echo  "$YLW✗ $DEST_NAME already exists as a socket$RST"
 
 		elif [ -f $DEST_NAME ]; then
-			echo  "$YLW$DEST_NAME already exists as a regular file$RST"
+			echo  "$YLW✗ $DEST_NAME already exists as a regular file$RST"
 
 		elif [ -e $DEST_NAME ]; then
-			echo  "$YLW$DEST_NAME already exists$RST"
+			echo  "$YLW✗ $DEST_NAME already exists$RST"
 		else
 			echodo ln -s $SRC_DIR/$SRC_NAME $DEST_NAME
 		fi
@@ -80,8 +80,10 @@ removeLink() {
 	HERE=$1
 	DEST_NAME=$HOME/$2
 
-	if ! [ -h $DEST_NAME ]; then
-		echo "$YLW'$DEST_NAME' is not a symlink, skipping...$RST"
+	if [ ! -e $DEST_NAME ]; then
+		echo "$RED✗ $DEST_NAME does not exist$RST"
+	elif [ ! -h $DEST_NAME ]; then
+		echo "$YLW∅ $DEST_NAME is not a symlink$RST"
 	else
 		local DEST_DIR=$(dirname $(readlink $DEST_NAME))
 		while [ "$DEST_DIR" != "$HERE" -a "$DEST_DIR" != "/" ]; do
@@ -90,7 +92,7 @@ removeLink() {
 		if [ "$DEST_DIR" != "/" ]; then
 			echodo rm "$DEST_NAME"
 		else
-			echo "$YLW'$DEST_NAME' does not link into this repository, skipping...$RST"
+			echo "${YLW}≠ $DEST_NAME is already a symlink which doesn't point here$RST"
 		fi
 	fi
 }
@@ -98,7 +100,7 @@ removeLink() {
 
 # make sure that $HOME is defined
 if [ 0"$HOME" = "0" ]; then
-	echo "${RED}HOME is empty or unset!$RST"
+	echo "${RED}✗ HOME is empty or unset!$RST"
 	exit 1
 fi
 
