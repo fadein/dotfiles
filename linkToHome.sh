@@ -5,6 +5,12 @@
 
 set -e
 
+# Resolve the location of this script
+HERE=$(dirname $(readlink -f "$0"))
+
+# Files to link into $HOME
+FIND_CMD=" find $HERE \( -name '.?*' -o -name linkToHome.sh -o -name 'host-*' \) -prune -o -type f -printf '%P '"
+
 if [ -t 1 ]; then
 	RED=$'\x1b[1;31m'
 	GRN=$'\x1b[1;32m'
@@ -31,22 +37,33 @@ echodo() {
 # If a source file exists under the subdirectory named for $HOSTNAME,
 # link that file to $HOME instead
 linkToHome() {
-	if [ $# -lt 2 ]; then
-		echo "${RED}Usage: $0 SRC_DIR SRC_NAME$RST"
+	if [ $# -lt 1 ]; then
+		echo "${RED}Usage: $0 SRC_NAME [DEST_NAME]$RST"
 	else
-		SRC_DIR=$1
-		SRC_NAME=$2
-		DEST_NAME=$HOME/.$SRC_NAME
 
-		if [ -f $SRC_DIR/host-$HOSTNAME/$SRC_NAME ]; then
-			SRC_DIR=$SRC_DIR/host-$HOSTNAME
+		if [ "0$1" == 0. ]; then
+			SRC_NAME=$HERE
+			SRC=$HERE
+		else
+			SRC_NAME=$1
+			SRC=$HERE/$SRC_NAME
+		fi
+
+		if [ -f $HERE/host-$HOSTNAME/$SRC_NAME ]; then
+			SRC=$HERE/host-$HOSTNAME/$SRC_NAME
+		fi
+
+		if [ "0$2" == 0 ]; then
+			DEST_NAME=$HOME/.$SRC_NAME
+		else
+			DEST_NAME=$HOME/.$2
 		fi
 
 		if   [ -h $DEST_NAME ]; then
-			if [ "$(readlink $DEST_NAME)" != "$SRC_DIR/$SRC_NAME" ]; then
+			if [ "$(readlink $DEST_NAME)" != "$SRC" ]; then
 				echo "${YLW}≠ $DEST_NAME is already a symlink which doesn't point here$RST"
 			else
-				echo "${CYN}✓ $DEST_NAME → $SRC_DIR/$SRC_NAME$RST"
+				echo "${CYN}✓ $DEST_NAME → $SRC$RST"
 			fi
 
 		elif [ -d $DEST_NAME ]; then
@@ -70,22 +87,21 @@ linkToHome() {
 		elif [ -e $DEST_NAME ]; then
 			echo  "$YLW✗ $DEST_NAME already exists$RST"
 		else
-			echodo ln -s $SRC_DIR/$SRC_NAME $DEST_NAME
+			echodo ln -s $SRC $DEST_NAME
 		fi
 	fi
 }
 
 # Remove a symlink that points into this repository
 removeLink() {
-	HERE=$1
-	DEST_NAME=$HOME/$2
+	DEST_NAME=$HOME/$1
 
 	if [ ! -e $DEST_NAME ]; then
 		echo "$RED✗ $DEST_NAME does not exist$RST"
 	elif [ ! -h $DEST_NAME ]; then
 		echo "$YLW∅ $DEST_NAME is not a symlink$RST"
 	else
-		local DEST_DIR=$(dirname $(readlink $DEST_NAME))
+		local DEST_DIR=$(readlink $DEST_NAME)
 		while [ "$DEST_DIR" != "$HERE" -a "$DEST_DIR" != "/" ]; do
 			DEST_DIR=$(dirname $DEST_DIR)
 		done
@@ -111,20 +127,16 @@ if [ 0"$DRYRUN" != "0" ]; then
 	echo
 fi
 
-# Resolve the location of this script
-HERE=$(dirname $(readlink -f "$0"))
-FIND_CMD=" find $HERE \( -name '.?*' -o -name linkToHome.sh -o -name 'host-*' \) -prune -o -type f -printf '%P '"
-
 if [ 0"$1" = 0"-r" ]; then
 	# Clean up old symlinks
 	for F in $(eval $FIND_CMD); do
-		removeLink $HERE .$F
+		removeLink .$F
 	done
 else
 
 	# Link these files and directories into $HOME
 	for F in $(eval $FIND_CMD); do
-		linkToHome $HERE $F
+		linkToHome $F
 	done
 fi
 
