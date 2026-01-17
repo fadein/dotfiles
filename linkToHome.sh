@@ -3,90 +3,129 @@
 # When the environment variable DRYRUN is non-empty, do not
 # actually make any changes, but only show what would be done
 
-
-PAYLOAD_FILES="ackrc alacritty.toml csirc dircolors gitconfig inputrc nethackrc Xdefaults xinitrc xprofile config/user-dirs.locale config/picom.conf config/user-dirs.dirs config/gtk-3.0/settings.ini"
-
 set -e
 
+if [ -t 1 ]; then
+	RED=$'\x1b[1;31m'
+	GRN=$'\x1b[1;32m'
+	YLW=$'\x1b[1;33m'
+	CYN=$'\x1b[1;36m'
+	RST=$'\x1b[0m'
+else
+	RED=''
+	GRN=''
+	YLW=''
+	CYN=''
+	RST=''
+fi
+
+# Print a command, then run it (unless $DRYRUN is non-empty)
 echodo() {
-	echo $@
-	[ 0"$DRYRUN" = "0" ] && $@ || true
+	echo ${GRN}✓ $@$RST
+	[ 0"$DRYRUN" = "0" ] && "$@" || true
 }
 
+# Given a source directory and a file's name,
+# link the file from the source directory into $HOME.
+#
+# If a source file exists under the subdirectory named for $HOSTNAME,
+# link that file to $HOME instead
 linkToHome() {
 	if [ $# -lt 2 ]; then
-		echo Usage: $0 SOURCE_NAME DEST_NAME
+		echo "${RED}Usage: $0 SRC_DIR SRC_NAME$RST"
 	else
-		SOURCE_NAME=$1
-		DEST_NAME=$HOME/$2
+		SRC_DIR=$1
+		SRC_NAME=$2
+		DEST_NAME=$HOME/.$SRC_NAME
 
-		if [ -h   $DEST_NAME ]; then
-			if [ "$(readlink $DEST_NAME)" != "$SOURCE_NAME" ]; then
-				echo "$DEST_NAME is already a symlink which doesn't point here"
+		if [ -f $SRC_DIR/host-$HOSTNAME/$SRC_NAME ]; then
+			SRC_DIR=$SRC_DIR/host-$HOSTNAME
+		fi
+
+		if   [ -h $DEST_NAME ]; then
+			if [ "$(readlink $DEST_NAME)" != "$SRC_DIR/$SRC_NAME" ]; then
+				echo "${YLW}≠ $DEST_NAME is already a symlink which doesn't point here$RST"
 			else
-				echo "OK: $DEST_NAME -> $SOURCE_NAME"
+				echo "${CYN}✓ $DEST_NAME → $SRC_DIR/$SRC_NAME$RST"
 			fi
 
 		elif [ -d $DEST_NAME ]; then
-			echo  $DEST_NAME already exists and is a directory
+			echo  "$YLW✗ $DEST_NAME already exists as a directory$RST"
 
 		elif [ -b $DEST_NAME ]; then
-			echo  $DEST_NAME already exists as a block special
+			echo  "$YLW✗ $DEST_NAME already exists as a block special$RST"
 
 		elif [ -c $DEST_NAME ]; then
-			echo  $DEST_NAME already exists as a character special
+			echo  "$YLW✗ $DEST_NAME already exists as a character special$RST"
 
 		elif [ -p $DEST_NAME ]; then
-			echo  $DEST_NAME already exists as a named pipe
+			echo  "$YLW✗ $DEST_NAME already exists as a named pipe$RST"
 
 		elif [ -S $DEST_NAME ]; then
-			echo  $DEST_NAME already exists as a socket
+			echo  "$YLW✗ $DEST_NAME already exists as a socket$RST"
 
 		elif [ -f $DEST_NAME ]; then
-			echo  $DEST_NAME already exists as a regular file
+			echo  "$YLW✗ $DEST_NAME already exists as a regular file$RST"
 
 		elif [ -e $DEST_NAME ]; then
-			echo  $DEST_NAME already exists
+			echo  "$YLW✗ $DEST_NAME already exists$RST"
 		else
-			echodo ln -s $SOURCE_NAME $DEST_NAME
+			echodo ln -s $SRC_DIR/$SRC_NAME $DEST_NAME
 		fi
 	fi
 }
 
+# Remove a symlink that points into this repository
 removeLink() {
-	DEST_NAME=$HOME/$1
+	HERE=$1
+	DEST_NAME=$HOME/$2
 
-	if ! [ -h $DEST_NAME ]; then
-		echo "'$DEST_NAME' is not a symlink, skipping..."
+	if [ ! -e $DEST_NAME ]; then
+		echo "$RED✗ $DEST_NAME does not exist$RST"
+	elif [ ! -h $DEST_NAME ]; then
+		echo "$YLW∅ $DEST_NAME is not a symlink$RST"
 	else
-		echodo rm $DEST_NAME
+		local DEST_DIR=$(dirname $(readlink $DEST_NAME))
+		while [ "$DEST_DIR" != "$HERE" -a "$DEST_DIR" != "/" ]; do
+			DEST_DIR=$(dirname $DEST_DIR)
+		done
+		if [ "$DEST_DIR" != "/" ]; then
+			echodo rm "$DEST_NAME"
+		else
+			echo "${YLW}≠ $DEST_NAME is already a symlink which doesn't point here$RST"
+		fi
 	fi
 }
 
+
 # make sure that $HOME is defined
 if [ 0"$HOME" = "0" ]; then
-	echo "HOME is empty or unset!"
+	echo "${RED}✗ HOME is empty or unset!$RST"
 	exit 1
 fi
 
 if [ 0"$DRYRUN" != "0" ]; then
-	echo ====================
-	echo THIS IS A DRY RUN!!!
-	echo ====================
+	echo "${YLW}====================$RST"
+	echo "${YLW}THIS IS A DRY RUN!!!$RST"
+	echo "${YLW}====================$RST"
 	echo
 fi
 
+# Resolve the location of this script
+HERE=$(dirname $(readlink -f "$0"))
+FIND_CMD=" find $HERE \( -name '.?*' -o -name linkToHome.sh -o -name 'host-*' \) -prune -o -type f -printf '%P '"
+
 if [ 0"$1" = 0"-r" ]; then
 	# Clean up old symlinks
-	for F in $(echo $PAYLOAD_FILES); do
-		removeLink .$F
+	for F in $(eval $FIND_CMD); do
+		removeLink $HERE .$F
 	done
 else
-	# Resolve the location of this script
-	HERE=$(dirname $(readlink -f $0))
 
 	# Link these files and directories into $HOME
-	for F in $(echo $PAYLOAD_FILES); do
-		linkToHome $HERE/$F .$F
+	for F in $(eval $FIND_CMD); do
+		linkToHome $HERE $F
 	done
 fi
+
+# vim: set noexpandtab:

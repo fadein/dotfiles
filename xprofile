@@ -15,7 +15,9 @@ fi
 case $HOSTNAME in
     atlantis*)
         backlighter = 6
-        synclient TouchpadOff=1 ClickPad=0
+        # Set in /etc/X11/xorg.conf.d
+        #   xset s off -dpms
+        #   synclient TouchpadOff=1 ClickPad=0 FingerHigh=... FingerLow=... PalmDetect=... PalmMinZ=...
 
         # syndaemon - a program that monitors keyboard activity and
         # disables the touchpad when the keyboard is being used.
@@ -23,7 +25,7 @@ case $HOSTNAME in
         #                   key press before enabling the touchpad.
         #   -K  Ignore modifier keys and Modifier+Key combos
         #   -d  Start as a daemon
-        syndaemon -i 1.0 -K -d
+        syndaemon -i 0.35 -K -d
         ;;
 
 	mariner*)

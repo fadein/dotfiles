@@ -1,0 +1,50 @@
+#!/bin/sh
+
+if [[ -f ~/.Xdefaults ]]; then
+    xrdb -quiet -load < ~/.Xdefaults &
+fi
+
+# After copying new fonts into this directory, run `mkfontdir` and `mkfontscale` there
+if [[ -d $HOME/.fonts ]]; then
+    xset +fp $HOME/.fonts
+    xset fp rehash
+fi
+
+setxkbmap colehack,us -option grp:ctrls_toggle -option grp_led:scroll &
+
+xset s on +dpms
+
+xrandr --output HDMI-1 --same-as eDP-1
+xrandr --output eDP-1 --off
+
+[[ -x ~/.config/conky/Pleione/start.sh ]] && ~/.config/conky/Pleione/start.sh &
+
+case $1 in
+	dwm|*xprofile)
+		# set the variable USE_COMPTON to non-null to use compton
+		case ${USE_COMPTON=no} in
+			no)
+				if ! pgrep -u $USER picom; then
+					picom &
+				fi
+				;;
+			*)
+				if ! pgrep -u $USER compton; then
+					compton -b
+				fi
+				;;
+		esac
+
+		if ! pgrep -u $USER dwm-statusbar; then
+            dwm-statusbar &
+        fi
+
+        if [[ -x ~/.wallpapers/cycle/next-wallpaper.sh ]]; then
+            ~/.wallpapers/cycle/next-wallpaper.sh &
+        fi
+
+        # Make Java apps work in DWM
+        _JAVA_AWT_WM_NONREPARENTING=1
+        export _JAVA_AWT_WM_NONREPARENTING
+		;;
+esac

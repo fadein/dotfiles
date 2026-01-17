@@ -1,0 +1,163 @@
+# vim: set noexpandtab tabstop=4 ft=gitconfig:
+
+# Put [user] configuration into a file called ~/.gituser
+# It should look like this:
+#
+# [user]
+#     name = "User Name"
+#     email = email.address@example.com
+#
+# Put [safe] directories in a file called ~/.gitsafe
+# It should look like this:
+#
+# [safe]
+# 	directory = /usr/sbo/repo
+# 	directory = /GIT/tai/math.git
+
+[include]
+	path = ~/.gituser
+	path = ~/.gitsafe
+
+[advice]
+	detachedHead = false
+
+[alias]
+	amend = commit --amend
+	amendne = commit --amend --no-edit
+	br = branch
+	cache = diff --cached
+	cached = diff --cached
+	cherry-pix = cherry-pick -x
+	ci = commit
+	cmt = commit
+	co = checkout
+	comimt = commit
+	commt = commit
+	commti = commit
+	dif = diff
+	diffw = diff --word-diff
+	graded = log --pretty=format:'Graded commit %h' -n 1
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative
+	lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative --all
+	lgo = log
+	lgstat = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset%n' --abbrev-commit --date=relative --numstat
+	lig = log --date=iso-local --abbrev-commit
+	log = log --date=iso-local --abbrev-commit
+	log1 = log --pretty=oneline
+	ls = ls-files
+	name = rev-parse --short HEAD
+	ommit = commit
+	psuh = push
+	puhs = push
+	pul = pull
+	pullr = pull --recurse-submodules=on-demand
+	regraded = log --pretty=format:'Re-graded commit %h' -n 1
+	sattus = status
+	satus = status
+	sauts = status
+	sb = show-branch
+	st = status
+	stat = status
+	statn = status --untracked-files=no
+	statno = status --untracked-files=no
+	statnoun = status --untracked-files=no
+	statnun = status --untracked-files=no
+	stats = status
+	statsu = status
+	statu = status
+	statusn = status --untracked-files=no
+	stauts = status
+	tcommit = commit
+	upsh = push
+	vimdiff = difftool --tool=vimdiff --no-prompt
+	wdiff = diff --word-diff
+	worddiff = diff --word-diff
+	wordiff = diff --word-diff
+
+[color]
+	ui = true
+	diff = auto
+	grep = true
+	branch = true
+	interactive = true
+	pager = true
+	status = true
+
+[color.diff]
+	#plain (context text)
+	#meta (metainformation) diff --git a/subdir/file b/subdir/file
+	#frag (hunk header) @@ -180,6+180,7
+	#func (function in hunk header)
+	#old (removed lines) - #DELETE ME
+	#new (added lines)   + add_me()
+	#commit (commit headers)
+	#whitespace (highlighting whitespace errors)
+	meta = bold blue
+	func = bold cyan
+
+[color.grep]
+	#context non-matching text in context lines (when using -A, -B, or -C)
+	#filename filename prefix (when not using -h)
+	#function function name lines (when using -p)
+	#linenumber line number prefix (when using -n)
+	#match matching text
+	#selected non-matching text in selected lines
+	#separator separators between fields on a line (:, -, and =)
+	#  and between hunks (--)
+
+[color.status]
+	untracked = yellow
+
+[core]
+    pager = delta
+	excludesfile = /home/fadein/.gitexcludes
+	whitespace = "tabwidth=4"
+	askPass =
+
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+	#dark = true      # or light = true, or omit for auto-detection
+[diff]
+	tool = vimdiff
+
+[fetch]
+	recurseSubmodules = on-demand
+
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+
+[http]
+	sslverify = true  # Set to false if SSL certs aren't being happy
+
+[init]
+	defaultBranch = master
+
+[interactive]
+    diffFilter = delta --color-only
+
+[log]
+	abbrevCommit = true
+	date = iso-local
+
+[merge]
+	log = true
+    conflictstyle = zdiff3
+
+[pager]
+	branch = false
+	log = less -FR -M
+	color-blame = less
+
+[pull]
+	rebase = true
+	ff = true
+
+[push]
+	default = matching
+
+[rerere]
+	enabled = true

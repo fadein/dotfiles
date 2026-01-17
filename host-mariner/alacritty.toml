@@ -1,0 +1,138 @@
+# vim: set foldmethod=marker:
+
+[colors]
+primary.background = "0x00003e"  # Dark Blue Background
+primary.foreground = "0xf8f8f2"    # Light color for text
+
+[font]
+size = 10.0
+normal = { family = "hurmitnerdfont", style = "Regular" }
+bold = { family = "hurmitnerdfont", style = "Bold" }
+italic = { family = "hurmitnerdfont", style = "Italic" }
+
+# normal = { family = "0xproto nerd font", style = "Regular" }
+# bold = { family = "0xproto nerd font", style = "Bold" }
+# italic = { family = "0xproto nerd font", style = "Italic" }
+
+[bell]
+duration = 250
+animation = "EaseOutSine"
+color = "#aa11cc"
+
+## Old-School Copy Paste {{{
+
+[[keyboard.bindings]]
+key = "Insert"
+mods = "Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "Insert"
+mods = "Control"
+action = "Copy"  # Optional, for symmetry with other apps
+
+[[keyboard.bindings]]
+key = "Delete"
+mods = "Shift"
+action = "Copy"  # Note: "Copy" copies the current selection, not the line
+
+# }}}
+
+
+## Ctrl-1 to Ctrl-9 for larger font sizes {{{
+
+[[keyboard.bindings]]
+key = "1"
+mods = "Control"
+command = { program = "alacritty", args = ["msg", "config", "font.size=6"] }
+
+[[keyboard.bindings]]
+key = "2"
+mods = "Control"
+command = { program = "alacritty", args = ["msg", "config", "font.size=8"] }
+
+[[keyboard.bindings]]
+key = "3"
+mods = "Control"
+command = { program = "alacritty", args = ["msg", "config", "font.size=10"] }
+
+[[keyboard.bindings]]
+key = "4"
+mods = "Control"
+command = { program = "alacritty", args = ["msg", "config", "font.size=12"] }
+
+[[keyboard.bindings]]
+key = "5"
+mods = "Control"
+command = { program = "alacritty", args = ["msg", "config", "font.size=14"] }
+
+[[keyboard.bindings]]
+key = "6"
+mods = "Control"
+command = { program = "alacritty", args = ["msg", "config", "font.size=20"] }
+
+[[keyboard.bindings]]
+key = "7"
+mods = "Control"
+command = { program = "alacritty", args = ["msg", "config", "font.size=28"] }
+
+[[keyboard.bindings]]
+key = "8"
+mods = "Control"
+command = { program = "alacritty", args = ["msg", "config", "font.size=32"] }
+
+[[keyboard.bindings]]
+key = "9"
+mods = "Control"
+command = { program = "alacritty", args = ["msg", "config", "font.size=36"] }
+
+#}}}
+
+## Ctrl-Alt-1 to Ctrl-Alt-9 for smaller sizes {{{
+
+[[keyboard.bindings]]
+key = "1"
+mods = "Control|Alt"
+command = { program = "alacritty", args = ["msg", "config", "font.size=1"] }
+
+[[keyboard.bindings]]
+key = "2"
+mods = "Control|Alt"
+command = { program = "alacritty", args = ["msg", "config", "font.size=2"] }
+
+[[keyboard.bindings]]
+key = "3"
+mods = "Control|Alt"
+command = { program = "alacritty", args = ["msg", "config", "font.size=4"] }
+
+[[keyboard.bindings]]
+key = "4"
+mods = "Control|Alt"
+command = { program = "alacritty", args = ["msg", "config", "font.size=6"] }
+
+[[keyboard.bindings]]
+key = "5"
+mods = "Control|Alt"
+command = { program = "alacritty", args = ["msg", "config", "font.size=8"] }
+
+[[keyboard.bindings]]
+key = "6"
+mods = "Control|Alt"
+command = { program = "alacritty", args = ["msg", "config", "font.size=10"] }
+
+[[keyboard.bindings]]
+key = "7"
+mods = "Control|Alt"
+command = { program = "alacritty", args = ["msg", "config", "font.size=12"] }
+
+[[keyboard.bindings]]
+key = "8"
+mods = "Control|Alt"
+command = { program = "alacritty", args = ["msg", "config", "font.size=14"] }
+
+[[keyboard.bindings]]
+key = "9"
+mods = "Control|Alt"
+command = { program = "alacritty", args = ["msg", "config", "font.size=16"] }
+
+#}}}

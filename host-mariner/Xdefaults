@@ -1,0 +1,254 @@
+! autocmd BufWritePost <buffer> :silent !xrdb -quiet -override < %
+! autocmd BufWritePost <buffer> :silent !xrdb -quiet -load < %
+! autocmd BufWritePost <buffer> :silent !xrdb -remove < %
+! autocmd BufWritePost
+
+
+! ------------------------------------------------------------------------------
+! --- urxvt256c settings      --------------------------------------------------
+
+urxvt256c.font:          xft:hack:pixelsize=14:antialias=true,xft:Symbola
+
+urxvt256c.keysym.C-0:   command:\033]710;xft:hack:pixelsize=6:antialias=true,xft:Symbola\007
+urxvt256c.keysym.C-1:   command:\033]710;xft:hack:pixelsize=8:antialias=true,xft:Symbola\007
+urxvt256c.keysym.C-2:   command:\033]710;xft:hack:pixelsize=10:antialias=true,xft:Symbola\007
+urxvt256c.keysym.C-3:   command:\033]710;xft:hack:pixelsize=12:antialias=true,xft:Symbola\007
+urxvt256c.keysym.C-4:   command:\033]710;xft:hack:pixelsize=14:antialias=true,xft:Symbola\007
+urxvt256c.keysym.C-5:   command:\033]710;xft:hack:pixelsize=18:antialias=true,xft:Symbola\007
+urxvt256c.keysym.C-6:   command:\033]710;xft:hack:pixelsize=24:antialias=true,xft:Symbola\007
+urxvt256c.keysym.C-7:   command:\033]710;xft:hack:pixelsize=28:antialias=true,xft:Symbola\007
+urxvt256c.keysym.C-8:   command:\033]710;xft:hack:pixelsize=32:antialias=true,xft:Symbola\007
+urxvt256c.keysym.C-9:   command:\033]710;xft:hack:pixelsize=48:antialias=true,xft:Symbola\007
+
+urxvt256c.urgentOnBell:      true
+urxvt256c.visualBell:        true
+
+! prevent pressing PrtSc from wasting any more printer paper
+urxvt256c.print-pipe:
+
+! Disable keycap picture insert mode
+urxvt256c.iso14755: false
+urxvt256c.iso14755_52: false
+
+urxvt256c.pointerBlank:        true
+urxvt256c.pointerBlankDelay:   3
+urxvt256c.foreground:          white
+urxvt256c.secondaryWheel:      true
+urxvt256c.saveLines:           10240
+urxvt256c.thickness:           12
+urxvt256c.scrollstyle:         plain
+urxvt256c.scrollColor:         #aa11cc
+urxvt256c.scrollBar_right:     true
+
+! jumpScroll: true -- when lots of lines come in at once, batch the scrolls; otherwise, force a refresh once per line
+urxvt256c.jumpScroll:          false
+urxvt256c.clipboard.autocopy:  true
+urxvt256c.perl-ext-common:     default,selection-to-clipboard
+urxvt256c.url-launcher:        /usr/bin/firefox
+!urxvt256c.matcher.button:     1
+urxvt256c.colorUL:             white
+
+
+
+! ------------------------------------------------------------------------------
+! --- Setings for <= 1080p systems ---------------------------------------------
+! DPI info from http://dpi.lv
+Xft.dpi: 90
+
+
+urxvt.font:              xft:hack:pixelsize=14:antialias=true,xft:Symbola
+urxvt.keysym.C-0:        command:\033]710;xft:hack:pixelsize=1:antialias=true,xft:Symbola\007
+urxvt.keysym.C-1:        command:\033]710;xft:hack:pixelsize=10:antialias=true,xft:Symbola\007
+urxvt.keysym.C-2:        command:\033]710;xft:hack:pixelsize=12:antialias=true,xft:Symbola\007
+urxvt.keysym.C-3:        command:\033]710;xft:hack:pixelsize=14:antialias=true,xft:Symbola\007
+urxvt.keysym.C-4:        command:\033]710;xft:hack:pixelsize=16:antialias=true,xft:Symbola\007
+urxvt.keysym.C-5:        command:\033]710;xft:hack:pixelsize=20:antialias=true,xft:Symbola\007
+urxvt.keysym.C-6:        command:\033]710;xft:hack:pixelsize=24:antialias=true,xft:Symbola\007
+urxvt.keysym.C-7:        command:\033]710;xft:hack:pixelsize=28:antialias=true,xft:Symbola\007
+urxvt.keysym.C-8:        command:\033]710;xft:hack:pixelsize=32:antialias=true,xft:Symbola\007
+urxvt.keysym.C-9:        command:\033]710;xft:hack:pixelsize=48:antialias=true,xft:Symbola\007
+
+
+! ------------------------------------------------------------------------------
+! --- Everything else ----------------------------------------------------------
+
+
+xscreensaver.mode: blank
+
+!! Default font setting
+urxvt*font:              xft:hack:pixelsize=14:antialias=true,xft:Symbola
+
+urxvt.keysym.C-0:        command:\033]710;xft:hack:pixelsize=12:antialias=true,xft:Symbola\007
+urxvt.keysym.C-1:        command:\033]710;xft:hack:pixelsize=14:antialias=true,xft:Symbola\007
+urxvt.keysym.C-2:        command:\033]710;xft:hack:pixelsize=16:antialias=true,xft:Symbola\007
+urxvt.keysym.C-3:        command:\033]710;xft:hack:pixelsize=18:antialias=true,xft:Symbola\007
+urxvt.keysym.C-4:        command:\033]710;xft:hack:pixelsize=20:antialias=true,xft:Symbola\007
+urxvt.keysym.C-5:        command:\033]710;xft:hack:pixelsize=22:antialias=true,xft:Symbola\007
+urxvt.keysym.C-6:        command:\033]710;xft:hack:pixelsize=24:antialias=true,xft:Symbola\007
+urxvt.keysym.C-7:        command:\033]710;xft:hack:pixelsize=28:antialias=true,xft:Symbola\007
+urxvt.keysym.C-8:        command:\033]710;xft:hack:pixelsize=36:antialias=true,xft:Symbola\007
+urxvt.keysym.C-9:        command:\033]710;xft:hack:pixelsize=44:antialias=true,xft:Symbola\007
+
+urxvt.urgentOnBell:      true
+urxvt.visualBell:        true
+
+! prevent pressing PrtSc from wasting any more printer paper
+urxvt.print-pipe:
+
+urxvt.pointerBlank:      true
+urxvt.pointerBlankDelay: 5
+
+! Disable keycap picture insert mode
+urxvt.iso14755: false
+urxvt.iso14755_52: false
+
+! no, this was not the winner..
+!urxvt.keysym.Shift-Delete: string:\033[3~
+!urxvt.keysym.Shift-Delete: string:
+!urxvt.deletekey: 
+
+!urxvt.keysym.Shift-Delete: string:
+!urxvt.deletekey: 
+
+! sends ESC [ 3 $
+!urxvt.keysym.Shift-Delete: builtin:
+
+! sends ESC [ 3 $
+!urxvt.keysym.Shift-Delete: builtin-string:
+
+urxvt.pointerBlank:        true
+urxvt.pointerBlankDelay:   3
+urxvt.foreground:          white
+urxvt.secondaryWheel:      true
+urxvt.saveLines:           10240
+urxvt.thickness:           12
+urxvt.scrollstyle:         plain
+urxvt.scrollColor:         #aa11cc
+urxvt.scrollBar_right:     true
+
+! jumpScroll: true -- when lots of lines come in at once, batch the scrolls; otherwise, force a refresh once per line
+urxvt.jumpScroll:          false
+URxvt.clipboard.autocopy:  true
+urxvt.perl-ext-common:     default,selection-to-clipboard
+urxvt.url-launcher:        /usr/bin/firefox
+!urxvt.matcher.button:     1
+urxvt.colorUL:             white
+
+
+! --- Xterm Settings -----------------------------------------------------------
+
+! Vimdiff optimized XTerm settings
+xterm*cursorBlink: true
+xterm*cursorUnderLine: false
+xterm*faceSize: 12
+xterm*faceName: Hack
+
+! Nethack optimized XTerm settings
+!xterm*faceSize:            64
+!xterm*renderFont:          true
+xterm*faceName:            12x24
+xterm*Color1:              red2
+xterm*Color3:              yellow2
+xterm*Color4:              dodgerblue
+xterm*background:          grey25
+xterm*cursorColor:         red
+xterm*allowFontOps:        true
+
+
+! Vimdiff optimized XTerm settings
+!xterm.faceSize:           12
+xterm*cursorBlink:         true
+xterm*cursorUnderLine:     false
+
+!Regular XTerm settings
+xterm.altIsNotMeta:         true
+xterm.charClass:            33:48,37:48,45-47:48,38:48,61:48,63:48,58:48,64:48
+xterm.foreground:          white
+xterm.keepSelection:       true
+xterm.metaSendsEscape:     true
+xterm.on4Clicks:           group
+xterm.saveLines:           10240
+xterm.scrollBar:           true
+xterm.toolBar:             false
+xterm.bellIsUrgent:        true
+
+
+! --- NetHack Settings ---------------------------------------------------------
+
+NetHack.font:              variable
+NetHack.display_file.font: fixed
+NetHack.tombstone.font:    fixed
+NetHack.text.rip.font:     -*-times-medium-r-*-*-12-*-*-*-*-*-*-*
+NetHack.menu.font:         fixed
+NetHack.text.font:         fixed
+NetHack.map.font:          fixed
+NetHack.tile_file:         DawnHack32.xpm
+!NetHack.tile_file:        geoduck360-20x12.xpm
+!NetHack.tile_file:        nevanda_3.6.0_x32.xpm
+!NetHack.tile_file:        x11tiles
+!NetHack.double_tile_size: True
+NetHack.pet_mark_bitmap:   pet_mark.xbm
+NetHack.pet_mark_color:    Red
+NetHack.tombstone:         rip.xpm
+NetHack.rip.foreground:    black
+
+
+! ------------------------------------------------------------------------------
+! --- generated with 4bit Terminal Color Scheme Designer -----------------------
+! --- http://ciembor.github.com/4bit -------------------------------------------
+
+! --- special colors ---
+*background: #404040
+*foreground: #d9e6f2
+
+! --- standard colors ---
+! black
+*color0: #000000
+
+! bright_black
+*color8: #666666
+
+! red
+*color1: #cd3131
+
+! bright_red
+*color9: #f14c4c
+
+! green
+*color2: #0dbc79
+
+! bright_green
+*color10: #23d18b
+
+! yellow
+*color3:  #e5e510
+
+! bright_yellow
+*color11: #f5f543
+
+! blue
+*color4: #2472c8
+
+! bright_blue
+*color12: #3b8eea
+
+! magenta
+*color5: #bc3fbc
+
+! bright_magenta
+*color13: #d670d6
+
+! cyan
+*color6: #11a8cd
+
+! bright_cyan
+*color14: #29b8db
+
+! white
+*color7: #e5e5e5
+
+! bright_white
+*color15: #ffffff
+
+
+! vim: set ft=xdefaults ts=8 sw=8 et commentstring=!%s:
