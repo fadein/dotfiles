@@ -3,9 +3,7 @@
 ! autocmd BufWritePost <buffer> :silent !xrdb -remove < %
 ! autocmd BufWritePost
 
-! ------------------------------------------------------------------------------
-! --- Setings for <= 1080p systems ---------------------------------------------
-
+Xft.dpi: 90
 
 ! ------------------------------------------------------------------------------
 ! --- urxvt256c settings      --------------------------------------------------
@@ -48,22 +46,8 @@ urxvt256c.jumpScroll:          false
 urxvt256c.clipboard.autocopy:  true
 urxvt256c.perl-ext-common:     default,selection-to-clipboard
 urxvt256c.url-launcher:        /usr/bin/firefox
-!urxvt256c.matcher.button:     1
 urxvt256c.colorUL:             white
-
-! ------------------------------------------------------------------------------
-! --- Everything else ----------------------------------------------------------
-
-xscreensaver.mode: blank
-
-Xmessage*font:  -misc-hack-medium-r-normal--0-0-0-0-m-0-iso8859-1
-Xmessage*background: #202020
-Xmessage*foreground: #ffb237
-
-xfontsel*font: -misc-hack-bold-*-*-*-*-120-100-100-*-*-*-*
-xfontsel*foreground: red
-xfontsel*background: black
-
+!urxvt256c.matcher.button:     1
 
 
 ! --- Xterm Settings -----------------------------------------------------------
@@ -100,6 +84,18 @@ xterm.saveLines:           10240
 xterm.scrollBar:           true
 xterm.toolBar:             false
 xterm.bellIsUrgent:        true
+
+
+xscreensaver.mode: blank
+
+Xmessage*font:  -misc-hack-medium-r-normal--0-0-0-0-m-0-iso8859-1
+Xmessage*background: #202020
+Xmessage*foreground: #ffb237
+
+xfontsel*font: -misc-hack-bold-*-*-*-*-120-100-100-*-*-*-*
+xfontsel*foreground: red
+xfontsel*background: black
+
 
 
 ! --- NetHack Settings ---------------------------------------------------------
