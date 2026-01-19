@@ -5,15 +5,67 @@ primary.background = "0x00003e"  # Dark Blue Background
 primary.foreground = "0xf8f8f2"    # Light color for text
 
 [font]
-size = 12.0
-normal = { family = "departuremono nerd font", style = "Regular" }
-bold = { family = "departuremono nerd font", style = "Bold" }
-italic = { family = "departuremono nerd font", style = "Italic" }
+size = 9.5
+
+# squat - reminds me of old DOS square fonts
+normal = { family = "EnvyCodeR nerd font", style = "Regular" }
+bold = { family = "EnvyCodeR nerd font", style = "bold" }
+italic = { family = "EnvyCodeR nerd font", style = "Italic" }
+
+# slashed zero M=medium
+# normal = { family = "MesloLGM nerd font", style = "Regular" }
+# bold = { family = "MesloLGM nerd font", style = "Bold" }
+# italic = { family = "MesloLGM nerd font", style = "Italic" }
+
+# normal = { family = "departuremono nerd font", style = "Regular" }
+# bold = { family = "departuremono nerd font", style = "Bold" }
+# italic = { family = "departuremono nerd font", style = "Italic" }
 
 # normal = { family = "0xproto nerd font", style = "Regular" }
 # bold = { family = "0xproto nerd font", style = "Bold" }
 # italic = { family = "0xproto nerd font", style = "Italic" }
 
+# Commit is a lot like Hack, but more vertically compact
+# normal = { family = "commitmono nerd font", style = "Regular" }
+# bold = { family = "commitmono nerd font", style = "Bold" }
+# italic = { family = "commitmono nerd font", style = "Italic" }
+
+# normal = { family = "Hack nerd font", style = "Regular" }
+# bold = { family = "Hack nerd font", style = "Bold" }
+# italic = { family = "Hack nerd font", style = "Italic" }
+
+# normal = { family = "IosevkaTerm nerd font", style = "Regular" }
+# bold = { family = "IosevkaTerm nerd font", style = "ExtraBold" }
+# italic = { family = "IosevkaTerm nerd font", style = "Oblique" }
+
+# slashed zero
+# normal = { family = "MesloLGS nerd font", style = "Regular" }
+# bold = { family = "MesloLGS nerd font", style = "Bold" }
+# italic = { family = "MesloLGS nerd font", style = "Italic" }
+
+# DZ=dotted zero L=large line spacing is wider here
+# normal = { family = "MesloLGLDZ nerd font", style = "Regular" }
+# bold = { family = "MesloLGLDZ nerd font", style = "Bold" }
+# italic = { family = "MesloLGLDZ nerd font", style = "Italic" }
+
+# DZ=dotted zero M=medium
+# normal = { family = "MesloLGMDZ nerd font", style = "Regular" }
+# bold = { family = "MesloLGMDZ nerd font", style = "Bold" }
+# italic = { family = "MesloLGMDZ nerd font", style = "Italic" }
+
+# DZ=dotted zero S=small
+# normal = { family = "MesloLGSDZ nerd font", style = "Regular" }
+# bold = { family = "MesloLGSDZ nerd font", style = "Bold" }
+# italic = { family = "MesloLGSDZ nerd font", style = "Italic" }
+
+
+[bell]
+duration = 250
+animation = "EaseOutSine"
+color = "#ffb237"
+
+[mouse]
+hide_when_typing = true
 
 ## Old-School Copy Paste {{{
 

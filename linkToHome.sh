@@ -50,6 +50,7 @@ linkToHome() {
 		fi
 
 		if [ -f $HERE/host-$HOSTNAME/$SRC_NAME ]; then
+			DEFAULT=$SRC
 			SRC=$HERE/host-$HOSTNAME/$SRC_NAME
 		fi
 
@@ -59,8 +60,12 @@ linkToHome() {
 			DEST_NAME=$HOME/.$2
 		fi
 
-		if   [ -h $DEST_NAME ]; then
-			if [ "$(readlink $DEST_NAME)" != "$SRC" ]; then
+		if [ -h $DEST_NAME ]; then
+			if [ "0$(readlink $DEST_NAME)" == "0$DEFAULT" ]; then
+				echo "${YLW}≠ $DEST_NAME points to $DEFAULT, updating$RST"
+				echodo rm $DEST_NAME
+				echodo ln -s $SRC $DEST_DIR
+			elif [ "$(readlink $DEST_NAME)" != "$SRC" ]; then
 				echo "${YLW}≠ $DEST_NAME is already a symlink which doesn't point here$RST"
 			else
 				echo "${CYN}✓ $DEST_NAME → $SRC$RST"
