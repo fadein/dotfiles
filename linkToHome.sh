@@ -41,6 +41,7 @@ linkToHome() {
 		echo "${RED}Usage: $0 SRC_NAME [DEST_NAME]$RST"
 	else
 
+		local SRC_NAME SRC
 		if [ "0$1" == 0. ]; then
 			SRC_NAME=$HERE
 			SRC=$HERE
@@ -49,11 +50,14 @@ linkToHome() {
 			SRC=$HERE/$SRC_NAME
 		fi
 
-		if [ -f $HERE/host-$HOSTNAME/$SRC_NAME ]; then
+		local HOST_SRC=$HERE/host-$HOSTNAME/$SRC_NAME
+		local DEFAULT
+		if [ -f $HOST_SRC ]; then
 			DEFAULT=$SRC
-			SRC=$HERE/host-$HOSTNAME/$SRC_NAME
+			SRC=$HOST_SRC
 		fi
 
+		local DEST_NAME
 		if [ "0$2" == 0 ]; then
 			DEST_NAME=$HOME/.$SRC_NAME
 		else
@@ -61,14 +65,28 @@ linkToHome() {
 		fi
 
 		if [ -h $DEST_NAME ]; then
-			if [ "0$(readlink $DEST_NAME)" == "0$DEFAULT" ]; then
+			local DEST_LINK="$(readlink $DEST_NAME)" 
+
+			# DEST_LINK is a broken link, remove it
+			if [ ! -e "$DEST_LINK" ]; then
+				echo "${RED}≠ $DEST_NAME is a broken link, cleaning it up$RST"
+				echodo ln -sf $SRC $DEST_NAME
+
+			# upgrade to host-specific link
+			elif [ -n "$DEFAULT" -a "$DEST_LINK" == "$DEFAULT" ]; then
 				echo "${YLW}≠ $DEST_NAME points to $DEFAULT, updating$RST"
-				echodo rm $DEST_NAME
-				echodo ln -s $SRC $DEST_DIR
-			elif [ "$(readlink $DEST_NAME)" != "$SRC" ]; then
+				echodo ln -sf $SRC $DEST_NAME
+
+			# IGNORE: DEST_NAME points to non-managed file
+			elif [ -n "$DEST_LINK" -a "$DEST_LINK" != "$SRC" ]; then
 				echo "${YLW}≠ $DEST_NAME is already a symlink which doesn't point here$RST"
-			else
+
+			# DEST_NAME already points to the correct file
+			elif [ "$DEST_LINK" == "$SRC" ]; then
 				echo "${CYN}✓ $DEST_NAME → $SRC$RST"
+
+			else
+				echo "${RED}█ Not sure what happened here$RST"
 			fi
 
 		elif [ -d $DEST_NAME ]; then
