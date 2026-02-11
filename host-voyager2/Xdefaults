@@ -3,7 +3,7 @@
 ! autocmd BufWritePost <buffer> :silent !xrdb -remove < %
 ! autocmd BufWritePost
 
-Xft.dpi: 90
+Xft.dpi: 110
 
 ! ------------------------------------------------------------------------------
 ! --- urxvt256c settings      --------------------------------------------------
