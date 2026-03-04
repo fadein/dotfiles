@@ -28,7 +28,7 @@
     (print
       "The 'chicken-doc' egg requires a bit of manual setup\n"
       "Run this command (the parens are for a subshell):\n"
-      "( cd `csi -R chicken.platform -np '(chicken-home)'` && curl http://3e8.org/pub/chicken-doc/chicken-doc-repo-5.tar.bz2 | sudo tar jx )")
+      "( cd `csi -R chicken.platform -p '(chicken-home)'` && curl http://call-cc.org/tarballs/chicken-doc/chicken-doc-repo-5.tgz | sudo tar xz )")
     (import chicken-doc))
 
 
