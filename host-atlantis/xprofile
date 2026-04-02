@@ -10,7 +10,6 @@ if [[ -d $HOME/.fonts ]]; then
     xset fp rehash
 fi
 
-
 backlighter day
 
 # Set in /etc/X11/xorg.conf.d
@@ -25,24 +24,27 @@ backlighter day
 #   -d  Start as a daemon
 syndaemon -i 0.35 -K -d
 
-
 case $1 in
-	dwm|*xprofile)
-		# set the variable USE_COMPTON to non-null to use compton
-		case ${USE_COMPTON=no} in
-			no)
-				if which picom >/dev/null 2>&1 && ! pgrep -u $USER picom >/dev/null 2>&1; then
-					picom --daemon
-				fi
-				;;
-			*)
-				if which compton >/dev/null 2>&1 && ! pgrep -u $USER compton >/dev/null 2>&1; then
-					compton -b
-				fi
-				;;
-		esac
+    dwm|*xprofile)
 
-		if ! pgrep -u $USER dwm-statusbar; then
+        if which picom >/dev/null 2>&1 && ! pgrep -u $USER picom >/dev/null 2>&1; then
+            picom --daemon
+        fi
+
+        # Use PipeWire instead of Pulse
+        # Take steps to prevent Pulse from launching at startup
+        if [[ -d ~/.config/pulse || -f ~/.config/pulse/client.conf ]] \
+            || ! grep -qE "autospawn *= *no"; then
+            mkdir -p ~/.config/pulse
+            echo "autospawn = no" > ~/.config/pulse/client.conf
+        fi
+
+        # Boot up PipeWire processes
+        for daemon in pipewire pipewire-pulse wireplumber; do
+            /usr/bin/daemon -rB --pidfiles=~/.run --name=$daemon /usr/bin/$daemon
+        done
+
+        if ! pgrep -u $USER dwm-statusbar; then
             dwm-statusbar &
         fi
 
@@ -53,5 +55,7 @@ case $1 in
         # Make Java apps work in DWM
         _JAVA_AWT_WM_NONREPARENTING=1
         export _JAVA_AWT_WM_NONREPARENTING
-		;;
+        ;;
 esac
+
+# vim: set expandtab tabstop=4:
