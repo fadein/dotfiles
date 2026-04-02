@@ -11,7 +11,7 @@ if [[ -d $HOME/.fonts ]]; then
 fi
 
 
-backlighter = 6
+backlighter day
 
 # Set in /etc/X11/xorg.conf.d
 #   xset s off -dpms
