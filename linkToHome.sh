@@ -9,7 +9,7 @@ set -e
 HERE=$(dirname $(readlink -f "$0"))
 
 # Files to link into $HOME
-FIND_CMD=" find $HERE \( -name '.?*' -o -name linkToHome.sh -o -name 'host-*' \) -prune -o -type f -printf '%P '"
+FIND_CMD=" find $HERE \( -name '.?*' -o -name linkToHome.sh -o -name 'host-*' \) -prune -o -type f -print | sed -e 's,$HERE/,,'"
 
 if [ -t 1 ]; then
 	RED=$'\x1b[1;31m'
