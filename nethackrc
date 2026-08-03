@@ -1,39 +1,117 @@
+# junethack fadein
 #######################################################################
-## Fadein's NetHack Preferences
+## Fadein's preferences
 
-## Uncomment these to skip the character creation menu at the beginning of a new game
-#OPTIONS=align:neutral
-#OPTIONS=gender:male
-#OPTIONS=race:human
-#OPTIONS=role:barbarian
-
-## pets
-OPTIONS=catname:LOL
-OPTIONS=dogname:Biscuit
-OPTIONS=horsename:Shadowfax
-OPTIONS=pettype:dog
-
-## customizable fruit appearance (defaults to "Slime Mold" when left unset)
 OPTIONS=fruit:can of Diet Coke
+OPTIONS=gender:male
+OPTIONS=race:human
+OPTIONS=role:priest
+#OPTIONS=align:neutral
+OPTIONS=pettype:dog
+OPTIONS=catname:LOL
+OPTIONS=dogname:Kuiper
+OPTIONS=horsename:Shadowfax
 
-## interface
-OPTIONS=nolootabc
-OPTIONS=norest_on_space
-OPTIONS=packorder:`0_)[%(/!?+="*$
-OPTIONS=prayconfirm
-OPTIONS=pushweapon
-OPTIONS=runmode:teleport
-OPTIONS=safe_pet
-OPTIONS=sortloot:loot
-OPTIONS=sortpack
-OPTIONS=noshowrace
+#######################################################################
+# Conduct options which must be set prior to starting a game
+#OPTIONS=blind
+#OPTIONS=nudist
 
+#######################################################################
+# Interface
+
+# Enable or disable autocompletion when entering particular extended commands.
+# Listing them in a comma-separated list enables, prefixing with ! disables.
+AUTOCOMPLETE=loot,annotate,overview,untrap
+
+# Display an extra status condition which summarizes currently worn armor.
+# For the usual case where more than one piece of armor is worn, a list of letters is shown in the following order:
+# G - gloves
+# C - cloak
+# A - suit
+# U - shirt
+# H - helmet
+# B - boots
+# S - shield
+OPTIONS=armorstatus
+
+# Controls what action to take when attempting to walk into a locked door or to loot a locked container
+OPTIONS=autounlock:apply-key
+
+# Sets the order of item classes shown in inventory
+OPTIONS=packorder:`0_+)[(%/?!="*$
+
+# Skip the tutorial, the legacy splash, and tips for new players
+OPTIONS=!tutorial,!legacy,!tips
+
+# vi-keys
+OPTIONS=number_pad:0
+
+# Show experience points and turns elapsed on the status bar
+OPTIONS=showexp,time
 
 # An object's inventory letter sticks to it when it's dropped
 OPTIONS=fixinv
 
+# Commands asking for an inventory item will show a menu instead of a text query with possible menu letters
+OPTIONS=!force_invmenu
+
 # If more info is available for an object looked at with `/`, ask if you want to see it.
 OPTIONS=help
+
+# Automatically wield an appropriate launcher when you're not wielding one when you attempt to fire
+OPTIONS=fireassist
+
+# Use the old a, b and c keyboard shortcuts in the looting menu.
+OPTIONS=!lootabc
+
+# Space waits for a turn. This is considered by some as a very easy way to get killed.
+OPTIONS=!rest_on_space
+
+# If you wield something when you are already wielding something else, the old weapon is pushed into the alternate weapon slot.
+OPTIONS=pushweapon
+
+# Set the screen updating interval for multi-turn actions, eg. running or traveling.
+#   Option      Description
+#   teleport    update the map after movement has finished
+#   run         update the map after every seven or so steps (default)
+#   walk        update the map after each step
+#   crawl       like walk, but pause briefly after each step
+OPTIONS=runmode:teleport
+
+# Prevents you from (knowingly) attacking your pet by moving into it.
+OPTIONS=safe_pet
+
+# Prevents you from waiting or searching when next to a hostile monster.
+OPTIONS=safe_wait
+
+# Controls the sorting behavior for the output of the `\' and ``' commands.
+# The possible values are:
+#   o - list object types by class, in discovery order within each class; default;
+#   s - list object types by sortloot classification: by class, by subclass within class for classes which have substantial groupings (like helmets, boots, gloves, and so forth for armor), with object types partly-discovered via assigned name coming before fully identified types;
+#   c - list by class, alphabetically within each class;
+#   a - list alphabetically across all classes.
+OPTIONS=sortdiscoveries:s
+
+# Controls the sorting behavior of the pickup lists for inventory and #loot commands and some others. Persistent. The possible values are:
+#   Option   Description
+#   full     always sort the lists
+#   loot     only sort the lists that don't use inventory letters, like with
+#            the #loot and pickup commands
+#   none     show lists the traditional way without sorting
+OPTIONS=sortloot:loot
+
+# Groups similar kinds of objects in your inventory.
+OPTIONS=sortpack
+
+# Uses the symbol for your race instead of @: h for dwarves, o for orcs and G for gnomes. Elves are still @.
+OPTIONS=!showrace
+
+# Whenever the game mentions the name of an object you haven't identified yet,
+# it also mentions the range of buy and sell prices you have seen for that
+# item. The price shown is the unit price for one item, even when you are
+# looking at a stack of multiple items.
+OPTIONS=price_quotes
 
 
 #######################################################################
@@ -43,14 +121,14 @@ OPTIONS=help
 #  d) disabled
 #  p) play time
 #  w) wallclock time
-OPTIONS=realtime:d
+#OPTIONS=realtime:d
 
 # Format used by realtime display
 #  s) seconds (s)
 #  c) condensed (h:mm)
 #  f) fixed units (hh:mm:ss)
 #  u) units (xxh:xxm)
-OPTIONS=realtime_format:u
+#OPTIONS=realtime_format:u
 
 
 #######################################################################
@@ -89,16 +167,14 @@ OPTIONS=!whatis_moveskip
 
 
 #######################################################################
-# Conduct options which must be set prior to starting a game
-#OPTIONS=blind
-#OPTIONS=nudist
-
-
-#######################################################################
 ## Options borrowed from Disperse@hardfought.org
 
 # User Interface settings: Curses with default symbol set
-OPTIONS=color,suppress_alert:3.4.3,!cmdassist
+OPTIONS=color
+OPTIONS=use_truecolor
+OPTIONS=suppress_alert:3.4.3
+OPTIONS=!cmdassist
+
 OPTIONS=perm_invent
 OPTIONS=roguesymset:default
 OPTIONS=symset:default
@@ -108,17 +184,8 @@ OPTIONS=windowtype:curses
 # Highlight pets and item piles
 OPTIONS=hilite_pet,hilite_pile
 
-# vi-keys
-OPTIONS=number_pad:0
-
-# Show experience points and turns elapsed on the status bar
-OPTIONS=showexp,time
-
 # Distinguish visually between lit and unlit corridors, show out-of-sight areas of lit rooms
 OPTIONS=lit_corridor,dark_room
-
-# Use bold black instead of blue for black glyphs
-OPTIONS=use_darkgray
 
 # Message history (ctrl+p) displays most recent message first, buffer holds 60 messages
 OPTIONS=msg_window:reversed,msghistory:60
@@ -141,14 +208,18 @@ OPTIONS=boulder:0
 # Require "yes" rather than "y" for many prompts
 OPTIONS=paranoid_confirmation:all
 
-# Automatically describe items under the ; cursor
-OPTIONS=autodescribe
-
 # Enable autopickup, set pickup item types
 OPTIONS=autopickup,pickup_types:$
 
+#OPTIONS=autopickup
+AUTOPICKUP_EXCEPTION=">scroll of scare monster"
+
 # automatically pick up thrown items
 OPTIONS=pickup_thrown
+
+# Prompt for confirmation before picking up items that will push encumbrance past Unencumbered
+# Can also be set to B (burdened), S (Stressed), N (Strained), O (Overtaxed), L (Overloaded)
+OPTIONS=pickup_burden:stressed
 
 # Automatically dig by moving into walls while wielding a digging tool
 OPTIONS=autodig
@@ -156,12 +227,8 @@ OPTIONS=autodig
 # Automatically quiver suitable projectile on (f)ire command
 OPTIONS=autoquiver
 
-# Enable automatically opening doors
+## Walking into a door attempts to open it
 OPTIONS=autoopen
-
-# Prompt for confirmation before picking up items that will push encumbrance past Unencumbered
-# Can also be set to B (burdened), S (Stressed), N (Strained), O (Overtaxed), L (Overloaded)
-OPTIONS=pickup_burden:stressed
 
 # sparkle animation which occurs when monsters resist certain effects
 OPTIONS=sparkle
@@ -172,119 +239,98 @@ OPTIONS=statushilites:10
 # Display hp bar
 OPTIONS=hitpointbar
 
+# Use bold black instead of blue for black glyphs
+OPTIONS=use_darkgray
+
 
 #######################################################################
 ## Status highlight settings
+# Valid colors:
+#      black             |
+#      red               |  orange/bright red
+#      green             |  bright green
+#      brown             |  yellow
+#      blue              |  bright blue
+#      magenta/purple    |  bright magenta/bright purple
+#      cyan              |  bright cyan
+#      gray/grey         |  white
+#      no color/transparent
+#
+# Valid attributes:
+#      none/normal
+#      bold
+#      dim
+#      italic
+#      underline/uline
+#      inverse/reverse
+#      blink
 
-OPTIONS=hilite_status: hitpoints/<=100%/bright-green/<=99%/green
-OPTIONS=hilite_status: hitpoints/<=80%/yellow/<=60%/brown/<=40%/orange/<=20%/bright-red&inverse
-OPTIONS=hilite_status: power/<=100%/bright-cyan/<=80%/cyan
-OPTIONS=hilite_status: power/<=60%/bright-blue/<=40%/blue/<=20%/magenta
+
+OPTIONS=hilite_status: hitpoints/<=100%/bright-green/<=99%/green/<=80%/yellow/<=60%/brown/<=40%/orange/<=14%/orange&inverse
 OPTIONS=hilite_status: hitpoints-max/always/green/up/bright-green/down/orange
+
+OPTIONS=hilite_status: power/<=100%/bright-cyan/<=80%/cyan/<=60%/bright-blue/<=40%/blue/<=20%/magenta
 OPTIONS=hilite_status: power-max/always/cyan/up/bright-cyan/down/bright-blue
+
+OPTIONS=hilite_status: carrying-capacity/Burdened/brown/Stressed/red/Strained/orange/Overtaxed/red&inverse/Overloaded/gray&inverse
+
 OPTIONS=hilite_status: hunger/Hungry/brown/Weak/red/Fainting/orange&blink
-OPTIONS=hilite_status: carrying-capacity/Burdened/brown/Stressed/red/Strained/orange/Overtaxed/bright-red/Overloaded/gray&inverse
-OPTIONS=hilite_status: condition/stone/red&inverse/termill/red&inverse
+OPTIONS=hilite_status: condition/stone/red&inverse
+OPTIONS=hilite_status: condition/termill/red&inverse
 OPTIONS=hilite_status: condition/strngl/red&inverse
-OPTIONS=hilite_status: condition/foodpois/red&inverse/slime/red&inverse
-OPTIONS=hilite_status: condition/blind/yellow/deaf/yellow
+OPTIONS=hilite_status: condition/foodpois/red&inverse
+OPTIONS=hilite_status: condition/slime/red&inverse
+OPTIONS=hilite_status: condition/blind/yellow
+OPTIONS=hilite_status: condition/deaf/yellow
 OPTIONS=hilite_status: condition/stun/yellow
-OPTIONS=hilite_status: condition/conf/yellow/hallu/bright-magenta
+OPTIONS=hilite_status: condition/conf/yellow
+OPTIONS=hilite_status: condition/hallu/bright-magenta
 
 
 #######################################################################
 ## Enable menu color options
+# Valid colors:
+#      black             |
+#      red               |  orange/bright red
+#      green             |  bright green
+#      brown             |  yellow
+#      blue              |  bright blue
+#      magenta/purple    |  bright magenta/bright purple
+#      cyan              |  bright cyan
+#      gray/grey         |  white
+#      no color/transparent
+#
+# Valid attributes:
+#      none/normal
+#      bold
+#      dim
+#      italic
+#      underline/uline
+#      inverse/reverse
+#      blink
+
+# Bold is NOT distinguishable in alacritty; it is not the same as bright; it is not the same as bright
+# Italic is NOT distinguishable in alacritty
+# Underline IS distinguishable in alacritty
+
+# Note: the menu selection UI "a)", etc. are NOT part of the string the regex can match in 5.0.0
+
+# According to the game's source code, NetHack uses the POSIX ERE engine
+#   https://pubs.opengroup.org/onlinepubs/009696899/basedefs/xbd_chap09.html
+# Tip: test with PCRE (Legacy) engine on https://regex101.com/
+
+# MENUCOLOR regexen are applied in declaration order from top to bottom, last one wins
+# Put low-priority directives at the top.
 
 OPTIONS=menucolors
 
-# Enhance
-MENUCOLOR="^ *[a-z] - +[a-z -]+ +\[(Unskilled|Basic|Skilled|Expert|Master|Grand Master)\]$"=white
-
-# Random items with known BUC status
-MENUCOLOR="blessed"=green
-MENUCOLOR="blessed clear potion"=cyan
-MENUCOLOR="blessed clear potions"=cyan
-MENUCOLOR="blessed potion called water"=cyan
-MENUCOLOR="blessed potions called water"=cyan
-MENUCOLOR="holy"=cyan
-MENUCOLOR=" cursed"=red
-MENUCOLOR="cursed clear potion"=magenta
-MENUCOLOR="cursed clear potions"=magenta
-MENUCOLOR="cursed potion called water"=magenta
-MENUCOLOR="cursed potions called water"=magenta
-MENUCOLOR="unholy"=magenta
-MENUCOLOR="uncursed"=white
-#MENUCOLOR="\+0"=white
-
-# Kludge for implicit_uncursed option
-MENUCOLOR="implicit_uncursed"=gray
-
-# Tools and unused items with known enchantments and charges
-MENUCOLOR="\([0-9]:.*\)"=yellow
-MENUCOLOR="\([0-9]:0\)"=brown
-MENUCOLOR="\(-1:0\)"=brown&underline
-#MENUCOLOR="\+[1-9]"=yellow
-MENUCOLOR="-[1-9]"=magenta
-MENUCOLOR="worthless"=brown
-MENUCOLOR="named empty"=brown
-
-# Magic markers
-MENUCOLOR="blessed .*marker"=lightgreen
-MENUCOLOR="blessed .*marker.*1:"=green
-MENUCOLOR=" cursed .*marker"=orange
-MENUCOLOR=" cursed .*marker.*1:"=red
-
-# Items in use
-MENUCOLOR="\(weapon in .*\)"=white&underline
-MENUCOLOR="\(wielded.*\)"=white&underline
-MENUCOLOR="\(alternate weapon\)"=white&underline
-MENUCOLOR="\(in quiver\)"=white&underline
-MENUCOLOR="\(at the ready\)"=white&underline
-MENUCOLOR="\(being worn\)"=white&underline
-MENUCOLOR="\(embedded in your skin\)"=white&underline
-MENUCOLOR="\(on left .*\)"=white&underline
-MENUCOLOR="\(on right .*\)"=white&underline
-MENUCOLOR="\(in use\)"=white&underline
-MENUCOLOR="tethered"=white&underline
-
-# Blessed items in use
-MENUCOLOR="blessed .* \(weapon in .*\)"=lightgreen&underline
-MENUCOLOR="blessed .* \(wielded.*\)"=lightgreen&underline
-MENUCOLOR="blessed .* \(alternate weapon\)"=lightgreen&underline
-MENUCOLOR="blessed .* \(in quiver\)"=lightgreen&underline
-MENUCOLOR="blessed .* \(at the ready\)"=lightgreen&underline
-MENUCOLOR="blessed .* \(being worn\)"=lightgreen&underline
-MENUCOLOR="blessed .* \(embedded in your skin\)"=lightgreen&underline
-MENUCOLOR="blessed .* \(on left .*\)"=lightgreen&underline
-MENUCOLOR="blessed .* \(on right .*\)"=lightgreen&underline
-MENUCOLOR="blessed .* \(in use\)"=lightgreen&underline
-MENUCOLOR="blessed .* tethered"=lightgreen&underline
-
-# Cursed items in use
-MENUCOLOR=" cursed .* \(weapon in .*\)"=orange&underline
-MENUCOLOR=" cursed .* \(wielded.*\)"=orange&underline
-MENUCOLOR=" cursed .* \(alternate weapon\)"=orange&underline
-MENUCOLOR=" cursed .* \(in quiver\)"=orange&underline
-MENUCOLOR=" cursed .* \(at the ready\)"=orange&underline
-MENUCOLOR=" cursed .* \(being worn\)"=orange&underline
-MENUCOLOR=" cursed .* \(embedded in your skin\)"=orange&underline
-MENUCOLOR=" cursed .* \(on left .*\)"=orange&underline
-MENUCOLOR=" cursed .* \(on right .*\)"=orange&underline
-MENUCOLOR=" cursed .* \(in use\)"=orange&underline
-MENUCOLOR=" cursed .* tethered"=orange&underline
-
-# Mark potentially dangerous things (and a kludge for BoH looting prompts)
-MENUCOLOR=" holding"=lightmagenta
-MENUCOLOR="Put .* holding"=gray
-MENUCOLOR="Take .* holding"=gray
-MENUCOLOR="holding .* empty"=gray
-MENUCOLOR="Do what with your .* holding"=gray
-MENUCOLOR="Do what with the bag .* holding"=gray
-MENUCOLOR="Look inside the .* holding"=gray
-MENUCOLOR="stash one item into the .* holding"=gray
-MENUCOLOR="tricks"=lightmagenta
-MENUCOLOR="cancel"=lightmagenta
-MENUCOLOR="vanish"=lightmagenta
+# Skills
+MENUCOLOR="\[Unskilled([[:space:]]+[0-9]+\([0-9 ]+\))?\]"=black
+MENUCOLOR="\[Basic([[:space:]]+[0-9]+\([0-9 ]+\))?\]"=no color
+MENUCOLOR="\[Skilled([[:space:]]+[0-9]+\([0-9 ]+\))?\]"=brown
+MENUCOLOR="\[Expert([[:space:]]+[0-9]+\([0-9 ]+\))?\]"=green
+MENUCOLOR="\[Master([[:space:]]+[0-9]+\([0-9 ]+\))?\]"=cyan
+MENUCOLOR="\[Grand Master([[:space:]]+[0-9]+\([0-9 ]+\))?\]"=magenta
 
 # Spell failure rates
 MENUCOLOR=" 0% "=lightcyan
@@ -293,154 +339,174 @@ MENUCOLOR=" 1[0-9]% "=green
 MENUCOLOR=" 2[0-4]% "=green
 MENUCOLOR=" 2[5-9]% "=brown
 MENUCOLOR=" [34][0-9]% "=brown
-MENUCOLOR=" [56][0-9]% "=red
-MENUCOLOR=" 7[0-4]% "=red
-MENUCOLOR=" 7[5-9]% "=orange
-MENUCOLOR=" [89][0-9]% "=orange
-MENUCOLOR=" 100% "=orange&underline
+MENUCOLOR=" [56][0-9]% "=orange
+MENUCOLOR=" 7[0-4]% "=orange
+MENUCOLOR=" 7[5-9]% "=red
+MENUCOLOR=" [89][0-9]% "=red
+MENUCOLOR=" 100% "=red&underline
+
+#???
 MENUCOLOR="[a-zA-Z] - [a-zA-Z ]+ [0-9]\*   [a-z]+ +[0-9]+%"=magenta
 
-#lamps
-MENUCOLOR="magic lamp"=blue&bold
-MENUCOLOR=" \(lit\)"=white&underline
-MENUCOLOR="magic lamp \(lit\)"=lightblue&underline
-MENUCOLOR="lamp called magic \(lit\)"=lightblue&underline
+# Items known to be uncursed
+MENUCOLOR="uncursed"=no color
 
-# Food
+# Items known to be blessed
+MENUCOLOR="blessed"=light blue
+
+# Comestibles
+MENUCOLOR="can of Diet Coke"=green
 MENUCOLOR="corpse"=brown
-MENUCOLOR="(meatball|meat ring|meat stick|egg|tripe ration|huge chunk of meat)"=brown
-
-# Vegan items
-MENUCOLOR="(food |cram |K-|C-)ration|gunyoki"=lightgreen
-MENUCOLOR="lembas wafer|melon|carrot|tins? .* spinach"=lightgreen
-MENUCOLOR=" oranges?( named.*)?$"=lightgreen
-MENUCOLOR=" pears?( named.*)?$"=lightgreen
-MENUCOLOR=" (apple|banana|kelp|eucalyptus|garlic|wolfsbane)"=lightgreen
-MENUCOLOR=" (slime mold|loadboulder)"=lightgreen
-MENUCOLOR="(tins? of )?(gelatinous cube|acid blob|quivering blob)( corpse)?"=lightgreen
-MENUCOLOR="(tins? of )?(blue|spotted|ochre) jelly( corpse)?"=lightgreen
-MENUCOLOR="(tins? of )?lichen|shrieker|violet fungus|(brown|yellow|green|red) mold( corpse)?"=lightgreen
-
-# Vegetarian items
+MENUCOLOR="meatball|meat ring|meat stick|egg|tripe ration|huge chunk of meat"=green
+MENUCOLOR="(food |cram |K-|C-)ration|gunyoki"=green
+MENUCOLOR="lembas wafer|melon|carrot"=green
+MENUCOLOR="orange| pear|apple|banana|kelp|eucalyptus|garlic|wolfsbane"=green
+MENUCOLOR="slime mold"=green
+MENUCOLOR="tins? of|tin"=green
 MENUCOLOR="egg|pancake|fortune cookie|candy bar|royal jelly|cream pie"=green
-MENUCOLOR="(tin of )?brown pudding|gray ooze( corpse)?"=green
+
+# Lamps
+MENUCOLOR="lamp"=brown
+MENUCOLOR="lamp \(lit\)"=yellow
+
+# Bags of Holding + dangerous things to stow within
+MENUCOLOR="(bag of (tricks|holding)|cancel|vanish)"=red
+MENUCOLOR="blessed .*(bag of (tricks|holding)|cancel|vanish)"=orange
+
+# Mark potentially dangerous things
+MENUCOLOR="Put .* holding"=orange
+MENUCOLOR="Take .* holding"=orange
+MENUCOLOR="Do what with your .* holding"=orange
+MENUCOLOR="Do what with the bag .* holding"=orange
+MENUCOLOR="Look inside the .* holding"=orange
+MENUCOLOR="stash one item into the .* holding"=orange
+
+# Items In Use
+MENUCOLOR="\(weapon in .*\)"=no color&underline
+MENUCOLOR="\(wielded.*\)"=no color&underline
+MENUCOLOR="\(alternate weapon\)"=no color&underline
+MENUCOLOR="\(in quiver\)"=no color&underline
+MENUCOLOR="\(at the ready\)"=no color&underline
+MENUCOLOR="\(being worn.*\)"=no color&underline
+MENUCOLOR="\(embedded in your skin\)"=no color&underline
+MENUCOLOR="\(on left .*\)"=no color&underline
+MENUCOLOR="\(on right .*\)"=no color&underline
+MENUCOLOR="\(in use\)"=no color&underline
+MENUCOLOR="\(tethered to .*\)"=no color&underline
+
+# Blessed Items In Use
+MENUCOLOR="blessed .* \(weapon in .*\)"=light blue&underline
+MENUCOLOR="blessed .* \(wielded.*\)"=light blue&underline
+MENUCOLOR="blessed .* \(alternate weapon\)"=light blue&underline
+MENUCOLOR="blessed .* \(in quiver\)"=light blue&underline
+MENUCOLOR="blessed .* \(at the ready\)"=light blue&underline
+MENUCOLOR="blessed .* \(being worn.*\)"=light blue&underline
+MENUCOLOR="blessed .* \(embedded in your skin\)"=light blue&underline
+MENUCOLOR="blessed .* \(on left .*\)"=light blue&underline
+MENUCOLOR="blessed .* \(on right .*\)"=light blue&underline
+MENUCOLOR="blessed .* \(in use\)"=light blue&underline
+MENUCOLOR="blessed .* \(tethered to .*\)"=light blue&underline
 
 # Silver items
-MENUCOLOR="silver"=lightcyan&bold
+MENUCOLOR="(silver|shield of reflection)"=lightcyan
+MENUCOLOR="(silver|shield of reflection).* \((weapon in|wielded|in quiver|at the ready|tethered|being worn|embedded in your skin|on (left|right)|in use).*\)"=lightcyan&underline
 
-# Items of interest
-MENUCOLOR="blessed unicorn horn"=blue&bold
-MENUCOLOR="blessed .* unicorn horn"=blue&bold
-MENUCOLOR="blessed stone called luck.*"=blue&bold
-MENUCOLOR="blessed luckstone"=blue&bold
-MENUCOLOR="lizard corpse"=green&bold
-MENUCOLOR="wand .* wishing"=blue&bold
-MENUCOLOR="blessed scroll .* scare monster"=blue&bold
-MENUCOLOR="uncursed scroll .* scare monster"=blue
-MENUCOLOR=" cursed scroll .* scare monster"=orange
+# Artifacts
+MENUCOLOR="(Excalibur|Stormbringer|Mjollnir|Cleaver|Grimtooth|Orcrist|Sting)"=magenta
+MENUCOLOR="((Magic|Dragon|Demon|Were|Trolls)bane|(Frost|Fire) Brand)"=magenta
+MENUCOLOR="(Grayswandir|Giantslayer|Ogresmasher|Vorpal Blade|Snickersnee|Sunsword)"=magenta
+MENUCOLOR="(Orb of (Fate|Detection)|Heart of Ahriman|Sceptre of Might)"=magenta
+MENUCOLOR="(Staff of Aesculapius|Magic Mirror of Merlin|Eyes of the Overworld)"=magenta
+MENUCOLOR="(Mitre of Holiness|Longbow of Diana|Master Key of Thievery)"=magenta
+MENUCOLOR="(Tsurugi of Muramasa|Platinum Yendorian Express Card|Eye of the Aethiopica)"=magenta
 
-# Invocation items
-MENUCOLOR=" (Bell of Opening\|silver bell\|Candelabrum of Invocation\|candelabrum\|Book of the Dead\|papyrus spellbook)"=magenta
+# Artifacts In Use
+MENUCOLOR="(Excalibur|Stormbringer|Mjollnir|Cleaver|Grimtooth|Orcrist|Sting) \((weapon in|wielded|in quiver|at the ready|tethered|being worn|embedded in your skin|on (left|right)|in use).*\)"=magenta&underline
+MENUCOLOR="((Magic|Dragon|Demon|Were|Trolls)bane|(Frost|Fire) Brand) \((weapon in|wielded|in quiver|at the ready|tethered|being worn|embedded in your skin|on (left|right)|in use).*\)"=magenta&underline
+MENUCOLOR="(Grayswandir|Giantslayer|Ogresmasher|Vorpal Blade|Snickersnee|Sunsword) \((weapon in|wielded|in quiver|at the ready|tethered|being worn|embedded in your skin|on (left|right)|in use).*\)"=magenta&underline
+MENUCOLOR="(Orb of (Fate|Detection)|Heart of Ahriman|Sceptre of Might) \((weapon in|wielded|in quiver|at the ready|tethered|being worn|embedded in your skin|on (left|right)|in use).*\)"=magenta&underline
+MENUCOLOR="(Staff of Aesculapius|Magic Mirror of Merlin|Eyes of the Overworld) \((weapon in|wielded|in quiver|at the ready|tethered|being worn|embedded in your skin|on (left|right)|in use).*\)"=magenta&underline
+MENUCOLOR="(Mitre of Holiness|Longbow of Diana|Master Key of Thievery) \((weapon in|wielded|in quiver|at the ready|tethered|being worn|embedded in your skin|on (left|right)|in use).*\)"=magenta&underline
+MENUCOLOR="(Tsurugi of Muramasa|Platinum Yendorian Express Card|Eye of the Aethiopica) \((weapon in|wielded|in quiver|at the ready|tethered|being worn|embedded in your skin|on (left|right)|in use).*\)"=magenta&underline
 
-# Money
-MENUCOLOR=" gold piece"=yellow
+# Blessed Artifacts
+MENUCOLOR="blessed.*(Excalibur|Stormbringer|Mjollnir|Cleaver|Grimtooth|Orcrist|Sting)"=light magenta
+MENUCOLOR="blessed.*((Magic|Dragon|Demon|Were|Trolls)bane|(Frost|Fire) Brand)"=light magenta
+MENUCOLOR="blessed.*(Grayswandir|Giantslayer|Ogresmasher|Vorpal Blade|Snickersnee|Sunsword)"=light magenta
+MENUCOLOR="blessed.*(Orb of (Fate|Detection)|Heart of Ahriman|Sceptre of Might)"=light magenta
+MENUCOLOR="blessed.*(Staff of Aesculapius|Magic Mirror of Merlin|Eyes of the Overworld)"=light magenta
+MENUCOLOR="blessed.*(Mitre of Holiness|Longbow of Diana|Master Key of Thievery)"=light magenta
+MENUCOLOR="blessed.*(Tsurugi of Muramasa|Platinum Yendorian Express Card|Eye of the Aethiopica)"=light magenta
 
+# Blessed Artifacts In Use
+MENUCOLOR="blessed.*(Excalibur|Stormbringer|Mjollnir|Cleaver|Grimtooth|Orcrist|Sting) \((weapon in|wielded|in quiver|at the ready|tethered|being worn|embedded in your skin|on (left|right)|in use).*\)"=light magenta&underline
+MENUCOLOR="blessed.*((Magic|Dragon|Demon|Were|Trolls)bane|(Frost|Fire) Brand) \((weapon in|wielded|in quiver|at the ready|tethered|being worn|embedded in your skin|on (left|right)|in use).*\)"=light magenta&underline
+MENUCOLOR="blessed.*(Grayswandir|Giantslayer|Ogresmasher|Vorpal Blade|Snickersnee|Sunsword) \((weapon in|wielded|in quiver|at the ready|tethered|being worn|embedded in your skin|on (left|right)|in use).*\)"=light magenta&underline
+MENUCOLOR="blessed.*(Orb of (Fate|Detection)|Heart of Ahriman|Sceptre of Might) \((weapon in|wielded|in quiver|at the ready|tethered|being worn|embedded in your skin|on (left|right)|in use).*\)"=light magenta&underline
+MENUCOLOR="blessed.*(Staff of Aesculapius|Magic Mirror of Merlin|Eyes of the Overworld) \((weapon in|wielded|in quiver|at the ready|tethered|being worn|embedded in your skin|on (left|right)|in use).*\)"=light magenta&underline
+MENUCOLOR="blessed.*(Mitre of Holiness|Longbow of Diana|Master Key of Thievery) \((weapon in|wielded|in quiver|at the ready|tethered|being worn|embedded in your skin|on (left|right)|in use).*\)"=light magenta&underline
+MENUCOLOR="blessed.*(Tsurugi of Muramasa|Platinum Yendorian Express Card|Eye of the Aethiopica) \((weapon in|wielded|in quiver|at the ready|tethered|being worn|embedded in your skin|on (left|right)|in use).*\)"=light magenta&underline
 
+# Cursed Items
+# There is leading space on this option to prevent matches with "uncursed"
+MENUCOLOR=" cursed"=black
 
-#######################################################################
-## Autopickup exceptions
+# Cursed Items In Use
+MENUCOLOR=" cursed .* \(weapon in .*\)"=black&underline
+MENUCOLOR=" cursed .* \(wielded.*\)"=black&underline
+MENUCOLOR=" cursed .* \(alternate weapon\)"=black&underline
+MENUCOLOR=" cursed .* \(in quiver\)"=black&underline
+MENUCOLOR=" cursed .* \(at the ready\)"=black&underline
+MENUCOLOR=" cursed .* \(being worn.*\)"=black&underline
+MENUCOLOR=" cursed .* \(embedded in your skin\)"=black&underline
+MENUCOLOR=" cursed .* \(on left .*\)"=black&underline
+MENUCOLOR=" cursed .* \(on right .*\)"=black&underline
+MENUCOLOR=" cursed .* \(in use\)"=black&underline
+MENUCOLOR=" cursed .* tethered"=black&underline
 
-# empty wands
-AUTOPICKUP_EXCEPTION=">.*:0).*"
-AUTOPICKUP_EXCEPTION=">.* named empty"
+# (Un)Holy Water
+MENUCOLOR="holy|blessed clear potions?|blessed potions? called water"=light blue
+MENUCOLOR="unholy|cursed clear potions?|cursed potions? called water"=black
+MENUCOLOR="uncursed clear potions?|uncursed potions? called water"=no color
 
-# Don't grab ?oSM
-AUTOPICKUP_EXCEPTION=">scroll of scare monster"
-AUTOPICKUP_EXCEPTION=">scroll called scare monster"
+# Invocation Items
+MENUCOLOR="(Bell of Opening|silver bell|Candelabrum of Invocation|candelabrum|Book of the Dead|papyrus spellbook)"=blue
+MENUCOLOR="blessed.*(Bell of Opening|silver bell|Candelabrum of Invocation|candelabrum|Book of the Dead|papyrus spellbook)"=light blue
 
-# Ammunition (double-hashed are included with more general description)
-#AUTOPICKUP_EXCEPTION="<.*arrow"
-## AUTOPICKUP_EXCEPTION="<.*elven arrow"
-## AUTOPICKUP_EXCEPTION="<.*orcish arrow"
-## AUTOPICKUP_EXCEPTION="<.*silver arrow"
-## AUTOPICKUP_EXCEPTION="<.*runed arrow"
-## AUTOPICKUP_EXCEPTION="<.*crude arrow"
-#AUTOPICKUP_EXCEPTION="<.*ya"
-## AUTOPICKUP_EXCEPTION="<.*bamboo arrow"
-#AUTOPICKUP_EXCEPTION="<.*crossbow bolt"
-#AUTOPICKUP_EXCEPTION="<.*dart"
-#AUTOPICKUP_EXCEPTION="<.*shuriken"
-#AUTOPICKUP_EXCEPTION="<.*throwing star"
-#AUTOPICKUP_EXCEPTION="<.*dagger"
-## AUTOPICKUP_EXCEPTION="<.*elven dagger"
-## AUTOPICKUP_EXCEPTION="<.*orcish dagger"
-## AUTOPICKUP_EXCEPTION="<.*runed dagger"
-## AUTOPICKUP_EXCEPTION="<.*crude dagger"
-## AUTOPICKUP_EXCEPTION="<.*silver dagger"
-#AUTOPICKUP_EXCEPTION="<.*knife"
+# Amulet of Yendor (and imitations)
+MENUCOLOR="Amulet of Yendor"=light magenta
+MENUCOLOR="cheap plastic imitation of the Amulet of Yendor|Amulet of Yendor called [Ff][Aa][Kk][Ee]"=brown
 
-# pick up items whose individual name ends with ammo or autopickup
-AUTOPICKUP_EXCEPTION="<.* named ammo"
-AUTOPICKUP_EXCEPTION="<.* named autopickup"
-
-# never pick up globs
-AUTOPICKUP_EXCEPTION=">.*glob.*"
-
-# corpses - lichen only
-AUTOPICKUP_EXCEPTION=">a corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">b corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">c corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">d corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">e corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">f corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">g corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">h corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">i corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">j corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">k corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">l corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">m corpse[^<]*$"
-AUTOPICKUP_EXCEPTION="<lichen corpse"
-AUTOPICKUP_EXCEPTION=">[^e]n corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">[^h]en corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">o corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">p corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">q corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">r corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">s corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">t corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">u corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">v corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">w corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">x corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">y corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">z corpse[^<]*$"
-AUTOPICKUP_EXCEPTION=">' corpse[^<]*$"
-AUTOPICKUP_EXCEPTION="> chunk of meat[^<]*$"
-AUTOPICKUP_EXCEPTION="> chunks of meat[^<]*$"
-
-# gems
-AUTOPICKUP_EXCEPTION="> stone[^<]*$"
-AUTOPICKUP_EXCEPTION="> gray stone[^<]*$"
-AUTOPICKUP_EXCEPTION="> loadstone[^<]*$"
-AUTOPICKUP_EXCEPTION="> rock[^<]*$"
-AUTOPICKUP_EXCEPTION="> flint[^<]*$"
-AUTOPICKUP_EXCEPTION="> glass[^<]*$"
-#AUTOPICKUP_EXCEPTION="< luckstone"
-#AUTOPICKUP_EXCEPTION="< stone called luck"
 
 
 #######################################################################
-## Messages
+## MSGTYPE - The format is
+#
+#   MSGTYPE=foo "string to match"
+#
+# Where "foo" is one of "hide", "stop" or "norep", and the string to match is a
+# message to be matched. Regular expressions are supported.
+#
+#     "hide" hides the message, so it's never shown.
+#     "stop" always prompts for --More-- after the message.
+#     "norep" shows the message, but not again if no other message is shown in
+#         between.
+#     "show" shows the message, each time. This is the default, and probably
+#         never needs to be explicitly configured.
 
-# Stop on important messages
-MSGTYPE=stop "You descend the stairs."
-MSGTYPE=stop "You climb up the stairs."
-MSGTYPE=stop "The couatl swings itself around you!"
-MSGTYPE=stop "The electric eel swings itself around you!"
-MSGTYPE=stop "The giant eel swings itself around you!"
-MSGTYPE=stop "The kraken swings itself around you!"
-MSGTYPE=stop "The python grabs you!"
+# Don't repeat common messages
+MSGTYPE=norep "You (descend|climb up) the stairs."
+MSGTYPE=norep "You see here a.*"
+
+# Hide unimportant messages
+MSGTYPE=hide "You swap places with .*"
+MSGTYPE=hide "With great effort you move the boulder."
+MSGTYPE=hide "It's solid stone."
+MSGTYPE=hide "Your tentacles suck the .*"
+
+
+## This block comes from https://nethackwiki.com/wiki/MSGTYPE
+# delayed instadeaths
 MSGTYPE=stop "The .* (grabs|swings itself around) you!"
 MSGTYPE=stop "You don't feel very well."
 MSGTYPE=stop "You are turning a little green."
@@ -457,36 +523,34 @@ MSGTYPE=stop "You can no longer breathe."
 MSGTYPE=stop "You're turning blue."
 MSGTYPE=stop "Your consciousness is fading."
 MSGTYPE=stop "You feel deathly sick."
-MSGTYPE=stop "You feel much worse."
-MSGTYPE=stop "You feel even worse."
 MSGTYPE=stop "You feel (much|even) worse."
-MSGTYPE=stop "You are turning a little .*"
-MSGTYPE=stop "You feel feverish*"
-MSGTYPE=stop "You see here a cockatrice corpse."
-MSGTYPE=stop "You see here a chickatrice corpse."
-MSGTYPE=stop "You are beginning to feel weak."
+
+# Things that aren't dangerous by themselves but could kill you if you don't notice.
 MSGTYPE=stop "You fail to cast the spell correctly."
-MSGTYPE=stop "Your wielded * rots away."
-MSGTYPE=stop "You find a*"
-MSGTYPE=stop "You feel more confident in your*skills."
-MSGTYPE=stop "You feel a strange vibration*"
-MSGTYPE=stop "You have a .* feeling for a moment, then it passes."
-MSGTYPE=stop "You sense a faint wave of psychic energy"
-MSGTYPE=stop "You are beginning to feel weak."
-MSGTYPE=stop "The scroll turns to dust as you pick it up."
 MSGTYPE=stop "You see here a c(hi|o)ckatrice corpse."
+MSGTYPE=stop "You are beginning to feel weak."
+
+# Don't speed past wrest message when wresting
 MSGTYPE=stop "You wrest .*"
+
+# Don't miss the vibrating square
+MSGTYPE=stop "You feel a strange vibration (under|beneath) you"
+
+# Other things I don't want to miss
 MSGTYPE=stop ".*Vorpal Blade.*"
-MSGTYPE=stop ".*You move right into.*"
 MSGTYPE=stop ".*You feel worried.*"
-MSGTYPE=stop "You feel more confident.*"
-MSGTYPE=stop "You remember this level.*"
-MSGTYPE=stop "You don't have anything.*"
-MSGTYPE=stop "Sorry, I don't know how to use that."
+MSGTYPE=stop ".*You move right into.*"
 MSGTYPE=stop ".*silly thing.*"
+MSGTYPE=stop "Sorry, I don't know how to use that."
+MSGTYPE=stop "The scroll turns to dust as you pick it up."
+MSGTYPE=stop "You don't have anything.*"
+MSGTYPE=stop "You feel feverish*"
+MSGTYPE=stop "You feel more confident.*"
+MSGTYPE=stop "You find a.*"
+MSGTYPE=stop "You have a .* feeling for a moment, then it passes."
+MSGTYPE=stop "You remember this level.*"
+#MSGTYPE=stop "You sense a faint wave of psychic energy"
+MSGTYPE=stop "Your wielded .* rots away."
 
-# Hide unimportant messages
-MSGTYPE=hide "You swap places with .*"
-MSGTYPE=hide "With great effort you move the boulder."
 
-# vim: set filetype=nethack:
+# vim: set filetype=conf:
