@@ -94,21 +94,40 @@
       help-text))
   )
 
-(load "/home/fadein/devel/scheme/statistics/statistics.scm") (import statistics)
 
-; Mimic Python's id() function
-(define (id obj)
-  (and-let* ((ptr (object->pointer obj))
-             (addr (pointer->address ptr)))
-            addr))
+; statistics routines
+(define (just-numbers . ts)
+  (filter number? (flatten ts)))
 
-(define (id obj)
-  (and-let* ((ptr (object->pointer obj)))
-             (pointer->address ptr)))
+(define (count . ts)
+  (length (just-numbers ts)))
+
+(define (average . ts)
+  (define (ave-helper xs)
+    (let ((l (length xs)))
+      (if (zero? l)
+        0.0
+        (exact->inexact (/ (apply + xs) l)))))
+  (ave-helper (just-numbers ts)))
+
+(define (variance . ts)
+  (let* ((square (lambda (x) (* x x)))
+         (ts (just-numbers ts))
+         (ave (average ts))
+         (sq-devs (map (lambda (x) (square (- ave x))) ts)))
+    (average sq-devs)))
+
+(define (std-dev . ts)
+  (sqrt (variance ts)))
 
 ; print the ratio of two numbers as a percent (to two decimals)
 (define (% n d #!optional (precision 2))
   (import fmt)
   (fmt #t (num (* 100.0 n (/ d)) 10 precision) #\% nl))
+
+; Mimic Python's id() function
+(define (id obj)
+  (and-let* ((ptr (object->pointer obj)))
+             (pointer->address ptr)))
 
 ; vim: filetype=scheme tabstop=2 expandtab:
