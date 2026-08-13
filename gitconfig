@@ -22,6 +22,7 @@
 	detachedHead = false
 
 [alias]
+	; +,/^$/-sort
 	amend = commit --amend
 	amendne = commit --amend --no-edit
 	br = branch
@@ -58,6 +59,7 @@
 	sb = show-branch
 	st = status
 	staged = diff --staged
+	stahs = stash
 	stat = status
 	statn = status --untracked-files=no
 	statno = status --untracked-files=no
@@ -76,13 +78,14 @@
 	wordiff = diff --word-diff
 
 [color]
-	ui = true
+	; +,/^$/-sort
+	branch = true
 	diff = auto
 	grep = true
-	branch = true
 	interactive = true
 	pager = true
 	status = true
+	ui = true
 
 [color.diff]
 	#plain (context text)
@@ -110,11 +113,11 @@
 	untracked = yellow
 
 [core]
-	# pager = less -MRX
-	pager = delta
-	excludesfile = /home/fadein/.gitexcludes
-	whitespace = "tabwidth=4"
+	; +,/^$/-sort
 	askPass =
+	excludesfile = /home/fadein/.gitexcludes
+	pager = less -MRX
+	whitespace = "tabwidth=4"
 
 [diff]
 	tool = vimdiff
@@ -123,10 +126,11 @@
 	recurseSubmodules = on-demand
 
 [filter "lfs"]
-	smudge = git-lfs smudge -- %f
+	; +,/^$/-sort
+	clean = git-lfs clean -- %f
 	process = git-lfs filter-process
 	required = true
-	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 
 [http]
 	sslverify = true  # Set to false if SSL certs aren't being happy
@@ -143,13 +147,15 @@
 	log = true
 
 [pager]
+	; +,/^$/-sort
 	branch = false
-	log = less -FR -M
 	color-blame = less
+	log = less -FR -M
 
 [pull]
-	rebase = true
+	; +,/^$/-sort
 	ff = true
+	rebase = true
 
 [push]
 	default = matching
@@ -164,12 +170,10 @@
 [tig "bind"]
 	generic = i view-close
 
-[interactive]
-	diffFilter = delta --color-only
-
 [delta]
-	navigate = true  # use n and N to move between diff sections
+	; +,/^$/-sort
 	dark = true      # or light = true, or omit for auto-detection
+	navigate = true  # use n and N to move between diff sections
 
 # Put local configuration items that override settings above into this file:
 [include]
