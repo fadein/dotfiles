@@ -22,13 +22,18 @@
   ;; CHICKEN system is built (more especially when a new chicken.so
   ;; lib version is released)
 
+  (define docs-url
+    (cond-expand
+      (chicken-5 "http://call-cc.org/tarballs/chicken-doc/chicken-doc-repo-5.tgz")
+      (chicken-6 "http://call-cc.org/tarballs/chicken-doc/chicken-doc-repo-6.tgz")))
+
   ; Import chicken-doc or explain how to manually set it up
   (handle-exceptions
     _
     (print
       "The 'chicken-doc' egg requires a bit of manual setup\n"
       "Run this command (the parens are for a subshell):\n"
-      "( cd `csi -R chicken.platform -p '(chicken-home)'` && curl http://call-cc.org/tarballs/chicken-doc/chicken-doc-repo-5.tgz | sudo tar xz )")
+      (format "( cd `csi -R chicken.platform -p '(chicken-home)'` && curl ~a | sudo tar xz )" docs-url))
     (import chicken-doc))
 
 
