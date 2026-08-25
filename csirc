@@ -1,103 +1,102 @@
 ; Chicken Scheme Interpreter resource file
 ; Chicken 5.0.0 +
 
-(import (chicken csi))
-(import (chicken file))
-(import (chicken format))
-(import (chicken io))
-(import (chicken memory))
-(import (chicken process))
-(import (chicken process-context))
-(import (chicken string))
+(import  ; standard library modules
+  (chicken csi)
+  (chicken file)
+  (chicken format)
+  (chicken io)
+  (chicken memory)
+  (chicken platform)
+  (chicken process)
+  (chicken process-context)
+  (chicken string)
+  srfi-2)
+
+;; These modules need to be reinstalled with each new CHICKEN version,
+;; more especially when a new chicken.so lib version is released.
+;; Put this text into a file and run `chicken-install from-list <filename>`
+;;   (apropos) (breadline) (chicken-doc) (expand-full) (fmt) (srfi-1) (srfi-13)
+(import apropos) ; provide ,a csi command - search for identifiers with Regex
+(import expand-full) ; provide the ,x* csi command to fully expand macros
+(import fmt) ; used by % function
 (import srfi-1)
-(import srfi-2)
 (import srfi-13)
 
-;; Backup copy of the original input port
+; Installing breadline doesn't work out-of-the-box on macOS
+; 0. Install readline with homebrew
+;    $ brew install readline
+; 1. Export envvars to help chicken-install locate things
+;    $ rlp=/opt/homebrew/Cellar/readline/8.3.3
+;    $ export PKG_CONFIG_PATH=$rlp/lib/pkgconfig
+;    $ export CPPFLAGS=-I$rlp/include
+;    $ export LDFLAGS=-L/$rlp/lib
+; 2. Install breadline with chicken-install
+(import (prefix breadline "rl-"))
+(import (prefix breadline-scheme-completion "rl-"))
+
+
+; Set up breadline readline interface
+;; Copy of the original input port
 (define +orig-input-port+ (current-input-port))
+(rl-history-file (format "~a/.csi_history" (get-environment-variable "HOME")))
+(rl-stifle-history! 10000)
+(rl-completer-word-break-characters-set! "\"\'`;|()[]@\t ")
+(rl-completer-set! rl-scheme-completer)
+(rl-basic-quote-characters-set! "\"|")
+(rl-variable-bind! "blink-matching-paren" "on")
+(rl-paren-blink-timeout-set! 200000)
+(current-input-port (rl-make-readline-port))
 
 
-(begin
-  ;; these modules need to be chicken-installed each time a new
-  ;; CHICKEN system is built (more especially when a new chicken.so
-  ;; lib version is released)
+; Import chicken-doc or explain how to manually set it up
+(let ((docs-url (format "http://call-cc.org/tarballs/chicken-doc/chicken-doc-repo-~a.tgz"
+                        (cond-expand (chicken-5 5) (chicken-6 6))))
+      (sudo-cmd (if (file-writable? (chicken-home)) "" "sudo ")))
 
-  (define docs-url
-    (cond-expand
-      (chicken-5 "http://call-cc.org/tarballs/chicken-doc/chicken-doc-repo-5.tgz")
-      (chicken-6 "http://call-cc.org/tarballs/chicken-doc/chicken-doc-repo-6.tgz")))
-
-  ; Import chicken-doc or explain how to manually set it up
   (handle-exceptions
     _
     (print
       "The 'chicken-doc' egg requires a bit of manual setup\n"
       "Run this command (the parens are for a subshell):\n"
-      (format "( cd `csi -R chicken.platform -p '(chicken-home)'` && curl ~a | sudo tar xz )" docs-url))
-    (import chicken-doc))
+      (format "( cd `csi -R chicken.platform -p '(chicken-home)'` && curl ~a | ~atar xz )" docs-url sudo-cmd))
+    (import chicken-doc)))
 
 
-  ; "breadline" readline interface
-  (import (prefix breadline "rl-"))
-  (import (prefix breadline-scheme-completion "rl-"))
-  (rl-history-file (format "~a/.csi_history" (get-environment-variable "HOME")))
-  (rl-stifle-history! 10000)
-  (rl-completer-word-break-characters-set! "\"\'`;|()[]@\t ")
-  (rl-completer-set! rl-scheme-completer)
-  (rl-basic-quote-characters-set! "\"|")
-  (rl-variable-bind! "blink-matching-paren" "on")
-  (rl-paren-blink-timeout-set! 200000)
-  (current-input-port (rl-make-readline-port))
+;; define the ,el toplevel command that will edit files in my $EDITOR,
+;; and load them into the interpreter after leaving $EDITOR
+(let* ((edit-and-load-symbol 'el)
+       (editor
+         (or (editor-command)
+             (get-environment-variable "EDITOR")
+             (get-environment-variable "VISUAL")
+             (if (get-environment-variable "EMACS")
+               "emacsclient"
+               "vi")))
 
-  ; use linenoise instead of readline
-  ; (define orig-input-port (current-input-port))
-  ; (import linenoise)
-  ; (current-input-port (make-linenoise-port))
+       (help-text
+         (format ",~a FILENAME      Edit FILENAME in external editor (~a) and load results"
+                 (symbol->string edit-and-load-symbol) editor))
 
+       (edit-and-load
+         (lambda ()
+           (let ((files-str (read-line)))
+             (if (= 0 (string-length files-str))
+               (printf "Usage: ~a~n" help-text)
+               (let ((retval (system (format "~a ~a" editor files-str))))
+                 (if (not (zero? retval))
+                   (printf "~a returned with non-zero exit status: ~a~n" editor retval)
+                   ; verify that the file(s) were written
+                   (let ((edited-files
+                           (filter file-exists?
+                                   (map string-trim-both
+                                        (string-split files-str)))))
+                     (for-each load edited-files)))))))))
 
-  ; provide the ,x* csi command to fully expand macros
-  (import expand-full)
-
-
-  ; provide ,a csi command - search for identifiers with Regex
-  (import apropos)
-
-
-  ;; define the ,el toplevel command that will edit files in my $EDITOR,
-  ;; and load them into the interpreter after leaving $EDITOR
-  (let* ((edit-and-load-symbol 'el)
-         (editor
-           (or (editor-command)
-               (get-environment-variable "EDITOR")
-               (get-environment-variable "VISUAL")
-               (if (get-environment-variable "EMACS")
-                   "emacsclient"
-                   "vi")))
-
-         (help-text
-           (format ",~a FILENAME      Edit FILENAME in external editor (~a) and load results"
-             (symbol->string edit-and-load-symbol) editor))
-
-         (edit-and-load
-           (lambda ()
-             (let ((files-str (read-line)))
-               (if (= 0 (string-length files-str))
-                   (printf "Usage: ~a~n" help-text)
-                   (let ((retval (system (format "~a ~a" editor files-str))))
-                     (if (not (zero? retval))
-                         (printf "~a returned with non-zero exit status: ~a~n" editor retval)
-                         ; verify that the file(s) were written
-                         (let ((edited-files
-                                 (filter file-exists?
-                                         (map string-trim-both
-                                              (string-split files-str)))))
-                           (for-each load edited-files)))))))))
-
-    (toplevel-command
-      edit-and-load-symbol
-      edit-and-load
-      help-text))
-  )
+  (toplevel-command
+    edit-and-load-symbol
+    edit-and-load
+    help-text))
 
 
 ; statistics routines
@@ -127,7 +126,6 @@
 
 ; print the ratio of two numbers as a percent (to two decimals)
 (define (% n d #!optional (precision 2))
-  (import fmt)
   (fmt #t (num (* 100.0 n (/ d)) 10 precision) #\% nl))
 
 ; Mimic Python's id() function
