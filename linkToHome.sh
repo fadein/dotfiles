@@ -70,11 +70,17 @@ linkToHome() {
 			# DEST_LINK is a broken link, remove it
 			if [ ! -e "$DEST_LINK" ]; then
 				echo "${RED}≠ $DEST_NAME is a broken link, cleaning it up$RST"
+				if ! [ -d "$(dirname $DEST_NAME)" ]; then
+					echodo mkdir -p "$(dirname $DEST_NAME)"
+				fi
 				echodo ln -sf $SRC $DEST_NAME
 
 			# upgrade to host-specific link
 			elif [ -n "$DEFAULT" -a "$DEST_LINK" == "$DEFAULT" ]; then
 				echo "${YLW}≠ $DEST_NAME points to $DEFAULT, updating$RST"
+				if ! [ -d "$(dirname $DEST_NAME)" ]; then
+					echodo mkdir -p "$(dirname $DEST_NAME)"
+				fi
 				echodo ln -sf $SRC $DEST_NAME
 
 			# IGNORE: DEST_NAME points to non-managed file
@@ -110,6 +116,9 @@ linkToHome() {
 		elif [ -e $DEST_NAME ]; then
 			echo  "$YLW✗ $DEST_NAME already exists$RST"
 		else
+			if ! [ -d "$(dirname $DEST_NAME)" ]; then
+				echodo mkdir -p "$(dirname $DEST_NAME)"
+			fi
 			echodo ln -s $SRC $DEST_NAME
 		fi
 	fi
